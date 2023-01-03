@@ -17,7 +17,7 @@ public class LevelDesignHelper_Editor : Editor
     SerializedProperty _excludeLayerProp;
     string[] _sortingLayerNames;
     Dictionary<string, List<SpriteRenderer>> _spriteMap;
-    int index = 0;
+    int _selectedLayerIndex = 0;
 
     void OnEnable()
     {
@@ -69,10 +69,10 @@ public class LevelDesignHelper_Editor : Editor
 
             EditorGUILayout.LabelField("Sort this layer only: ");
             EditorGUILayout.BeginHorizontal();
-            index = EditorGUILayout.Popup(index, _sortingLayerNames);
+            _selectedLayerIndex = EditorGUILayout.Popup(_selectedLayerIndex, _sortingLayerNames);
             if (GUILayout.Button("Sort this"))
             {
-
+                SortLayer(_sortingLayerNames[_selectedLayerIndex]);
             }
             EditorGUILayout.EndHorizontal();
         }
@@ -106,71 +106,15 @@ public class LevelDesignHelper_Editor : Editor
 
         foreach (string layerName in _sortingLayerNames)
         {
-            if (!_spriteMap.ContainsKey(layerName)) continue;
-            var renderers = _spriteMap[layerName];
-            //_spriteMap[layerName] = _spriteMap[layerName].OrderBy(x => x.transform.position.z).ToList();
-            // Find the 0 layer
-            SpriteRenderer zeroRenderer = renderers.OrderBy(x => Mathf.Abs(0 - x.transform.position.z)).First();
-            zeroRenderer.sortingOrder = 0;
-            // Find all the layers in front(and behind) of the 0 layer and sort it.
-            var frontRenderers = new List<SpriteRenderer>();
-            renderers.RemoveAll(x =>
-            {
-                if (x.transform.position.z <= zeroRenderer.transform.position.z)
-                {
-                    frontRenderers.Add(x);
-                    return true;
-                }
-                return false;
-            });
-            frontRenderers = frontRenderers.OrderByDescending(x => x.transform.position.z)
-                .ToList();
-            var behindRenderers = renderers.OrderBy(x => x.transform.position.z)
-                .ToList();
-            // Assign sorting order for all the layers
-            for (int i = 0, order = 0; i < frontRenderers.Count; i++)
-            {
-                var renderer = frontRenderers[i];
-                if (i == 0) // If this is the first one
-                {
-                    if (renderer.transform.position.z != zeroRenderer.transform.position.z)
-                    {
-                        order++;
-                    }
-                }
-                else
-                {
-                    var prevRenderer = frontRenderers[i - 1];
-                    if (renderer.transform.position.z != prevRenderer.transform.position.z)
-                    {
-                        order++;
-                    }
-                }
-
-                renderer.sortingOrder = order;
-            }
-            for (int i = 0, order = 0; i < renderers.Count; i++)
-            {
-                var renderer = frontRenderers[i];
-                if (i == 0) // If this is the first one
-                {
-                    if (renderer.transform.position.z != zeroRenderer.transform.position.z)
-                    {
-                        order--;
-                    }
-                }
-                else
-                {
-                    var prevRenderer = frontRenderers[i - 1];
-                    if (renderer.transform.position.z != prevRenderer.transform.position.z)
-                    {
-                        order--;
-                    }
-                }
-
-                renderer.sortingOrder = order;
-            }
+            SortLayerBasedOnZIndex(layerName);
         }
+    }
+    void SortLayer(string layerName)
+    {
+        if (_sortingLayerNames == null) return;
+
+        GetAllGameSprites();
+        SortLayerBasedOnZIndex(layerName);
     }
 
     void GetAllGameSprites()
@@ -190,6 +134,73 @@ public class LevelDesignHelper_Editor : Editor
                 }
             }
         });
+    }
+
+    void SortLayerBasedOnZIndex(string layerName)
+    {
+        if (!_spriteMap.ContainsKey(layerName)) return;
+        var renderers = _spriteMap[layerName];
+        // Find the 0 layer
+        SpriteRenderer zeroRenderer = renderers.OrderBy(x => Mathf.Abs(0 - x.transform.position.z)).First();
+        zeroRenderer.sortingOrder = 0;
+        // Find all the layers in front(and behind) of the 0 layer and sort it.
+        var frontRenderers = new List<SpriteRenderer>();
+        renderers.RemoveAll(x =>
+        {
+            if (x.transform.position.z <= zeroRenderer.transform.position.z)
+            {
+                frontRenderers.Add(x);
+                return true;
+            }
+            return false;
+        });
+        frontRenderers = frontRenderers.OrderByDescending(x => x.transform.position.z)
+            .ToList();
+        var behindRenderers = renderers.OrderBy(x => x.transform.position.z)
+            .ToList();
+        // Assign sorting order for all the layers
+        for (int i = 0, order = 0; i < frontRenderers.Count; i++)
+        {
+            var renderer = frontRenderers[i];
+            if (i == 0) // If this is the first one
+            {
+                if (renderer.transform.position.z != zeroRenderer.transform.position.z)
+                {
+                    order++;
+                }
+            }
+            else
+            {
+                var prevRenderer = frontRenderers[i - 1];
+                if (renderer.transform.position.z != prevRenderer.transform.position.z)
+                {
+                    order++;
+                }
+            }
+
+            renderer.sortingOrder = order;
+        }
+        for (int i = 0, order = 0; i < renderers.Count; i++)
+        {
+            var renderer = frontRenderers[i];
+            if (i == 0) // If this is the first one
+            {
+                if (renderer.transform.position.z != zeroRenderer.transform.position.z)
+                {
+                    order--;
+                }
+            }
+            else
+            {
+                var prevRenderer = frontRenderers[i - 1];
+                if (renderer.transform.position.z != prevRenderer.transform.position.z)
+                {
+                    order--;
+                }
+            }
+
+            renderer.sortingOrder = order;
+        }
     }
 }
 #endif
