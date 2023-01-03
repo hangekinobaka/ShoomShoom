@@ -1,9 +1,9 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Reflection;
 using UnityEditorInternal;
-using UnityEngine;
 
-public static class MyUtils
+public static class MyEditorUtils
 {
     public static string[] GetSortingLayerNames()
     {
@@ -13,3 +13,4 @@ public static class MyUtils
         return sortingLayers;
     }
 }
+#endif
