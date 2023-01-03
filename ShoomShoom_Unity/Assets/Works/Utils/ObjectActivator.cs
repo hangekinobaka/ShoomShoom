@@ -2,29 +2,29 @@ using UnityEngine;
 
 public class ObjectActivator : MonoBehaviour
 {
-    [SerializeField] string activatorTag = null;
-    [SerializeField] bool deactivateOnExit = false;
-    [SerializeField] GameObject[] activeObjs = null;
-    [SerializeField] GameObject[] deasctiveObjs = null;
+    [SerializeField] string _activatorTag = null;
+    [SerializeField] bool _deactivateOnExit = false;
+    [SerializeField] GameObject[] _activeObjs = null;
+    [SerializeField] GameObject[] _deasctiveObjs = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(activatorTag))
+        if (collision.CompareTag(_activatorTag))
         {
-            foreach (var obj in deasctiveObjs)
+            foreach (var obj in _deasctiveObjs)
                 obj.SetActive(false);
-            foreach (var obj in activeObjs)
+            foreach (var obj in _activeObjs)
                 obj.SetActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (deactivateOnExit && collision.CompareTag(activatorTag))
+        if (_deactivateOnExit && collision.CompareTag(_activatorTag))
         {
-            foreach (var obj in activeObjs)
+            foreach (var obj in _activeObjs)
                 obj.SetActive(false);
-            foreach (var obj in deasctiveObjs)
+            foreach (var obj in _deasctiveObjs)
                 obj.SetActive(true);
         }
     }

@@ -10,31 +10,30 @@ public enum GroundType
 public class CharacterController2D : MonoBehaviour
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
-    readonly Quaternion flippedRotation = new Quaternion(0, 0, 1, 0);
 
     [Header("Movement")]
-    [SerializeField] float acceleration = 0.0f;
-    [SerializeField] float maxSpeed = 0.0f;
-    [SerializeField] float jumpForce = 0.0f;
-    [SerializeField] float minFlipSpeed = 0.1f;
-    [SerializeField] float jumpGravityScale = 1.0f;
-    [SerializeField] float fallGravityScale = 1.0f;
-    [SerializeField] float groundedGravityScale = 1.0f;
-    [SerializeField] bool resetSpeedOnLand = false;
+    [SerializeField] float _acceleration = 0.0f;
+    [SerializeField] float _maxSpeed = 0.0f;
+    [SerializeField] float _jumpForce = 0.0f;
+    [SerializeField] float _minFlipSpeed = 0.1f;
+    [SerializeField] float _jumpGravityScale = 1.0f;
+    [SerializeField] float _fallGravityScale = 1.0f;
+    [SerializeField] float _groundedGravityScale = 1.0f;
+    [SerializeField] bool _resetSpeedOnLand = false;
 
-    private Rigidbody2D controllerRigidbody;
-    private Collider2D controllerCollider;
-    private LayerMask normalGroundMask;
-    private LayerMask waterGroundMask;
-    private GroundType groundType;
+    Rigidbody2D _controllerRigidbody;
+    Collider2D _controllerCollider;
+    LayerMask _normalGroundMask;
+    LayerMask _waterGroundMask;
+    GroundType _groundType;
 
-    private Vector2 movementInput;
-    private bool jumpInput;
+    Vector2 _movementInput;
+    bool _jumpInput;
 
-    private Vector2 prevVelocity;
-    private bool isFlipped;
-    private bool isJumping;
-    private bool isFalling;
+    Vector2 _prevVelocity;
+    bool _isFlipped;
+    bool _isJumping;
+    bool _isFalling;
 
     public bool CanMove { get; set; }
 
@@ -61,11 +60,11 @@ public class CharacterController2D : MonoBehaviour
         }
 #endif
         // Get comps
-        controllerRigidbody = GetComponent<Rigidbody2D>();
-        controllerCollider = GetComponent<Collider2D>();
+        _controllerRigidbody = GetComponent<Rigidbody2D>();
+        _controllerCollider = GetComponent<Collider2D>();
         // Get layer masks
-        normalGroundMask = LayerMask.GetMask("Ground");
-        waterGroundMask = LayerMask.GetMask("GroundWater");
+        _normalGroundMask = LayerMask.GetMask("Ground");
+        _waterGroundMask = LayerMask.GetMask("GroundWater");
 
         CanMove = true;
     }
@@ -85,11 +84,11 @@ public class CharacterController2D : MonoBehaviour
         else if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
             moveHorizontal = 1.0f;
 
-        movementInput = new Vector2(moveHorizontal, 0);
+        _movementInput = new Vector2(moveHorizontal, 0);
 
         // Jumping input
-        if (!isJumping && keyboard.spaceKey.wasPressedThisFrame)
-            jumpInput = true;
+        if (!_isJumping && keyboard.spaceKey.wasPressedThisFrame)
+            _jumpInput = true;
     }
 
     void FixedUpdate()
@@ -100,71 +99,71 @@ public class CharacterController2D : MonoBehaviour
         UpdateJump();
         UpdateGravityScale();
 
-        prevVelocity = controllerRigidbody.velocity;
+        _prevVelocity = _controllerRigidbody.velocity;
     }
 
     private void UpdateGrounding()
     {
         // Use character collider to check if touching ground layers
-        if (controllerCollider.IsTouchingLayers(normalGroundMask))
-            groundType = GroundType.Normal;
-        else if (controllerCollider.IsTouchingLayers(waterGroundMask))
-            groundType = GroundType.Water;
+        if (_controllerCollider.IsTouchingLayers(_normalGroundMask))
+            _groundType = GroundType.Normal;
+        else if (_controllerCollider.IsTouchingLayers(_waterGroundMask))
+            _groundType = GroundType.Water;
         else
-            groundType = GroundType.None;
+            _groundType = GroundType.None;
 
     }
     private void UpdateVelocity()
     {
-        Vector2 velocity = controllerRigidbody.velocity;
+        Vector2 velocity = _controllerRigidbody.velocity;
 
         // Apply acceleration directly as we'll want to clamp
         // prior to assigning back to the body.
-        velocity += movementInput * acceleration * Time.fixedDeltaTime;
+        velocity += _movementInput * _acceleration * Time.fixedDeltaTime;
 
         // We've consumed the movement, reset it.
-        movementInput = Vector2.zero;
+        _movementInput = Vector2.zero;
 
         // Clamp horizontal speed.
-        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        velocity.x = Mathf.Clamp(velocity.x, -_maxSpeed, _maxSpeed);
 
         // Assign back to the body.
-        controllerRigidbody.velocity = velocity;
+        _controllerRigidbody.velocity = velocity;
 
     }
 
     private void UpdateJump()
     {
         // Set falling flag
-        if (isJumping && controllerRigidbody.velocity.y < 0)
-            isFalling = true;
+        if (_isJumping && _controllerRigidbody.velocity.y < 0)
+            _isFalling = true;
 
         // Jump
-        if (jumpInput)
+        if (_jumpInput)
         {
             // Jump using impulse force
-            controllerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            _controllerRigidbody.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
 
 
             // We've consumed the jump, reset it.
-            jumpInput = false;
+            _jumpInput = false;
 
             // Set jumping flag
-            isJumping = true;
+            _isJumping = true;
         }
         // Landed
-        else if (isJumping && isFalling && groundType != GroundType.None)
+        else if (_isJumping && _isFalling && _groundType != GroundType.None)
         {
             // Since collision with ground stops rigidbody, reset velocity
-            if (resetSpeedOnLand)
+            if (_resetSpeedOnLand)
             {
-                prevVelocity.y = controllerRigidbody.velocity.y;
-                controllerRigidbody.velocity = prevVelocity;
+                _prevVelocity.y = _controllerRigidbody.velocity.y;
+                _controllerRigidbody.velocity = _prevVelocity;
             }
 
             // Reset jumping flags
-            isJumping = false;
-            isFalling = false;
+            _isJumping = false;
+            _isFalling = false;
 
         }
     }
@@ -172,14 +171,14 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateDirection()
     {
         // Use scale to flip character depending on direction
-        if (controllerRigidbody.velocity.x > minFlipSpeed && isFlipped)
+        if (_controllerRigidbody.velocity.x > _minFlipSpeed && _isFlipped)
         {
-            isFlipped = false;
+            _isFlipped = false;
             transform.localScale = Vector3.one;
         }
-        else if (controllerRigidbody.velocity.x < -minFlipSpeed && !isFlipped)
+        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed && !_isFlipped)
         {
-            isFlipped = true;
+            _isFlipped = true;
             transform.localScale = flippedScale;
         }
     }
@@ -188,12 +187,12 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateGravityScale()
     {
         // Use grounded gravity scale by default.
-        var gravityScale = groundedGravityScale;
+        var gravityScale = _groundedGravityScale;
 
         // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
-        gravityScale = controllerRigidbody.velocity.y > 0.0f ? jumpGravityScale : fallGravityScale;
+        gravityScale = _controllerRigidbody.velocity.y > 0.0f ? _jumpGravityScale : _fallGravityScale;
 
-        controllerRigidbody.gravityScale = gravityScale;
+        _controllerRigidbody.gravityScale = gravityScale;
     }
 
 }
