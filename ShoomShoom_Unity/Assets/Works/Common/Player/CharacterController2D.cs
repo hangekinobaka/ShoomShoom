@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum GroundType
+{
+    None, // When the ground type is none, there is no ground under the Player's feet.
+    Normal,
+    Water
+}
 public class CharacterController2D : MonoBehaviour
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
@@ -18,8 +24,9 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D controllerRigidbody;
     private Collider2D controllerCollider;
-    private LayerMask softGroundMask;
-    private LayerMask hardGroundMask;
+    private LayerMask normalGroundMask;
+    private LayerMask waterGroundMask;
+    private GroundType groundType;
 
     private Vector2 movementInput;
     private bool jumpInput;
@@ -28,10 +35,6 @@ public class CharacterController2D : MonoBehaviour
     private bool isFlipped;
     private bool isJumping;
     private bool isFalling;
-
-    private int animatorGroundedBool;
-    private int animatorRunningSpeed;
-    private int animatorJumpTrigger;
 
     public bool CanMove { get; set; }
 
@@ -57,9 +60,12 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 #endif
-
+        // Get comps
         controllerRigidbody = GetComponent<Rigidbody2D>();
         controllerCollider = GetComponent<Collider2D>();
+        // Get layer masks
+        normalGroundMask = LayerMask.GetMask("Ground");
+        waterGroundMask = LayerMask.GetMask("GroundWater");
 
         CanMove = true;
     }
@@ -88,6 +94,7 @@ public class CharacterController2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        UpdateGrounding();
         UpdateVelocity();
         UpdateDirection();
         UpdateJump();
@@ -96,7 +103,17 @@ public class CharacterController2D : MonoBehaviour
         prevVelocity = controllerRigidbody.velocity;
     }
 
+    private void UpdateGrounding()
+    {
+        // Use character collider to check if touching ground layers
+        if (controllerCollider.IsTouchingLayers(normalGroundMask))
+            groundType = GroundType.Normal;
+        else if (controllerCollider.IsTouchingLayers(waterGroundMask))
+            groundType = GroundType.Water;
+        else
+            groundType = GroundType.None;
 
+    }
     private void UpdateVelocity()
     {
         Vector2 velocity = controllerRigidbody.velocity;
@@ -113,7 +130,6 @@ public class CharacterController2D : MonoBehaviour
 
         // Assign back to the body.
         controllerRigidbody.velocity = velocity;
-
 
     }
 
@@ -138,7 +154,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Landed
-        else if (isJumping)
+        else if (isJumping && isFalling && groundType != GroundType.None)
         {
             // Since collision with ground stops rigidbody, reset velocity
             if (resetSpeedOnLand)
