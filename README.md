@@ -3,10 +3,10 @@
 ## Author
 
 - 𝓨𝓲𝓻𝓪𝓷 𝓗𝓮   
-  Programmer     
-  Animator   
+  💻Programmer     
+  🕺Animator   
 - 𝓒𝓱𝓮𝓷 𝓦𝓪𝓷𝓰    
-  Artist
+  🎨Artist
 
 ## Content
 
