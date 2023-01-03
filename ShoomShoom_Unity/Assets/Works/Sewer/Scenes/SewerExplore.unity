@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1302854140}
   m_Lens:
     FieldOfView: 48.47
-    OrthographicSize: 6
+    OrthographicSize: 6.41
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -303,7 +303,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 255, y: 16}
+  m_Size: {x: 260, y: 16}
   m_EdgeRadius: 0
 --- !u!66 &190021505
 CompositeCollider2D:
@@ -325,20 +325,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 190021504}
     m_ColliderPaths:
-    - - X: 1275000064
+    - - X: 1300000000
         Y: 100000000
-      - X: -1275000064
+      - X: -1300000000
         Y: 100000000
-      - X: -1275000064
+      - X: -1300000000
         Y: -60000000
-      - X: 1275000064
+      - X: 1300000000
         Y: -60000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 127.499985, y: -6}
-      - {x: 127.499985, y: 10}
-      - {x: -127.50001, y: 9.99997}
-      - {x: -127.499985, y: -6}
+    - - {x: 129.99997, y: -6}
+      - {x: 129.99997, y: 10}
+      - {x: -130, y: 9.99997}
+      - {x: -129.99997, y: -6}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &190021506
@@ -1140,7 +1140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -107.17915, y: 1.9999876, z: -10}
+  m_LocalPosition: {x: -107.17917, y: 1.9999876, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1571,7 +1571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180597798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -1.7, z: 0}
   m_LocalScale: {x: 250, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   jumpGravityScale: 1.5
   fallGravityScale: 2.5
   groundedGravityScale: 1
-  resetSpeedOnLand: 0
+  resetSpeedOnLand: 1
 --- !u!1 &1346397227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,16 +2850,16 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.48
+  m_ScreenY: 0.46
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.12
-  m_DeadZoneHeight: 0.23
+  m_DeadZoneHeight: 0.34
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.95
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.0000002442813
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0

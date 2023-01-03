@@ -152,7 +152,6 @@ public class CharacterController2D : MonoBehaviour
             // Set jumping flag
             isJumping = true;
         }
-
         // Landed
         else if (isJumping && isFalling && groundType != GroundType.None)
         {
