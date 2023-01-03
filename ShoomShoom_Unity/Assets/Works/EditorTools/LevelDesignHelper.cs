@@ -6,4 +6,7 @@ public class LevelDesignHelper : MonoBehaviour
 {
     public Transform LevelDesign;
     public bool DisplayLevelDesign;
+
+    public string[] ExcludeLayer;
+
 }
