@@ -143,6 +143,7 @@ public class LevelDesignHelper_Editor : Editor
         // Find the 0 layer
         SpriteRenderer zeroRenderer = renderers.OrderBy(x => Mathf.Abs(0 - x.transform.position.z)).First();
         zeroRenderer.sortingOrder = 0;
+        renderers.Remove(zeroRenderer);
         // Find all the layers in front(and behind) of the 0 layer and sort it.
         var frontRenderers = new List<SpriteRenderer>();
         renderers.RemoveAll(x =>
@@ -180,9 +181,9 @@ public class LevelDesignHelper_Editor : Editor
 
             renderer.sortingOrder = order;
         }
-        for (int i = 0, order = 0; i < renderers.Count; i++)
+        for (int i = 0, order = 0; i < behindRenderers.Count; i++)
         {
-            var renderer = frontRenderers[i];
+            var renderer = behindRenderers[i];
             if (i == 0) // If this is the first one
             {
                 if (renderer.transform.position.z != zeroRenderer.transform.position.z)
@@ -192,7 +193,7 @@ public class LevelDesignHelper_Editor : Editor
             }
             else
             {
-                var prevRenderer = frontRenderers[i - 1];
+                var prevRenderer = behindRenderers[i - 1];
                 if (renderer.transform.position.z != prevRenderer.transform.position.z)
                 {
                     order--;
