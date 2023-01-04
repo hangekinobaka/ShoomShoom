@@ -1,0 +1,516 @@
+fileFormatVersion: 2
+guid: e14d3c0b320e7a346a8989754f93fddd
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: black_top
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1668
+      width: 450
+      height: 122
+    spriteID: f66f3043f8885194f9cd30c7b15fac07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1668}
+    spritePosition: {x: 312, y: 958}
+  - name: shoom
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1361
+      width: 202
+      height: 299
+    spriteID: c55136a7c2ae58646bb1ea6f7950aa11
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1361}
+    spritePosition: {x: 49, y: 447}
+  - name: ceiling_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 462
+      y: 67
+      width: 450
+      height: 41
+    spriteID: e1f5e4b49c9c505449ccc589b62e582e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 462, y: 67}
+    spritePosition: {x: 812, y: 999}
+  - name: ceiling_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 462
+      y: 116
+      width: 450
+      height: 41
+    spriteID: 11c6ca41e3a045d48ae382da297f8767
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 462, y: 116}
+    spritePosition: {x: 812, y: 958}
+  - name: black_bottom
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1798
+      width: 450
+      height: 75
+    spriteID: 69fb9184e429baf4db73333ca7ecec58
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1798}
+    spritePosition: {x: 310, y: 0}
+  - name: water
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1207
+      width: 450
+      height: 146
+    spriteID: d660aa21e96220946952a9b259bb68cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1207}
+    spritePosition: {x: 812, y: 2}
+  - name: road_water
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1881
+      width: 450
+      height: 55
+    spriteID: bf6c4039d004b9e42a93442f4eb4e322
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1881}
+    spritePosition: {x: 812, y: 312}
+  - name: road_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1944
+      width: 450
+      height: 55
+    spriteID: 83ee028385bb4154396a6245e420778b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1944}
+    spritePosition: {x: 812, y: 252}
+  - name: road_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 462
+      y: 4
+      width: 450
+      height: 55
+    spriteID: bbc0063cd0db1514fa9a32329b8b809c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 462, y: 4}
+    spritePosition: {x: 812, y: 192}
+  - name: roadside
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 920
+      width: 450
+      height: 279
+    spriteID: 5dad8ea7dfcde5f44b9e4b7f7f9cc7ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 920}
+    spritePosition: {x: 312, y: 108}
+  - name: wall_withcave
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 450
+      height: 450
+    spriteID: 41b1c105ee7c40746af04da500771fa1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 812, y: 447}
+  - name: wall
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 462
+      width: 450
+      height: 450
+    spriteID: 0bbed42ab6381e5449b84cc54477de20
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 462}
+    spritePosition: {x: 312, y: 447}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: black_top
+    spriteName: black_top
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f66f3043f8885194f9cd30c7b15fac07
+    layerID: 13
+    mosaicPosition: {x: 4, y: 1668}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: shoom
+    spriteName: shoom
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c55136a7c2ae58646bb1ea6f7950aa11
+    layerID: 12
+    mosaicPosition: {x: 4, y: 1361}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: ceiling_2
+    spriteName: ceiling_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e1f5e4b49c9c505449ccc589b62e582e
+    layerID: 11
+    mosaicPosition: {x: 462, y: 67}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: ceiling_1
+    spriteName: ceiling_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 11c6ca41e3a045d48ae382da297f8767
+    layerID: 10
+    mosaicPosition: {x: 462, y: 116}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: black_bottom
+    spriteName: black_bottom
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 69fb9184e429baf4db73333ca7ecec58
+    layerID: 8
+    mosaicPosition: {x: 4, y: 1798}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: water
+    spriteName: water
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d660aa21e96220946952a9b259bb68cb
+    layerID: 7
+    mosaicPosition: {x: 4, y: 1207}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: road_water
+    spriteName: road_water
+    isGroup: 0
+    parentIndex: -1
+    spriteID: bf6c4039d004b9e42a93442f4eb4e322
+    layerID: 18
+    mosaicPosition: {x: 4, y: 1881}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: road_2
+    spriteName: road_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 83ee028385bb4154396a6245e420778b
+    layerID: 17
+    mosaicPosition: {x: 4, y: 1944}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: road_1
+    spriteName: road_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: bbc0063cd0db1514fa9a32329b8b809c
+    layerID: 16
+    mosaicPosition: {x: 462, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: roadside
+    spriteName: roadside
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5dad8ea7dfcde5f44b9e4b7f7f9cc7ef
+    layerID: 6
+    mosaicPosition: {x: 4, y: 920}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: wall_withcave
+    spriteName: wall_withcave
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 41b1c105ee7c40746af04da500771fa1
+    layerID: 5
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: wall
+    spriteName: wall
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0bbed42ab6381e5449b84cc54477de20
+    layerID: 2
+    mosaicPosition: {x: 4, y: 462}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

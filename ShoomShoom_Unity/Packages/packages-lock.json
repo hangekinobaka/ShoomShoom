@@ -1,7 +1,19 @@
 {
   "dependencies": {
+    "com.unity.2d.animation": {
+      "version": "7.0.9",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "6.0.6",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.2d.common": {
-      "version": "6.0.4",
+      "version": "6.0.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -17,6 +29,17 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.psdimporter": {
+      "version": "6.0.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.animation": "7.0.9",
+        "com.unity.2d.common": "6.0.6",
+        "com.unity.2d.sprite": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.sprite": {
