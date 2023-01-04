@@ -3,6 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.U2D;
+
+
+public class SpriteRendererGeneral
+{
+    SpriteRenderer _spriteRenderer;
+    SpriteShapeRenderer _shapeRenderer;
+
+    public SpriteRenderer SpriteRenderer
+    {
+        get => _spriteRenderer;
+        set => _spriteRenderer = value;
+    }
+    public SpriteShapeRenderer ShapeRenderer
+    {
+        get => _shapeRenderer;
+        set => _shapeRenderer = value;
+    }
+
+    public float ZIndex => _spriteRenderer == null ? _shapeRenderer.transform.position.z : _spriteRenderer.transform.position.z;
+    public int SortingOrder
+    {
+        get { return _spriteRenderer == null ? (int)_shapeRenderer.sortingOrder : (int)_spriteRenderer.sortingOrder; }
+        set
+        {
+            if (_spriteRenderer == null) _shapeRenderer.sortingOrder = value;
+            else _spriteRenderer.sortingOrder = value;
+        }
+    }
+    public SpriteRendererGeneral(SpriteRenderer r)
+    {
+        SetRenderer(r);
+    }
+    public SpriteRendererGeneral(SpriteShapeRenderer r)
+    {
+        SetRenderer(r);
+    }
+
+    public void SetRenderer(SpriteRenderer r)
+    {
+        _spriteRenderer = r;
+    }
+    public void SetRenderer(SpriteShapeRenderer r)
+    {
+        _shapeRenderer = r;
+    }
+    public System.Type GetRendererType()
+    {
+        if (_spriteRenderer != null) return typeof(SpriteRenderer);
+        return typeof(SpriteShapeRenderer);
+    }
+}
 
 [CustomEditor(typeof(LevelDesignHelper))]
 public class LevelDesignHelper_Editor : Editor
@@ -16,7 +68,7 @@ public class LevelDesignHelper_Editor : Editor
     // Auto sort function
     SerializedProperty _excludeLayerProp;
     string[] _sortingLayerNames;
-    Dictionary<string, List<SpriteRenderer>> _spriteMap;
+    Dictionary<string, List<SpriteRendererGeneral>> _spriteMap;
     int _selectedLayerIndex = 0;
 
     void OnEnable()
@@ -26,7 +78,7 @@ public class LevelDesignHelper_Editor : Editor
         _displayLevelDesign = _target.DisplayLevelDesign;
         ToggleLevelDesignDisplay();
 
-        _spriteMap = new Dictionary<string, List<SpriteRenderer>>();
+        _spriteMap = new Dictionary<string, List<SpriteRendererGeneral>>();
         _excludeLayerProp = serializedObject.FindProperty("ExcludeLayer");
     }
 
@@ -88,11 +140,13 @@ public class LevelDesignHelper_Editor : Editor
     void ToggleLevelDesignDisplay()
     {
         _levelDesignRenderers = _target.LevelDesign.GetComponentsInChildren<SpriteRenderer>().ToList<SpriteRenderer>();
+
         _levelDesignRenderers.ForEach(x =>
         {
             x.enabled = _displayLevelDesign;
         });
         _target.DisplayLevelDesign = _displayLevelDesign;
+
     }
 
     /// <summary>
@@ -119,18 +173,41 @@ public class LevelDesignHelper_Editor : Editor
 
     void GetAllGameSprites()
     {
-        List<SpriteRenderer> renderers = GameObject.FindObjectsOfType<SpriteRenderer>().ToList();
+        List<SpriteRendererGeneral> renderers = new List<SpriteRendererGeneral>();
+        GameObject.FindObjectsOfType<SpriteRenderer>()
+            .ToList()
+                .ForEach(s =>
+                {
+                    renderers.Add(new SpriteRendererGeneral(s));
+                });
+        GameObject.FindObjectsOfType<SpriteShapeRenderer>()
+            .ToList()
+                .ForEach(s =>
+                {
+                    renderers.Add(new SpriteRendererGeneral(s));
+                });
+
         renderers.ForEach(x =>
         {
-            if (!_target.ExcludeLayer.ToList<string>().Any(e => e == x.sortingLayerName))
+            string sortingLayerName;
+            if (x.GetRendererType() == typeof(SpriteRenderer))
             {
-                if (_spriteMap.ContainsKey(x.sortingLayerName))
+                sortingLayerName = x.SpriteRenderer.sortingLayerName;
+            }
+            else
+            {
+                sortingLayerName = x.ShapeRenderer.sortingLayerName;
+            }
+
+            if (!_target.ExcludeLayer.ToList<string>().Any(e => e == sortingLayerName))
+            {
+                if (_spriteMap.ContainsKey(sortingLayerName))
                 {
-                    _spriteMap[x.sortingLayerName].Add(x);
+                    _spriteMap[sortingLayerName].Add(x);
                 }
                 else
                 {
-                    _spriteMap.Add(x.sortingLayerName, new List<SpriteRenderer> { x });
+                    _spriteMap.Add(sortingLayerName, new List<SpriteRendererGeneral> { x });
                 }
             }
         });
@@ -139,25 +216,29 @@ public class LevelDesignHelper_Editor : Editor
     void SortLayerBasedOnZIndex(string layerName)
     {
         if (!_spriteMap.ContainsKey(layerName)) return;
+
         var renderers = _spriteMap[layerName];
+
         // Find the 0 layer
-        SpriteRenderer zeroRenderer = renderers.OrderBy(x => Mathf.Abs(0 - x.transform.position.z)).First();
-        zeroRenderer.sortingOrder = 0;
+        SpriteRendererGeneral zeroRenderer = renderers
+            .OrderBy(x => Mathf.Abs(0 - x.ZIndex)).First();
+        zeroRenderer.SortingOrder = 0;
         renderers.Remove(zeroRenderer);
+
         // Find all the layers in front(and behind) of the 0 layer and sort it.
-        var frontRenderers = new List<SpriteRenderer>();
+        var frontRenderers = new List<SpriteRendererGeneral>();
         renderers.RemoveAll(x =>
         {
-            if (x.transform.position.z <= zeroRenderer.transform.position.z)
+            if (x.ZIndex <= zeroRenderer.ZIndex)
             {
                 frontRenderers.Add(x);
                 return true;
             }
             return false;
         });
-        frontRenderers = frontRenderers.OrderByDescending(x => x.transform.position.z)
+        frontRenderers = frontRenderers.OrderByDescending(x => x.ZIndex)
             .ToList();
-        var behindRenderers = renderers.OrderBy(x => x.transform.position.z)
+        var behindRenderers = renderers.OrderBy(x => x.ZIndex)
             .ToList();
         // Assign sorting order for all the layers
         for (int i = 0, order = 0; i < frontRenderers.Count; i++)
@@ -165,7 +246,7 @@ public class LevelDesignHelper_Editor : Editor
             var renderer = frontRenderers[i];
             if (i == 0) // If this is the first one
             {
-                if (renderer.transform.position.z != zeroRenderer.transform.position.z)
+                if (renderer.ZIndex != zeroRenderer.ZIndex)
                 {
                     order++;
                 }
@@ -173,20 +254,20 @@ public class LevelDesignHelper_Editor : Editor
             else
             {
                 var prevRenderer = frontRenderers[i - 1];
-                if (renderer.transform.position.z != prevRenderer.transform.position.z)
+                if (renderer.ZIndex != prevRenderer.ZIndex)
                 {
                     order++;
                 }
             }
 
-            renderer.sortingOrder = order;
+            renderer.SortingOrder = order;
         }
         for (int i = 0, order = 0; i < behindRenderers.Count; i++)
         {
             var renderer = behindRenderers[i];
             if (i == 0) // If this is the first one
             {
-                if (renderer.transform.position.z != zeroRenderer.transform.position.z)
+                if (renderer.ZIndex != zeroRenderer.ZIndex)
                 {
                     order--;
                 }
@@ -194,13 +275,13 @@ public class LevelDesignHelper_Editor : Editor
             else
             {
                 var prevRenderer = behindRenderers[i - 1];
-                if (renderer.transform.position.z != prevRenderer.transform.position.z)
+                if (renderer.ZIndex != prevRenderer.ZIndex)
                 {
                     order--;
                 }
             }
 
-            renderer.sortingOrder = order;
+            renderer.SortingOrder = order;
         }
     }
 }
