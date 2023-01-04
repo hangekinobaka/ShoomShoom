@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float _fallGravityScale = 1.0f;
     [SerializeField] float _groundedGravityScale = 1.0f;
     [SerializeField] bool _resetSpeedOnLand = false;
+    [SerializeField] int _jumpCount = 2;
 
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
@@ -34,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
     bool _isFlipped;
     bool _isJumping;
     bool _isFalling;
+    int _localJumpCount;
 
     public bool CanMove { get; set; }
 
@@ -67,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
         _waterGroundMask = LayerMask.GetMask("GroundWater");
 
         CanMove = true;
+        _localJumpCount = _jumpCount;
     }
 
     void Update()
@@ -87,8 +90,9 @@ public class CharacterController2D : MonoBehaviour
         _movementInput = new Vector2(moveHorizontal, 0);
 
         // Jumping input
-        if (!_isJumping && keyboard.spaceKey.wasPressedThisFrame)
-            _jumpInput = true;
+        if (keyboard.spaceKey.wasPressedThisFrame)
+            // Check if we have ran out of the jump count
+            if (_localJumpCount > 0) _jumpInput = true;
     }
 
     void FixedUpdate()
@@ -144,9 +148,9 @@ public class CharacterController2D : MonoBehaviour
             // Jump using impulse force
             _controllerRigidbody.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
 
-
             // We've consumed the jump, reset it.
             _jumpInput = false;
+            _localJumpCount--;
 
             // Set jumping flag
             _isJumping = true;
@@ -154,6 +158,9 @@ public class CharacterController2D : MonoBehaviour
         // Landed
         else if (_isJumping && _isFalling && _groundType != GroundType.None)
         {
+            // Reset the jump count
+            _localJumpCount = _jumpCount;
+
             // Since collision with ground stops rigidbody, reset velocity
             if (_resetSpeedOnLand)
             {
