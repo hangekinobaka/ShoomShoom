@@ -189,7 +189,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 771
       y: 462
-      width: 450
+      width: 912
       height: 55
     spriteID: e2f86817c4bcbb943aaae6456137a7e6
     spriteBone: []
@@ -206,12 +206,12 @@ ScriptedImporter:
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 3, y: 3, z: 3, w: 6}
+    border: {x: 9, y: 9, z: 9, w: 9}
     rect:
       serializedVersion: 2
       x: 771
       y: 526
-      width: 450
+      width: 899
       height: 55
     spriteID: 308e7ef6bc6b815499c7b320429c8476
     spriteBone: []
@@ -233,7 +233,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 771
       y: 589
-      width: 450
+      width: 898
       height: 55
     spriteID: af12341f879c5474d8d691ebdaa197d2
     spriteBone: []
@@ -427,7 +427,7 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   - name: WebGL
     overridden: 1
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 51
     textureCompression: 1
