@@ -102,7 +102,7 @@ ScriptedImporter:
       x: 489
       y: 4
       width: 89
-      height: 198
+      height: 208
     spriteID: 2fec94585c8635b4d92c01e8e1206ea0
     spriteBone: []
     spriteOutline: []
@@ -339,7 +339,7 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   - name: WebGL
     overridden: 1
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 51
     textureCompression: 1
