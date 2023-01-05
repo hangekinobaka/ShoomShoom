@@ -622,7 +622,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: -115.74143, y: 6.8817186, z: 0}
+    - position: {x: -115.65674, y: 6.7123375, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: -24.167002, y: 6.7151275, z: 0}
+    - position: {x: -24.209347, y: 6.799818, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -3176,7 +3176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Spline:
-    m_IsOpenEnded: 1
+    m_IsOpenEnded: 0
     m_ControlPoints:
     - position: {x: -150, y: 6.8, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
@@ -3338,7 +3338,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 149.76942, y: 5.110972, z: 0}
+    - position: {x: 149.85294, y: 7.615922, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -3348,7 +3348,17 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: -151.95726, y: 6.288137, z: 0}
+    - position: {x: -149.86975, y: 7.2801657, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -151.95726, y: 6.2881374, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -3431,8 +3441,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -0.9516754, y: 6.3215733, z: 0}
-    m_Extent: {x: 151.00558, y: 1.2106013, z: 0}
+    m_Center: {x: -1.0018005, y: 6.840373, z: 0}
+    m_Extent: {x: 151.05571, y: 0.7755492, z: 0}
 --- !u!1 &1946974949
 GameObject:
   m_ObjectHideFlags: 0
