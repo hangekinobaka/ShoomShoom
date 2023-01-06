@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,9 @@ public class CharacterController2D : MonoBehaviour
 {
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
 
+    [Header("Character Info")]
+    [SerializeField] Transform _characterTransform;
+
     [Header("Movement")]
     [SerializeField] float _acceleration = 0.0f;
     [SerializeField] float _maxSpeed = 0.0f;
@@ -21,6 +25,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float _groundedGravityScale = 1.0f;
     [SerializeField] bool _resetSpeedOnLand = false;
     [SerializeField] int _jumpCount = 2;
+
+    [Header("Viewport")]
+    [SerializeField] Transform _focalPoint;
+    Vector3 _focalVelocity = Vector3.zero;
 
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
@@ -69,7 +77,6 @@ public class CharacterController2D : MonoBehaviour
         _waterGroundMask = LayerMask.GetMask("GroundWater");
 
         CanMove = true;
-        _localJumpCount = _jumpCount;
     }
 
     void Update()
@@ -181,13 +188,28 @@ public class CharacterController2D : MonoBehaviour
         if (_controllerRigidbody.velocity.x > _minFlipSpeed && _isFlipped)
         {
             _isFlipped = false;
-            transform.localScale = Vector3.one;
+            _characterTransform.localScale = Vector3.one;
+            StartCoroutine(SlolyTurnFocalPoint(new Vector3(3, 0, 0)));
         }
         else if (_controllerRigidbody.velocity.x < -_minFlipSpeed && !_isFlipped)
         {
             _isFlipped = true;
-            transform.localScale = flippedScale;
+            _characterTransform.localScale = flippedScale;
+            StartCoroutine(SlolyTurnFocalPoint(new Vector3(-3, 0, 0)));
         }
+    }
+
+    /// <summary>
+    /// Turn focal point slowly
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator SlolyTurnFocalPoint(Vector3 target)
+    {
+        do
+        {
+            _focalPoint.localPosition = Vector3.SmoothDamp(_focalPoint.localPosition, target, ref _focalVelocity, .3f);
+            yield return null;
+        } while (Vector3.Distance(_focalPoint.localPosition, target) > 0.1f);
     }
 
 
