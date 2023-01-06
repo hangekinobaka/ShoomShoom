@@ -1,3 +1,5 @@
+using DG.Tweening;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +9,19 @@ public enum GroundType
     Normal,
     Water
 }
+public enum MovingDirection
+{
+    Left,
+    Right
+}
+
 public class CharacterController2D : MonoBehaviour
 {
+    readonly Vector3 normalScale = Vector3.one;
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
+
+    [Header("Character Info")]
+    [SerializeField] Transform _characterTransform;
 
     [Header("Movement")]
     [SerializeField] float _acceleration = 0.0f;
@@ -22,77 +34,68 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool _resetSpeedOnLand = false;
     [SerializeField] int _jumpCount = 2;
 
+    [Header("Viewport")]
+    [SerializeField] Transform _focalPoint;
+    [SerializeField] float _focalMoveDuration = 1f;
+    Vector3 _normalFocalPos = new Vector3(3, 0, 0);
+    Vector3 _flippedFocalPos = new Vector3(-3, 0, 0);
+
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
     LayerMask _normalGroundMask;
     LayerMask _waterGroundMask;
     GroundType _groundType;
+    PlayerInputAction _playerInputAction;
 
     Vector2 _movementInput;
     bool _jumpInput;
 
     Vector2 _prevVelocity;
-    bool _isFlipped;
     bool _isJumping;
     bool _isFalling;
     int _localJumpCount;
 
-    public bool CanMove { get; set; }
+    ReactProps<MovingDirection> _dir = new ReactProps<MovingDirection>(MovingDirection.Right);
 
-    void Start()
+    public bool CanMove { get; set; } // TODO: not implemented yet!!
+
+    private void Awake()
     {
-#if UNITY_EDITOR
-        if (Keyboard.current == null)
-        {
-            var playerSettings = new UnityEditor.SerializedObject(Resources.FindObjectsOfTypeAll<UnityEditor.PlayerSettings>()[0]);
-            var newInputSystemProperty = playerSettings.FindProperty("enableNativePlatformBackendsForNewInputSystem");
-            bool newInputSystemEnabled = newInputSystemProperty != null ? newInputSystemProperty.boolValue : false;
-
-            if (newInputSystemEnabled)
-            {
-                var msg = "New Input System backend is enabled but it requires you to restart Unity, otherwise the player controls won't work. Do you want to restart now?";
-                if (UnityEditor.EditorUtility.DisplayDialog("Warning", msg, "Yes", "No"))
-                {
-                    UnityEditor.EditorApplication.ExitPlaymode();
-                    var dataPath = Application.dataPath;
-                    var projectPath = dataPath.Substring(0, dataPath.Length - 7);
-                    UnityEditor.EditorApplication.OpenProject(projectPath);
-                }
-            }
-        }
-#endif
         // Get comps
         _controllerRigidbody = GetComponent<Rigidbody2D>();
         _controllerCollider = GetComponent<Collider2D>();
         // Get layer masks
         _normalGroundMask = LayerMask.GetMask("Ground");
         _waterGroundMask = LayerMask.GetMask("GroundWater");
-
-        CanMove = true;
-        _localJumpCount = _jumpCount;
     }
 
-    void Update()
+    void Start()
     {
-        var keyboard = Keyboard.current;
+        // Init vals
+        _playerInputAction = new PlayerInputAction();
+        _normalFocalPos = _focalPoint.localPosition;
+        _flippedFocalPos = -_normalFocalPos;
+        _localJumpCount = _jumpCount;
 
-        if (!CanMove || keyboard == null)
-            return;
+        // Register react props
+        _dir.State.Subscribe(state => ChangeDirHandler(state))
+            .AddTo(this);
 
-        // Horizontal movement
-        float moveHorizontal = 0.0f;
+        // Input system
+        _playerInputAction.Normal.Enable();
+        _playerInputAction.Normal.Move.performed += MoveInputHandler;
+        _playerInputAction.Normal.Move.canceled += MoveInputHandler;
+        _playerInputAction.Normal.Jump.performed += JumpInputHandler;
 
-        if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed)
-            moveHorizontal = -1.0f;
-        else if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
-            moveHorizontal = 1.0f;
+        CanMove = true;
+    }
 
-        _movementInput = new Vector2(moveHorizontal, 0);
-
-        // Jumping input
-        if (keyboard.spaceKey.wasPressedThisFrame)
-            // Check if we have ran out of the jump count
-            if (_localJumpCount > 0) _jumpInput = true;
+    private void OnDisable()
+    {
+        _playerInputAction.Normal.Move.performed -= MoveInputHandler;
+        _playerInputAction.Normal.Move.canceled -= MoveInputHandler;
+        _playerInputAction.Normal.Jump.performed -= JumpInputHandler;
+        _playerInputAction.Normal.Disable();
     }
 
     void FixedUpdate()
@@ -104,6 +107,17 @@ public class CharacterController2D : MonoBehaviour
         UpdateGravityScale();
 
         _prevVelocity = _controllerRigidbody.velocity;
+    }
+
+    void MoveInputHandler(InputAction.CallbackContext context)
+    {
+        Vector2 inputVector = context.ReadValue<Vector2>();
+        _movementInput = new Vector2(inputVector.x, 0);
+    }
+    void JumpInputHandler(InputAction.CallbackContext context)
+    {
+        // Check if we have ran out of the jump count
+        if (_localJumpCount > 0) _jumpInput = true;
     }
 
     private void UpdateGrounding()
@@ -124,9 +138,6 @@ public class CharacterController2D : MonoBehaviour
         // Apply acceleration directly as we'll want to clamp
         // prior to assigning back to the body.
         velocity += _movementInput * _acceleration * Time.fixedDeltaTime;
-
-        // We've consumed the movement, reset it.
-        _movementInput = Vector2.zero;
 
         // Clamp horizontal speed.
         velocity.x = Mathf.Clamp(velocity.x, -_maxSpeed, _maxSpeed);
@@ -178,18 +189,32 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateDirection()
     {
         // Use scale to flip character depending on direction
-        if (_controllerRigidbody.velocity.x > _minFlipSpeed && _isFlipped)
+        if (_controllerRigidbody.velocity.x > _minFlipSpeed)
         {
-            _isFlipped = false;
-            transform.localScale = Vector3.one;
+            _dir.SetState(MovingDirection.Right);
         }
-        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed && !_isFlipped)
+        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed)
         {
-            _isFlipped = true;
-            transform.localScale = flippedScale;
+            _dir.SetState(MovingDirection.Left);
         }
     }
 
+    void ChangeDirHandler(MovingDirection dir)
+    {
+        switch (dir)
+        {
+            case MovingDirection.Left:
+                _characterTransform.localScale = flippedScale;
+                _focalPoint.DOLocalMove(_flippedFocalPos, _focalMoveDuration);
+                break;
+            case MovingDirection.Right:
+                _characterTransform.localScale = normalScale;
+                _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
+                break;
+            default:
+                break;
+        }
+    }
 
     private void UpdateGravityScale()
     {
