@@ -45,6 +45,7 @@ public class CharacterController2D : MonoBehaviour
     LayerMask _normalGroundMask;
     LayerMask _waterGroundMask;
     GroundType _groundType;
+    PlayerInputAction _playerInputAction;
 
     Vector2 _movementInput;
     bool _jumpInput;
@@ -56,7 +57,7 @@ public class CharacterController2D : MonoBehaviour
 
     ReactProps<MovingDirection> _dir = new ReactProps<MovingDirection>(MovingDirection.Right);
 
-    public bool CanMove { get; set; }
+    public bool CanMove { get; set; } // TODO: not implemented yet!!
 
     private void Awake()
     {
@@ -70,36 +71,31 @@ public class CharacterController2D : MonoBehaviour
 
     void Start()
     {
+        // Init vals
+        _playerInputAction = new PlayerInputAction();
+        _normalFocalPos = _focalPoint.localPosition;
+        _flippedFocalPos = -_normalFocalPos;
+        _localJumpCount = _jumpCount;
+
         // Register react props
         _dir.State.Subscribe(state => ChangeDirHandler(state))
             .AddTo(this);
-        // Init vals
+
+        // Input system
+        _playerInputAction.Normal.Enable();
+        _playerInputAction.Normal.Move.performed += MoveInputHandler;
+        _playerInputAction.Normal.Move.canceled += MoveInputHandler;
+        _playerInputAction.Normal.Jump.performed += JumpInputHandler;
+
         CanMove = true;
-        _normalFocalPos = _focalPoint.localPosition;
-        _flippedFocalPos = -_normalFocalPos;
     }
 
-    void Update()
+    private void OnDisable()
     {
-        var keyboard = Keyboard.current;
-
-        if (!CanMove || keyboard == null)
-            return;
-
-        // Horizontal movement
-        float moveHorizontal = 0.0f;
-
-        if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed)
-            moveHorizontal = -1.0f;
-        else if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
-            moveHorizontal = 1.0f;
-
-        _movementInput = new Vector2(moveHorizontal, 0);
-
-        // Jumping input
-        if (keyboard.spaceKey.wasPressedThisFrame)
-            // Check if we have ran out of the jump count
-            if (_localJumpCount > 0) _jumpInput = true;
+        _playerInputAction.Normal.Move.performed -= MoveInputHandler;
+        _playerInputAction.Normal.Move.canceled -= MoveInputHandler;
+        _playerInputAction.Normal.Jump.performed -= JumpInputHandler;
+        _playerInputAction.Normal.Disable();
     }
 
     void FixedUpdate()
@@ -111,6 +107,17 @@ public class CharacterController2D : MonoBehaviour
         UpdateGravityScale();
 
         _prevVelocity = _controllerRigidbody.velocity;
+    }
+
+    void MoveInputHandler(InputAction.CallbackContext context)
+    {
+        Vector2 inputVector = context.ReadValue<Vector2>();
+        _movementInput = new Vector2(inputVector.x, 0);
+    }
+    void JumpInputHandler(InputAction.CallbackContext context)
+    {
+        // Check if we have ran out of the jump count
+        if (_localJumpCount > 0) _jumpInput = true;
     }
 
     private void UpdateGrounding()
@@ -131,9 +138,6 @@ public class CharacterController2D : MonoBehaviour
         // Apply acceleration directly as we'll want to clamp
         // prior to assigning back to the body.
         velocity += _movementInput * _acceleration * Time.fixedDeltaTime;
-
-        // We've consumed the movement, reset it.
-        _movementInput = Vector2.zero;
 
         // Clamp horizontal speed.
         velocity.x = Mathf.Clamp(velocity.x, -_maxSpeed, _maxSpeed);
