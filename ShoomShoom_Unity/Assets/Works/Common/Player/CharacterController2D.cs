@@ -1,4 +1,5 @@
-using System.Collections;
+using DG.Tweening;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,8 +9,15 @@ public enum GroundType
     Normal,
     Water
 }
+public enum MovingDirection
+{
+    Left,
+    Right
+}
+
 public class CharacterController2D : MonoBehaviour
 {
+    readonly Vector3 normalScale = Vector3.one;
     readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
 
     [Header("Character Info")]
@@ -28,7 +36,9 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Viewport")]
     [SerializeField] Transform _focalPoint;
-    Vector3 _focalVelocity = Vector3.zero;
+    [SerializeField] float _focalMoveDuration = 1f;
+    Vector3 _normalFocalPos = new Vector3(3, 0, 0);
+    Vector3 _flippedFocalPos = new Vector3(-3, 0, 0);
 
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
@@ -40,43 +50,33 @@ public class CharacterController2D : MonoBehaviour
     bool _jumpInput;
 
     Vector2 _prevVelocity;
-    bool _isFlipped;
     bool _isJumping;
     bool _isFalling;
     int _localJumpCount;
 
+    ReactProps<MovingDirection> _dir = new ReactProps<MovingDirection>(MovingDirection.Right);
+
     public bool CanMove { get; set; }
 
-    void Start()
+    private void Awake()
     {
-#if UNITY_EDITOR
-        if (Keyboard.current == null)
-        {
-            var playerSettings = new UnityEditor.SerializedObject(Resources.FindObjectsOfTypeAll<UnityEditor.PlayerSettings>()[0]);
-            var newInputSystemProperty = playerSettings.FindProperty("enableNativePlatformBackendsForNewInputSystem");
-            bool newInputSystemEnabled = newInputSystemProperty != null ? newInputSystemProperty.boolValue : false;
-
-            if (newInputSystemEnabled)
-            {
-                var msg = "New Input System backend is enabled but it requires you to restart Unity, otherwise the player controls won't work. Do you want to restart now?";
-                if (UnityEditor.EditorUtility.DisplayDialog("Warning", msg, "Yes", "No"))
-                {
-                    UnityEditor.EditorApplication.ExitPlaymode();
-                    var dataPath = Application.dataPath;
-                    var projectPath = dataPath.Substring(0, dataPath.Length - 7);
-                    UnityEditor.EditorApplication.OpenProject(projectPath);
-                }
-            }
-        }
-#endif
         // Get comps
         _controllerRigidbody = GetComponent<Rigidbody2D>();
         _controllerCollider = GetComponent<Collider2D>();
         // Get layer masks
         _normalGroundMask = LayerMask.GetMask("Ground");
         _waterGroundMask = LayerMask.GetMask("GroundWater");
+    }
 
+    void Start()
+    {
+        // Register react props
+        _dir.State.Subscribe(state => ChangeDirHandler(state))
+            .AddTo(this);
+        // Init vals
         CanMove = true;
+        _normalFocalPos = _focalPoint.localPosition;
+        _flippedFocalPos = -_normalFocalPos;
     }
 
     void Update()
@@ -185,33 +185,32 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateDirection()
     {
         // Use scale to flip character depending on direction
-        if (_controllerRigidbody.velocity.x > _minFlipSpeed && _isFlipped)
+        if (_controllerRigidbody.velocity.x > _minFlipSpeed)
         {
-            _isFlipped = false;
-            _characterTransform.localScale = Vector3.one;
-            StartCoroutine(SlolyTurnFocalPoint(new Vector3(3, 0, 0)));
+            _dir.SetState(MovingDirection.Right);
         }
-        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed && !_isFlipped)
+        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed)
         {
-            _isFlipped = true;
-            _characterTransform.localScale = flippedScale;
-            StartCoroutine(SlolyTurnFocalPoint(new Vector3(-3, 0, 0)));
+            _dir.SetState(MovingDirection.Left);
         }
     }
 
-    /// <summary>
-    /// Turn focal point slowly
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator SlolyTurnFocalPoint(Vector3 target)
+    void ChangeDirHandler(MovingDirection dir)
     {
-        do
+        switch (dir)
         {
-            _focalPoint.localPosition = Vector3.SmoothDamp(_focalPoint.localPosition, target, ref _focalVelocity, .3f);
-            yield return null;
-        } while (Vector3.Distance(_focalPoint.localPosition, target) > 0.1f);
+            case MovingDirection.Left:
+                _characterTransform.localScale = flippedScale;
+                _focalPoint.DOLocalMove(_flippedFocalPos, _focalMoveDuration);
+                break;
+            case MovingDirection.Right:
+                _characterTransform.localScale = normalScale;
+                _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
+                break;
+            default:
+                break;
+        }
     }
-
 
     private void UpdateGravityScale()
     {
