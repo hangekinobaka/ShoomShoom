@@ -25,7 +25,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 793274d3da4b06b41b141fdfae2432e2, type: 3}
+        m_Texture: {fileID: 2800000, guid: ee5ae45fe2c8bee4bbce3de5569fa589, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectRenderTex:
+        m_Texture: {fileID: 8400000, guid: d33c01e1b08750e4cbe5dba79c82e3f4, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RenderTex:
@@ -47,9 +51,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _Intensity: 0.83
+    - _NormalIntensity: 10
+    - _NormalNoiseScale: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _ReflectIntensity: 0.5
+    m_Colors:
+    - _BaseColor: {r: 0, g: 0.103773594, b: 0.009427596, a: 0}
+    - _NormalNoiseDir: {r: -0.05, g: 0.03, b: 0, a: 0}
+    - _WaveDir: {r: 0, g: 0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2863799896903008858
 MonoBehaviour:
