@@ -51,15 +51,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _Intensity: 0.83
-    - _NormalIntensity: 6.24
-    - _NormalNoiseScale: 0.18
+    - _NormalIntensity: 3.74
+    - _NormalNoiseScale: -0.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectIntensity: 0.6
     - _TopTintStrength: 5
     m_Colors:
     - _BaseColor: {r: 0.045852616, g: 0.0754717, b: 0.07326157, a: 0}
-    - _NormalNoiseDir: {r: -0.1, g: 0.15, b: 0, a: 0}
+    - _NormalNoiseDir: {r: -0.87, g: 0.3, b: 0, a: 0}
     - _NormalVoronoiDir: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _TintColor: {r: 0.042613003, g: 0.3929599, b: 0.3962264, a: 0}
     - _WaveDir: {r: 0, g: 0.03, b: 0, a: 0}
