@@ -61,7 +61,7 @@ Material:
     - _BaseColor: {r: 0.045852616, g: 0.0754717, b: 0.07326157, a: 0}
     - _NormalNoiseDir: {r: -0.87, g: 0.3, b: 0, a: 0}
     - _NormalVoronoiDir: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _TintColor: {r: 0.042613003, g: 0.3929599, b: 0.3962264, a: 0}
+    - _TintColor: {r: 0.58590245, g: 0.73418295, b: 0.735849, a: 0}
     - _WaveDir: {r: 0, g: 0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2863799896903008858
