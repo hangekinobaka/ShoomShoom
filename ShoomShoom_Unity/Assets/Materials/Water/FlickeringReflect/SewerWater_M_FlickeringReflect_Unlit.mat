@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SewerWater_M_FlickeringReflect_Unlit
-  m_Shader: {fileID: -6465566751694194690, guid: ca59e0a0aafc3934d9acfe2a79df7722, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: aa26b080d0cbcfa4ca65bef51447edd2, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -43,18 +43,31 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 0.66
-    - _DeformSpeed: 0.28
+    - _CausticsBrightness: 0.6
+    - _CausticsCell: 0.1
+    - _CausticsStrength: 0.1
+    - _Contrast: 2.19
+    - _DeformFrequency: 0.5
+    - _DeformScale: 1.49
+    - _DeformSpeed: 3
+    - _DeformStrength: 3
     - _FlickerSpeed: 0.05
     - _PulseFrequency: 1
+    - _RippleScale: 1.36
     - _ShakeFrequency: 21.9
     - _ShapeSpeed: 0.3
     - _Voronoi: 5.35
-    - _VoronoiScale: 6.2
+    - _VoronoiScale: 5.69
     m_Colors:
-    - _DeformDir: {r: 2, g: 2, b: 0, a: 0}
+    - _CausticsDir: {r: -0.1, g: -0.1, b: 0, a: 0}
+    - _DeformDir: {r: -0.5, g: 0.5, b: 0, a: 0}
+    - _FlowDir: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _NoiseDir: {r: 1, g: 1, b: 0, a: 0}
     - _ShakeDir: {r: 0, g: 0, b: 0, a: 0}
     - _ShapeDir: {r: 5, g: 5, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
     - _Vector3: {r: 1, g: 1, b: 1, a: 0}
-    - _VoronoiDir: {r: 0.5, g: -0.5, b: 0, a: 0}
+    - _VoronoiDir: {r: -1, g: 0, b: 0, a: 0}
+    - _VoronoiDir_1: {r: 0.1, g: 0, b: 0, a: 0}
+    - _VoronoiTiling: {r: 2.55, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
