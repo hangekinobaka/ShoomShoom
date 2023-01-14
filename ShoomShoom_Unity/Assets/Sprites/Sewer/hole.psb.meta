@@ -30,7 +30,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -92,18 +92,18 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: grille
+  - name: s_hole_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1069
-      y: 742
-      width: 820
-      height: 420
-    spriteID: 65e1382ee1589db429dca3dc191cd5b8
+      x: 2900
+      y: 918
+      width: 542
+      height: 550
+    spriteID: 4a39801b37df1c840a85a9d6fa581e65
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -112,20 +112,42 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1069, y: 742}
-    spritePosition: {x: 192, y: 165}
-  - name: m_hole_1
+    uvTransform: {x: 2900, y: 918}
+    spritePosition: {x: 498, y: 1255}
+  - name: 's_grille '
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3366
+      y: 1476
+      width: 241
+      height: 416
+    spriteID: ee162e4bd099dc9459d9a33c90a8b40c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3366, y: 1476}
+    spritePosition: {x: 649, y: 1320}
+  - name: wall_s_hole
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 742
-      width: 1057
-      height: 593
-    spriteID: 5e9d8d7e1cd1f2641a8a13543dfa617b
+      y: 918
+      width: 1440
+      height: 920
+    spriteID: 08e79bac247d0c54b8ec1ebc82b60517
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,20 +156,196 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 742}
-    spritePosition: {x: 20, y: 156}
-  - name: m_hole_2
+    uvTransform: {x: 4, y: 918}
+    spritePosition: {x: 53, y: 1070}
+  - name: s_hole_2
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3450
+      y: 918
+      width: 536
+      height: 539
+    spriteID: 5fe02ff9499fe414ca20b6c3782c8a50
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3450, y: 918}
+    spritePosition: {x: 501, y: 1278}
+  - name: s_hole_3
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2900
+      y: 1476
+      width: 458
+      height: 460
+    spriteID: 1ce628483cf68b340a0acfd99984cb62
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2900, y: 1476}
+    spritePosition: {x: 540, y: 1310}
+  - name: hole_water_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3366
+      y: 1900
+      width: 61
+      height: 31
+    spriteID: de3b2d0d0001f6840a0566548e9b4e07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3366, y: 1900}
+    spritePosition: {x: 1106, y: 1847}
+  - name: hole_water_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3435
+      y: 1900
+      width: 57
+      height: 19
+    spriteID: c0cd1f1d44f703e41989451cb386db2b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3435, y: 1900}
+    spritePosition: {x: 1106, y: 1896}
+  - name: waterhole_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 1476
+      width: 266
+      height: 230
+    spriteID: 90fe79895e0cdec4ea2a8172c1d42d3b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3615, y: 1476}
+    spritePosition: {x: 1631, y: 164}
+  - name: m_hole_1
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1508
+      y: 4
+      width: 1319
+      height: 748
+    spriteID: def86f60a74af1e44893a645d6d9a25d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1508, y: 4}
+    spritePosition: {x: 151, y: 69}
+  - name: m_grille
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2835
+      y: 4
+      width: 864
+      height: 623
+    spriteID: 4a8616ef1243e0e46a4f6eeffb2dfb97
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2835, y: 4}
+    spritePosition: {x: 374, y: 83}
+  - name: wall_m_hole
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1452
+      y: 918
+      width: 1440
+      height: 920
+    spriteID: efdb09edb4dd1cd4fa64c05a08b50b27
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1452, y: 918}
+    spritePosition: {x: 79, y: 63}
+  - name: m_hole_2
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1262
-      height: 730
-    spriteID: 9089a1c486ac9bf4eac8043e1f4c7d4c
+      width: 1496
+      height: 906
+    spriteID: 85f53b8d9673bcc4483d4c806e623b67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -157,139 +355,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 1212, y: 166}
-  - name: road
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 508
-      y: 1778
-      width: 1261
-      height: 55
-    spriteID: 96fc894774e28db449e293b3605154d0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 508, y: 1778}
-    spritePosition: {x: 1212, y: 149}
-  - name: s_hole_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1343
-      width: 496
-      height: 505
-    spriteID: f5c34e6d5b725ff408af675c2e4962fd
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1343}
-    spritePosition: {x: 20, y: 1064}
-  - name: s_hole_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1274
-      y: 4
-      width: 534
-      height: 535
-    spriteID: c9c3ccf0a998048498b86448e2a791db
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1274, y: 4}
-    spritePosition: {x: 563, y: 1034}
-  - name: s_hole_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 508
-      y: 1343
-      width: 426
-      height: 427
-    spriteID: db67ae36abd63e7428270752b2439b3f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 508, y: 1343}
-    spritePosition: {x: 1144, y: 1142}
-  - name: hole_water_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1777
-      y: 1778
-      width: 79
-      height: 44
-    spriteID: 1c96118864207fe43ae9cda8e89dde71
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1777, y: 1778}
-    spritePosition: {x: 1609, y: 1469}
-  - name: hole_water_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1864
-      y: 1778
-      width: 75
-      height: 27
-    spriteID: 34433850524ac0944b2e3d22e0a8bc97
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1864, y: 1778}
-    spritePosition: {x: 1609, y: 1540}
+    spritePosition: {x: 53, y: 77}
   characterData:
     bones: []
     parts: []
@@ -303,7 +369,51 @@ ScriptedImporter:
     dimension: {x: 0, y: 0}
     characterGroups: []
     boneReadOnly: 0
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 1
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -320,61 +430,11 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: 'm_hole '
-    spriteName: 
-    isGroup: 1
-    parentIndex: -1
-    spriteID: 45790626c1bc5114c9a813c1ff856158
-    layerID: 54
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: grille
-    spriteName: grille
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 65e1382ee1589db429dca3dc191cd5b8
-    layerID: 44
-    mosaicPosition: {x: 1069, y: 742}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: m_hole_1
-    spriteName: m_hole_1
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 5e9d8d7e1cd1f2641a8a13543dfa617b
-    layerID: 46
-    mosaicPosition: {x: 4, y: 742}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: m_hole_2
-    spriteName: m_hole_2
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 9089a1c486ac9bf4eac8043e1f4c7d4c
-    layerID: 96
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: road
-    spriteName: road
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 96fc894774e28db449e293b3605154d0
-    layerID: 57
-    mosaicPosition: {x: 508, y: 1778}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
   - name: s_hole
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 7373faaa2019e5c4db6f7fc20da5a89d
+    spriteID: 97802c777e750704e9d93a29d0466e65
     layerID: 52
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -383,50 +443,130 @@ ScriptedImporter:
   - name: s_hole_1
     spriteName: s_hole_1
     isGroup: 0
-    parentIndex: 5
-    spriteID: f5c34e6d5b725ff408af675c2e4962fd
-    layerID: 22
-    mosaicPosition: {x: 4, y: 1343}
+    parentIndex: 0
+    spriteID: 4a39801b37df1c840a85a9d6fa581e65
+    layerID: 103
+    mosaicPosition: {x: 2900, y: 918}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 's_grille '
+    spriteName: 's_grille '
+    isGroup: 0
+    parentIndex: 0
+    spriteID: ee162e4bd099dc9459d9a33c90a8b40c
+    layerID: 108
+    mosaicPosition: {x: 3366, y: 1476}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: wall_s_hole
+    spriteName: wall_s_hole
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 08e79bac247d0c54b8ec1ebc82b60517
+    layerID: 114
+    mosaicPosition: {x: 4, y: 918}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: s_hole_2
     spriteName: s_hole_2
     isGroup: 0
-    parentIndex: 5
-    spriteID: c9c3ccf0a998048498b86448e2a791db
-    layerID: 24
-    mosaicPosition: {x: 1274, y: 4}
+    parentIndex: 0
+    spriteID: 5fe02ff9499fe414ca20b6c3782c8a50
+    layerID: 107
+    mosaicPosition: {x: 3450, y: 918}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: s_hole_3
     spriteName: s_hole_3
     isGroup: 0
-    parentIndex: 5
-    spriteID: db67ae36abd63e7428270752b2439b3f
-    layerID: 49
-    mosaicPosition: {x: 508, y: 1343}
+    parentIndex: 0
+    spriteID: 1ce628483cf68b340a0acfd99984cb62
+    layerID: 106
+    mosaicPosition: {x: 2900, y: 1476}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: hole_water_1
     spriteName: hole_water_1
     isGroup: 0
-    parentIndex: 5
-    spriteID: 1c96118864207fe43ae9cda8e89dde71
-    layerID: 47
-    mosaicPosition: {x: 1777, y: 1778}
+    parentIndex: -1
+    spriteID: de3b2d0d0001f6840a0566548e9b4e07
+    layerID: 105
+    mosaicPosition: {x: 3366, y: 1900}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: hole_water_2
     spriteName: hole_water_2
     isGroup: 0
-    parentIndex: 5
-    spriteID: 34433850524ac0944b2e3d22e0a8bc97
-    layerID: 48
-    mosaicPosition: {x: 1864, y: 1778}
+    parentIndex: -1
+    spriteID: c0cd1f1d44f703e41989451cb386db2b
+    layerID: 104
+    mosaicPosition: {x: 3435, y: 1900}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: waterhole_1
+    spriteName: waterhole_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 90fe79895e0cdec4ea2a8172c1d42d3b
+    layerID: 109
+    mosaicPosition: {x: 3615, y: 1476}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: m_hole
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 98b3d9ea4feb03741b0567a2476df6c3
+    layerID: 54
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: m_hole_1
+    spriteName: m_hole_1
+    isGroup: 0
+    parentIndex: 9
+    spriteID: def86f60a74af1e44893a645d6d9a25d
+    layerID: 99
+    mosaicPosition: {x: 1508, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: m_grille
+    spriteName: m_grille
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 4a8616ef1243e0e46a4f6eeffb2dfb97
+    layerID: 98
+    mosaicPosition: {x: 2835, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: wall_m_hole
+    spriteName: wall_m_hole
+    isGroup: 0
+    parentIndex: 9
+    spriteID: efdb09edb4dd1cd4fa64c05a08b50b27
+    layerID: 111
+    mosaicPosition: {x: 1452, y: 918}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: m_hole_2
+    spriteName: m_hole_2
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 85f53b8d9673bcc4483d4c806e623b67
+    layerID: 97
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
