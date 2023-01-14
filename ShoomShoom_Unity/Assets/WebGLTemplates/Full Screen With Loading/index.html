@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -52,8 +53,8 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
       } 
-      canvas.style.width = "100vw";
-      canvas.style.height = "100vh";
+      canvas.style.width = "1920px";
+      canvas.style.height = "1080px";
 
 #if BACKGROUND_FILENAME
       canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
@@ -73,5 +74,6 @@
       };
       document.body.appendChild(script);
     </script>
+    <script src="TemplateData/resize.js"></script>
   </body>
 </html>

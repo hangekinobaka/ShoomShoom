@@ -1,7 +1,6 @@
 # ShoomShoom Game Demo
 
 ![](DesignFiles/GameLogo/shoom-logo-s.png)
-
 ## Author
 
 - 𝓨𝓲𝓻𝓪𝓷 𝓗𝓮   

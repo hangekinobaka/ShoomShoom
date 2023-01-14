@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Shoom Shoom</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -28,7 +29,7 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/docs.loader.js";
       var config = {
-        dataUrl: buildUrl + "/e8203a58e194f65ec29936d19d83900f.data.unityweb",
+        dataUrl: buildUrl + "/32f28a015adcabec523cb8312e5fda18.data.unityweb",
         frameworkUrl: buildUrl + "/e97562a7fb2a0ee8d92b5564415d5a21.js.unityweb",
         codeUrl: buildUrl + "/ebe07c001f2eb01bcb96e3f928ed55ac.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
@@ -44,8 +45,8 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
       } 
-      canvas.style.width = "100vw";
-      canvas.style.height = "100vh";
+      canvas.style.width = "1920px";
+      canvas.style.height = "1080px";
 
       loadingBar.style.display = "block";
 
@@ -62,5 +63,6 @@
       };
       document.body.appendChild(script);
     </script>
+    <script src="TemplateData/resize.js"></script>
   </body>
 </html>

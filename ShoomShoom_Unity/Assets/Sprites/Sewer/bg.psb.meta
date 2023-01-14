@@ -96,14 +96,14 @@ ScriptedImporter:
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 5, y: 30, z: 5, w: 5}
     rect:
       serializedVersion: 2
-      x: 1378
-      y: 292
+      x: 462
+      y: 1406
       width: 450
       height: 122
-    spriteID: a5f4f191c1dd188498e8c3de72fab36f
+    spriteID: 4138890ea0197db4e9eb248087921871
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -112,20 +112,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1378, y: 292}
-    spritePosition: {x: 38, y: 816}
+    uvTransform: {x: 462, y: 1406}
+    spritePosition: {x: 38, y: 1266}
   - name: ceiling_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 5, y: 19, z: 5, w: 5}
+    border: {x: 10, y: 20, z: 10, w: 5}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 903
+      x: 462
+      y: 1536
       width: 450
       height: 41
-    spriteID: c41fb4462ebc0434399786310c61b885
+    spriteID: a4385e8d882f768429240d1a2e197ce7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,20 +134,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 903}
-    spritePosition: {x: 38, y: 742}
+    uvTransform: {x: 462, y: 1536}
+    spritePosition: {x: 38, y: 1192}
   - name: ceiling_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 5, y: 15, z: 5, w: 5}
+    border: {x: 10, y: 20, z: 10, w: 5}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 952
+      x: 462
+      y: 1585
       width: 450
       height: 41
-    spriteID: f86281e4388898340a9e3493825a9e58
+    spriteID: 7ac869da10e0e454182dfb4b240d7033
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,20 +156,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 952}
-    spritePosition: {x: 38, y: 697}
+    uvTransform: {x: 462, y: 1585}
+    spritePosition: {x: 38, y: 1147}
   - name: roadside
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 15, y: 15, z: 15, w: 15}
+    border: {x: 20, y: 20, z: 20, w: 20}
     rect:
       serializedVersion: 2
       x: 4
-      y: 462
+      y: 1406
       width: 450
       height: 279
-    spriteID: 3225ffe2b5510c74ab5a3dd00eb32b2c
+    spriteID: bf4661f7360352a41b90c45495639690
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,75 +178,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 462}
-    spritePosition: {x: 525, y: 665}
+    uvTransform: {x: 4, y: 1406}
+    spritePosition: {x: 525, y: 1115}
   - name: road_water
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 3, y: 3, z: 3, w: 8}
-    rect:
-      serializedVersion: 2
-      x: 771
-      y: 462
-      width: 912
-      height: 55
-    spriteID: e2f86817c4bcbb943aaae6456137a7e6
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 771, y: 462}
-    spritePosition: {x: 1000, y: 888}
-  - name: road_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 9, y: 9, z: 9, w: 9}
-    rect:
-      serializedVersion: 2
-      x: 771
-      y: 526
-      width: 899
-      height: 55
-    spriteID: 308e7ef6bc6b815499c7b320429c8476
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 771, y: 526}
-    spritePosition: {x: 1012, y: 828}
-  - name: road_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 3, y: 3, z: 3, w: 3}
-    rect:
-      serializedVersion: 2
-      x: 771
-      y: 589
-      width: 898
-      height: 55
-    spriteID: af12341f879c5474d8d691ebdaa197d2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 771, y: 589}
-    spritePosition: {x: 1012, y: 768}
-  - name: water
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -254,10 +188,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 749
-      width: 450
-      height: 146
-    spriteID: 7d2127775668ffd4fb0277e2ca44ab75
+      y: 1693
+      width: 913
+      height: 56
+    spriteID: 5564a61375e0d7542bc1e672e8ff8d49
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -266,8 +200,96 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 749}
-    spritePosition: {x: 1929, y: 802}
+    uvTransform: {x: 4, y: 1693}
+    spritePosition: {x: 1000, y: 1338}
+  - name: road_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1757
+      width: 900
+      height: 55
+    spriteID: d90686234509f9945b1e58866b471f3c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1757}
+    spritePosition: {x: 1012, y: 1278}
+  - name: road1_blur
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 20, y: 20, z: 20, w: 20}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 932
+      width: 900
+      height: 150
+    spriteID: 7a788ebdcc1dd5941ac86c5a62dbee00
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 932}
+    spritePosition: {x: 834, y: 455}
+  - name: road1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 10, y: 10, z: 10, w: 10}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1090
+      width: 900
+      height: 150
+    spriteID: 35bb6edbaf7bd73449617477af09da3b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1090}
+    spritePosition: {x: 834, y: 638}
+  - name: road0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 5, y: 5, z: 5, w: 5}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1248
+      width: 900
+      height: 150
+    spriteID: 70b9521d84c7bad4198222a0332931bc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 1248}
+    spritePosition: {x: 834, y: 821}
   - name: wall
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -275,55 +297,11 @@ ScriptedImporter:
     border: {x: 6, y: 6, z: 6, w: 6}
     rect:
       serializedVersion: 2
-      x: 920
-      y: 4
-      width: 450
-      height: 450
-    spriteID: fc8e18e727738c24bbdb7f1e0b91cb93
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 920, y: 4}
-    spritePosition: {x: 38, y: 72}
-  - name: wall_short
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1378
-      y: 4
-      width: 450
-      height: 280
-    spriteID: ee953e5873695a04b895714512476aa7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1378, y: 4}
-    spritePosition: {x: 525, y: 241}
-  - name: wall_s_hole
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
       x: 4
       y: 4
-      width: 450
-      height: 450
-    spriteID: 46d079f4c8e791d4abc8ffd364f1361c
+      width: 720
+      height: 920
+    spriteID: 03e6f9fad02bd8b43b7af35301e0be77
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -333,51 +311,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 1012, y: 71}
-  - name: wall_m_hole1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 462
-      y: 4
-      width: 450
-      height: 450
-    spriteID: d5c97fd08639ee44f94e4b611f8a9c52
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 462, y: 4}
-    spritePosition: {x: 1499, y: 71}
-  - name: wall_m_hole2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 462
-      y: 462
-      width: 301
-      height: 386
-    spriteID: 5abd509f759809946a6fbcc77a24e097
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 462, y: 462}
-    spritePosition: {x: 1986, y: 135}
+    spritePosition: {x: 38, y: 51}
   characterData:
     bones: []
     parts: []
@@ -429,7 +363,7 @@ ScriptedImporter:
     overridden: 1
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 51
+    textureFormat: 29
     textureCompression: 1
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -456,9 +390,9 @@ ScriptedImporter:
     spriteName: black_top
     isGroup: 0
     parentIndex: -1
-    spriteID: a5f4f191c1dd188498e8c3de72fab36f
+    spriteID: 4138890ea0197db4e9eb248087921871
     layerID: 13
-    mosaicPosition: {x: 1378, y: 292}
+    mosaicPosition: {x: 462, y: 1406}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -466,9 +400,9 @@ ScriptedImporter:
     spriteName: ceiling_2
     isGroup: 0
     parentIndex: -1
-    spriteID: c41fb4462ebc0434399786310c61b885
+    spriteID: a4385e8d882f768429240d1a2e197ce7
     layerID: 11
-    mosaicPosition: {x: 4, y: 903}
+    mosaicPosition: {x: 462, y: 1536}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -476,9 +410,9 @@ ScriptedImporter:
     spriteName: ceiling_1
     isGroup: 0
     parentIndex: -1
-    spriteID: f86281e4388898340a9e3493825a9e58
+    spriteID: 7ac869da10e0e454182dfb4b240d7033
     layerID: 10
-    mosaicPosition: {x: 4, y: 952}
+    mosaicPosition: {x: 462, y: 1585}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -486,9 +420,9 @@ ScriptedImporter:
     spriteName: roadside
     isGroup: 0
     parentIndex: -1
-    spriteID: 3225ffe2b5510c74ab5a3dd00eb32b2c
+    spriteID: bf4661f7360352a41b90c45495639690
     layerID: 6
-    mosaicPosition: {x: 4, y: 462}
+    mosaicPosition: {x: 4, y: 1406}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -496,9 +430,9 @@ ScriptedImporter:
     spriteName: road_water
     isGroup: 0
     parentIndex: -1
-    spriteID: e2f86817c4bcbb943aaae6456137a7e6
+    spriteID: 5564a61375e0d7542bc1e672e8ff8d49
     layerID: 17
-    mosaicPosition: {x: 771, y: 462}
+    mosaicPosition: {x: 4, y: 1693}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -506,89 +440,49 @@ ScriptedImporter:
     spriteName: road_2
     isGroup: 0
     parentIndex: -1
-    spriteID: 308e7ef6bc6b815499c7b320429c8476
+    spriteID: d90686234509f9945b1e58866b471f3c
     layerID: 18
-    mosaicPosition: {x: 771, y: 526}
+    mosaicPosition: {x: 4, y: 1757}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: road_1
-    spriteName: road_1
+  - name: road1_blur
+    spriteName: road1_blur
     isGroup: 0
     parentIndex: -1
-    spriteID: af12341f879c5474d8d691ebdaa197d2
-    layerID: 16
-    mosaicPosition: {x: 771, y: 589}
+    spriteID: 7a788ebdcc1dd5941ac86c5a62dbee00
+    layerID: 31
+    mosaicPosition: {x: 4, y: 932}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: water
-    spriteName: water
+  - name: road1
+    spriteName: road1
     isGroup: 0
     parentIndex: -1
-    spriteID: 7d2127775668ffd4fb0277e2ca44ab75
-    layerID: 7
-    mosaicPosition: {x: 4, y: 749}
+    spriteID: 35bb6edbaf7bd73449617477af09da3b
+    layerID: 29
+    mosaicPosition: {x: 4, y: 1090}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: wall
-    spriteName: 
-    isGroup: 1
+  - name: road0
+    spriteName: road0
+    isGroup: 0
     parentIndex: -1
-    spriteID: 6da04a2302460834e8050475d094a086
-    layerID: 24
-    mosaicPosition: {x: 0, y: 0}
+    spriteID: 70b9521d84c7bad4198222a0332931bc
+    layerID: 30
+    mosaicPosition: {x: 4, y: 1248}
     flatten: 0
-    isImported: 0
+    isImported: 1
     isVisible: 1
   - name: wall
     spriteName: wall
     isGroup: 0
-    parentIndex: 8
-    spriteID: fc8e18e727738c24bbdb7f1e0b91cb93
-    layerID: 2
-    mosaicPosition: {x: 920, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: wall_short
-    spriteName: wall_short
-    isGroup: 0
-    parentIndex: 8
-    spriteID: ee953e5873695a04b895714512476aa7
-    layerID: 23
-    mosaicPosition: {x: 1378, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: wall_s_hole
-    spriteName: wall_s_hole
-    isGroup: 0
-    parentIndex: 8
-    spriteID: 46d079f4c8e791d4abc8ffd364f1361c
-    layerID: 20
+    parentIndex: -1
+    spriteID: 03e6f9fad02bd8b43b7af35301e0be77
+    layerID: 27
     mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: wall_m_hole1
-    spriteName: wall_m_hole1
-    isGroup: 0
-    parentIndex: 8
-    spriteID: d5c97fd08639ee44f94e4b611f8a9c52
-    layerID: 22
-    mosaicPosition: {x: 462, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: wall_m_hole2
-    spriteName: wall_m_hole2
-    isGroup: 0
-    parentIndex: 8
-    spriteID: 5abd509f759809946a6fbcc77a24e097
-    layerID: 21
-    mosaicPosition: {x: 462, y: 462}
     flatten: 0
     isImported: 1
     isVisible: 1
