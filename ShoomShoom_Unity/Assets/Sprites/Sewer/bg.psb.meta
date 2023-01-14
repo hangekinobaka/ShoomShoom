@@ -160,8 +160,8 @@ ScriptedImporter:
     spritePosition: {x: 38, y: 1147}
   - name: roadside
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 9
     border: {x: 20, y: 20, z: 20, w: 20}
     rect:
       serializedVersion: 2
@@ -292,8 +292,8 @@ ScriptedImporter:
     spritePosition: {x: 834, y: 821}
   - name: wall
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 9
     border: {x: 6, y: 6, z: 6, w: 6}
     rect:
       serializedVersion: 2
