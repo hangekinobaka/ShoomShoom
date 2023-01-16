@@ -5,6 +5,10 @@ public class ParallaxLayer : MonoBehaviour
     [SerializeField] float _multiplier = 0.0f;
     [SerializeField] bool _horizontalOnly = true;
 
+    [SerializeField] bool _hasLimit = false;
+    [ConditionalDisplay("_hasLimit", true)]
+    [SerializeField] float _maxDelta = 1.0f;
+
     Transform _cameraTransform;
 
     Vector3 _startCameraPos;
