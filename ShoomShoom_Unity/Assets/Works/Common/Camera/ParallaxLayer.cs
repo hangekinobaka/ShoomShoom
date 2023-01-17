@@ -4,10 +4,8 @@ public class ParallaxLayer : MonoBehaviour
 {
     [SerializeField] float _multiplier = 0.0f;
     [SerializeField] bool _horizontalOnly = true;
-
-    [SerializeField] bool _hasLimit = false;
-    [ConditionalDisplay("_hasLimit", true)]
-    [SerializeField] float _maxDelta = 1.0f;
+    public float Multiplier => _multiplier;
+    public bool HorizontalOnly => _horizontalOnly;
 
     Transform _cameraTransform;
 
@@ -24,11 +22,13 @@ public class ParallaxLayer : MonoBehaviour
 
     private void LateUpdate()
     {
-        var position = _startPos;
+        Vector3 position = _startPos;
+        Vector3 delta = _cameraTransform.position - _startCameraPos;
+
         if (_horizontalOnly)
-            position.x += _multiplier * (_cameraTransform.position.x - _startCameraPos.x);
+            position.x += _multiplier * delta.x;
         else
-            position += _multiplier * (_cameraTransform.position - _startCameraPos);
+            position += _multiplier * delta;
 
         transform.position = position;
     }
