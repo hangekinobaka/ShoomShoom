@@ -6,11 +6,11 @@ public class ParallaxLayer : MonoBehaviour
     [SerializeField] bool _horizontalOnly = true;
     public float Multiplier => _multiplier;
     public bool HorizontalOnly => _horizontalOnly;
-
     Transform _cameraTransform;
 
     Vector3 _startCameraPos;
     Vector3 _startPos;
+    public Vector3 StartCameraPos => _startCameraPos;
 
     void Start()
     {
