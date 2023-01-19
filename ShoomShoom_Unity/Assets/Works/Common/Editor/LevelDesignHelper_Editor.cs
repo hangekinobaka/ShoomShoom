@@ -105,7 +105,7 @@ public class LevelDesignHelper_Editor : Editor
         GUILayout.BeginVertical("BOX");
         EditorGUILayout.LabelField("Layer Sorting", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_excludeLayerProp, true);
-        _sortingLayerNames = MyEditorUtils.GetSortingLayerNames();
+        _sortingLayerNames = SleepyEditorUtils.GetSortingLayerNames();
         _sortingLayerNames = _sortingLayerNames.ToList<string>()
             .Where(layer => !_target.ExcludeLayer.ToList<string>().Any(e => e == layer))
             .ToArray<string>();
