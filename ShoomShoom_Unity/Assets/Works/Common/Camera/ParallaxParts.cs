@@ -5,14 +5,6 @@ using UnityEngine;
 /// </summary>
 public class ParallaxParts : MonoBehaviour
 {
-    enum FrameState
-    {
-        LeftOut,
-        LeftIn,
-        RightOut,
-        RightIn
-    }
-
     [Header("Parents")]
     [SerializeField] ParallaxLayer _baseLayer;
 
@@ -39,8 +31,7 @@ public class ParallaxParts : MonoBehaviour
     Vector3 _startPos;
     Vector3 _plusPos = Vector3.zero;
 
-    FrameState _prevFrameState = FrameState.LeftOut;
-    FrameState _curFrameState = FrameState.LeftOut;
+    RangeTester _rangeTester;
 
     void Start()
     {
@@ -49,47 +40,13 @@ public class ParallaxParts : MonoBehaviour
 
         if (_hasActivePoint)
         {
-            _prevFrameState = TestPosInit();
-            switch (_prevFrameState)
-            {
-                case FrameState.LeftIn:
-                case FrameState.RightIn:
-                    InitCameraPos();
-                    break;
-                default:
-                    break;
-            }
+            _rangeTester = gameObject.AddComponent<RangeTester>();
+            _rangeTester.OnInRangeHandler = _ => InitCameraPos();
+            _rangeTester.Init(_cameraTransform, _lActivePoint, _rActivePoint);
         }
         else
         {
             InitCameraPos();
-        }
-    }
-
-    private void Update()
-    {
-        if (_hasActivePoint)
-        {
-            _curFrameState = TestPos();
-
-            if (!_cameraPosInited)
-            {
-                switch (_curFrameState)
-                {
-                    case FrameState.LeftIn:
-                        if (_prevFrameState == FrameState.LeftOut)
-                            InitCameraPos();
-                        break;
-                    case FrameState.RightIn:
-                        if (_prevFrameState == FrameState.RightOut)
-                            InitCameraPos();
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            _prevFrameState = _curFrameState;
         }
     }
 
@@ -105,10 +62,10 @@ public class ParallaxParts : MonoBehaviour
         {
             if (_cameraPosInited)
             {
-                switch (_curFrameState)
+                switch (_rangeTester.CurRangeState)
                 {
-                    case FrameState.LeftIn:
-                    case FrameState.RightIn:
+                    case RangeState.LeftIn:
+                    case RangeState.RightIn:
                         Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
                         _plusPos = plusDelta * _plusMultiplier;
                         break;
@@ -151,48 +108,9 @@ public class ParallaxParts : MonoBehaviour
         transform.position = position;
     }
 
-    FrameState TestPosInit()
-    {
-        if (_cameraTransform.position.x < _lActivePoint.position.x)
-        {
-            return FrameState.LeftOut;
-        }
-
-        if (_cameraTransform.position.x > _rActivePoint.position.x)
-        {
-            return FrameState.RightOut;
-        }
-
-        if (Mathf.Abs(_cameraTransform.position.x - _lActivePoint.position.x) <=
-            Mathf.Abs(_cameraTransform.position.x - _rActivePoint.position.x))
-        {
-            return FrameState.LeftIn;
-        }
-
-        return FrameState.RightIn;
-    }
-    FrameState TestPos()
-    {
-        if (_cameraTransform.position.x < _lActivePoint.position.x)
-        {
-            return FrameState.LeftOut;
-        }
-
-        if (_cameraTransform.position.x > _rActivePoint.position.x)
-        {
-            return FrameState.RightOut;
-        }
-
-        if (_prevFrameState == FrameState.LeftOut)
-        {
-            return FrameState.LeftIn;
-        }
-
-        return FrameState.RightIn;
-    }
-
     void InitCameraPos()
     {
+        if (_cameraPosInited) return;
         _startCameraPos = _cameraTransform.position;
         _cameraPosInited = true;
     }
