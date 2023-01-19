@@ -3,7 +3,7 @@ using System;
 using System.Reflection;
 using UnityEditorInternal;
 
-public static class MyEditorUtils
+public static class SleepyEditorUtils
 {
     public static string[] GetSortingLayerNames()
     {
