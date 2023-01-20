@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParallaxLayerFollow : MonoBehaviour
+public class ParallaxLayerFollowCamera : MonoBehaviour
 {
     [SerializeField] float _multiplier = 0.0f;
 

@@ -182,8 +182,8 @@ ScriptedImporter:
     spritePosition: {x: 525, y: 1115}
   - name: road_water
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -204,8 +204,8 @@ ScriptedImporter:
     spritePosition: {x: 1000, y: 1338}
   - name: road_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -226,8 +226,8 @@ ScriptedImporter:
     spritePosition: {x: 1012, y: 1278}
   - name: road1_blur
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 20, y: 20, z: 20, w: 20}
     rect:
       serializedVersion: 2
@@ -248,8 +248,8 @@ ScriptedImporter:
     spritePosition: {x: 834, y: 455}
   - name: road1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 10, y: 10, z: 10, w: 10}
     rect:
       serializedVersion: 2
@@ -270,8 +270,8 @@ ScriptedImporter:
     spritePosition: {x: 834, y: 638}
   - name: road0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 5, y: 5, z: 5, w: 5}
     rect:
       serializedVersion: 2
