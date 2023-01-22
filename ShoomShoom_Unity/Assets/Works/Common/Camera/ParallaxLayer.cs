@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
-    [SerializeField] protected float _multiplier = 0.0f;
-    [SerializeField] protected bool _horizontalOnly = true;
-    public float Multiplier => _multiplier;
-    public bool HorizontalOnly => _horizontalOnly;
+    [Header("Base")]
+    [SerializeField] protected float _multiplierX = 0.0f;
+    [SerializeField] protected float _multiplierY = 0.0f;
+
     protected Transform _cameraTransform;
 
     protected Vector3 _startCameraPos;
-    protected Vector3 _startPos;
     public Vector3 StartCameraPos => _startCameraPos;
+    protected Vector3 _startPos;
 
+    Vector3 _delta;
+    public Vector3 Delta => _delta;
     void Start()
     {
         _cameraTransform = Camera.main.transform;
@@ -21,19 +23,19 @@ public class ParallaxLayer : MonoBehaviour
 
     private void LateUpdate()
     {
+        _delta = Vector3.zero;
         UpdatePos();
     }
 
     protected void UpdatePos()
     {
         Vector3 position = _startPos;
-        Vector3 delta = _cameraTransform.position - _startCameraPos;
+        _delta = _cameraTransform.position - _startCameraPos;
 
-        if (_horizontalOnly)
-            position.x += _multiplier * delta.x;
-        else
-            position += _multiplier * delta;
+        _delta.x = _multiplierX * _delta.x;
+        _delta.y = _multiplierY * _delta.y;
 
+        position += _delta;
         transform.position = position;
     }
 

@@ -3,11 +3,10 @@ using UnityEngine;
 /// <summary>
 /// This part's multiplier is based on anoter layer
 /// </summary>
-public class ParallaxPartsCustomParent : MonoBehaviour
+public class ParallaxParts : MonoBehaviour
 {
     [Header("Parents")]
-    [SerializeField] float _baseHorMultiplier;
-    [SerializeField] float _baseVerMultiplier;
+    [SerializeField] ParallaxLayer _baseLayer;
 
     [Header("Activate Point")]
     [SerializeField] bool _hasActivePoint = true;
@@ -17,8 +16,10 @@ public class ParallaxPartsCustomParent : MonoBehaviour
     [SerializeField] Transform _rActivePoint;
 
     [Header("Local")]
-    [SerializeField] float _plusHorMultiplier = 0.0f;
-    [SerializeField] float _plusVerMultiplier = 0.0f;
+    [SerializeField] float _plusMultiplier = 0.0f;
+    [SerializeField] bool _alwaysPlusY = true;
+
+    [Header("Limits")]
     [SerializeField] bool _hasLimitX = false;
     [ConditionalDisplay("_hasLimitX", true)]
     [SerializeField] float _maxDeltaX = 1.0f;
@@ -29,8 +30,7 @@ public class ParallaxPartsCustomParent : MonoBehaviour
     Transform _cameraTransform;
 
     Vector3 _startCameraPos;
-    Vector3 _startCameraPosInRange;
-    bool _cameraPosInited = false;
+    bool _posInited = false;
     Vector3 _startPos;
     Vector3 _plusPos = Vector3.zero;
 
@@ -39,36 +39,41 @@ public class ParallaxPartsCustomParent : MonoBehaviour
     void Start()
     {
         _cameraTransform = Camera.main.transform;
-        _startPos = transform.position;
         _startCameraPos = _cameraTransform.position;
+        _startPos = transform.position;
+
         if (_hasActivePoint)
         {
             _rangeTester = gameObject.AddComponent<RangeTester>();
-            _rangeTester.OnInRangeHandler = _ => InitRangeCameraPos();
+            _rangeTester.OnInRangeHandler = _ => InitPos();
             _rangeTester.Init(_cameraTransform, _lActivePoint, _rActivePoint);
         }
         else
         {
-            InitRangeCameraPos();
+            InitPos();
         }
     }
 
     private void LateUpdate()
     {
-        Vector3 position = _startPos;
-
         // Calculate the plus pos(with the _plusMultiplier)
         if (_hasActivePoint)
         {
-            if (_cameraPosInited)
+            if (_posInited)
             {
+                Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
                 switch (_rangeTester.CurRangeState)
                 {
                     case RangeState.LeftIn:
                     case RangeState.RightIn:
-                        Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
-                        _plusPos.x = plusDelta.x * _plusHorMultiplier;
-                        _plusPos.y = plusDelta.y * _plusVerMultiplier;
+                        _plusPos = plusDelta * _plusMultiplier;
+                        break;
+                    case RangeState.LeftOut:
+                    case RangeState.RightOut:
+                        if (_alwaysPlusY)
+                        {
+                            _plusPos.y = plusDelta.y * _plusMultiplier;
+                        }
                         break;
                     default:
                         break;
@@ -78,8 +83,7 @@ public class ParallaxPartsCustomParent : MonoBehaviour
         else
         {
             Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
-            _plusPos.x = plusDelta.x * _plusHorMultiplier;
-            _plusPos.y = plusDelta.y * _plusVerMultiplier;
+            _plusPos = plusDelta * _plusMultiplier;
         }
 
         // Limit the pluspos if there is a limitation set
@@ -99,17 +103,19 @@ public class ParallaxPartsCustomParent : MonoBehaviour
         }
 
         // Calc the real position
-        Vector3 delta = _cameraTransform.position - _startCameraPos;
-        position.x += _baseHorMultiplier * delta.x + _plusPos.x;
-        position.y += _baseVerMultiplier * delta.y + _plusPos.y;
+        Vector3 delta = _baseLayer.Delta;
+        Vector3 position = _startPos;
+
+        position.x += delta.x + _plusPos.x;
+        position.y += delta.y + _plusPos.y;
 
         transform.position = position;
     }
 
-    void InitRangeCameraPos()
+    void InitPos()
     {
-        if (_cameraPosInited) return;
-        _startCameraPosInRange = _cameraTransform.position;
-        _cameraPosInited = true;
+        if (_posInited) return;
+        _startCameraPos.x = _cameraTransform.position.x;
+        _posInited = true;
     }
 }
