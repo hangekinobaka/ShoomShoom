@@ -17,6 +17,9 @@ public class ParallaxParts : MonoBehaviour
 
     [Header("Local")]
     [SerializeField] float _plusMultiplier = 0.0f;
+    [SerializeField] bool _alwaysPlusY = true;
+
+    [Header("Limits")]
     [SerializeField] bool _hasLimitX = false;
     [ConditionalDisplay("_hasLimitX", true)]
     [SerializeField] float _maxDeltaX = 1.0f;
@@ -27,7 +30,7 @@ public class ParallaxParts : MonoBehaviour
     Transform _cameraTransform;
 
     Vector3 _startCameraPos;
-    bool _cameraPosInited = false;
+    bool _posInited = false;
     Vector3 _startPos;
     Vector3 _plusPos = Vector3.zero;
 
@@ -36,38 +39,41 @@ public class ParallaxParts : MonoBehaviour
     void Start()
     {
         _cameraTransform = Camera.main.transform;
+        _startCameraPos = _cameraTransform.position;
         _startPos = transform.position;
 
         if (_hasActivePoint)
         {
             _rangeTester = gameObject.AddComponent<RangeTester>();
-            _rangeTester.OnInRangeHandler = _ => InitCameraPos();
+            _rangeTester.OnInRangeHandler = _ => InitPos();
             _rangeTester.Init(_cameraTransform, _lActivePoint, _rActivePoint);
         }
         else
         {
-            InitCameraPos();
+            InitPos();
         }
     }
 
     private void LateUpdate()
     {
-        float multiplier = _baseLayer.Multiplier;
-
-        Vector3 delta = _cameraTransform.position - _baseLayer.StartCameraPos;
-        Vector3 position = _startPos;
-
         // Calculate the plus pos(with the _plusMultiplier)
         if (_hasActivePoint)
         {
-            if (_cameraPosInited)
+            if (_posInited)
             {
+                Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
                 switch (_rangeTester.CurRangeState)
                 {
                     case RangeState.LeftIn:
                     case RangeState.RightIn:
-                        Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
                         _plusPos = plusDelta * _plusMultiplier;
+                        break;
+                    case RangeState.LeftOut:
+                    case RangeState.RightOut:
+                        if (_alwaysPlusY)
+                        {
+                            _plusPos.y = plusDelta.y * _plusMultiplier;
+                        }
                         break;
                     default:
                         break;
@@ -97,21 +103,19 @@ public class ParallaxParts : MonoBehaviour
         }
 
         // Calc the real position
-        if (_baseLayer.HorizontalOnly)
-            position.x += multiplier * delta.x + _plusPos.x;
-        else
-        {
-            position.x += multiplier * delta.x + _plusPos.x;
-            position.y += multiplier * delta.y + _plusPos.y;
-        }
+        Vector3 delta = _baseLayer.Delta;
+        Vector3 position = _startPos;
+
+        position.x += delta.x + _plusPos.x;
+        position.y += delta.y + _plusPos.y;
 
         transform.position = position;
     }
 
-    void InitCameraPos()
+    void InitPos()
     {
-        if (_cameraPosInited) return;
-        _startCameraPos = _cameraTransform.position;
-        _cameraPosInited = true;
+        if (_posInited) return;
+        _startCameraPos.x = _cameraTransform.position.x;
+        _posInited = true;
     }
 }

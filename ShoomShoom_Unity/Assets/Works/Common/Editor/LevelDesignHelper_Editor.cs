@@ -176,16 +176,18 @@ public class LevelDesignHelper_Editor : Editor
         List<SpriteRendererGeneral> renderers = new List<SpriteRendererGeneral>();
         GameObject.FindObjectsOfType<SpriteRenderer>()
             .ToList()
-                .ForEach(s =>
+                .ForEach((System.Action<SpriteRenderer>)(s =>
                 {
-                    renderers.Add(new SpriteRendererGeneral(s));
-                });
+                    if (s.GetComponent<global::MatchSortingLayer>() == null)
+                        renderers.Add(new SpriteRendererGeneral(s));
+                }));
         GameObject.FindObjectsOfType<SpriteShapeRenderer>()
             .ToList()
-                .ForEach(s =>
+                .ForEach((System.Action<SpriteShapeRenderer>)(s =>
                 {
-                    renderers.Add(new SpriteRendererGeneral(s));
-                });
+                    if (s.GetComponent<global::MatchSortingLayer>() == null)
+                        renderers.Add(new SpriteRendererGeneral(s));
+                }));
 
         renderers.ForEach(x =>
         {

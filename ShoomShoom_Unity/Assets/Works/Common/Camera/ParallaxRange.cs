@@ -1,29 +1,30 @@
 using UnityEngine;
 
 /// <summary>
-/// Only move in a certain range
+/// Define Parallax range by range
 /// </summary>
 public class ParallaxRange : ParallaxLayer
 {
+    [Header("Activate Point")]
     [SerializeField] Transform _lActivePoint;
     [SerializeField] Transform _rActivePoint;
 
-    bool _cameraPosInited = false;
+    bool _posInited = false;
 
     RangeTester _rangeTester;
+
     void Start()
     {
         _cameraTransform = Camera.main.transform;
+        _startCameraPos = _cameraTransform.position;
         _startPos = transform.position;
-
-        _rangeTester = gameObject.AddComponent<RangeTester>();
-        _rangeTester.OnInRangeHandler = _ => InitCameraPos();
-        _rangeTester.Init(_cameraTransform, _lActivePoint, _rActivePoint);
+        InitRangeTester();
     }
 
     private void LateUpdate()
     {
-        if (_cameraPosInited)
+
+        if (_posInited)
         {
             switch (_rangeTester.CurRangeState)
             {
@@ -35,12 +36,22 @@ public class ParallaxRange : ParallaxLayer
                     break;
             }
         }
+
     }
 
-    void InitCameraPos()
+    void InitPos()
     {
-        if (_cameraPosInited) return;
-        _startCameraPos = _cameraTransform.position;
-        _cameraPosInited = true;
+        if (_posInited) return;
+        _startCameraPos.x = _cameraTransform.position.x;
+        _posInited = true;
+    }
+
+    void InitRangeTester()
+    {
+        _rangeTester = gameObject.AddComponent<RangeTester>();
+
+        _rangeTester.OnInRangeHandler = _ => InitPos();
+
+        _rangeTester.Init(_cameraTransform, _lActivePoint, _rActivePoint);
     }
 }
