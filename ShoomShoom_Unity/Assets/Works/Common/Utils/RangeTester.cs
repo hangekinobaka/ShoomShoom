@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class RangeTester : MonoBehaviour
 {
+    [Header("State Display:")]
+    [SerializeField] RangeState _curRangeState = RangeState.LeftOut;
+    RangeState _prevRangeState = RangeState.LeftOut;
+
     public Transform LActivePoint { get; set; }
     public Transform RActivePoint { get; set; }
     public Transform Target { get; set; }
-
-    RangeState _prevRangeState = RangeState.LeftOut;
-    RangeState _curRangeState = RangeState.LeftOut;
     public RangeState CurRangeState => _curRangeState;
 
     public Action<RangeState> OnInRangeHandler { get; set; }
@@ -103,6 +104,11 @@ public class RangeTester : MonoBehaviour
             return RangeState.LeftIn;
         }
 
-        return RangeState.RightIn;
+        if (_prevRangeState == RangeState.RightOut)
+        {
+            return RangeState.RightIn;
+        }
+
+        return _curRangeState;
     }
 }
