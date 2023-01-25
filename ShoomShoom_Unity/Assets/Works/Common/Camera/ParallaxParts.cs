@@ -57,7 +57,8 @@ public class ParallaxParts : MonoBehaviour
     {
         // Calculate the plus pos(with the _plusMultiplier)
         Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
-        _plusPos = plusDelta * _curPlusMultiplier;
+        _plusPos.x = plusDelta.x * _curPlusMultiplier;
+        _plusPos.y = plusDelta.y * _plusMultiplier;
 
         // Limit the pluspos if there is a limitation set
         if (_hasLimitX)
@@ -88,8 +89,12 @@ public class ParallaxParts : MonoBehaviour
         _rangeStartPos = _startPos;
         _rangeEndPos = _startPos;
         _rangeEndPos.x += Mathf.Min(
-            Mathf.Abs(_rActivePoint.position.x - _lActivePoint.position.x), Mathf.Abs(_rActivePoint.position.x - _startCameraPos.x))
-            * _plusMultiplier;
+            Mathf.Min(
+                Mathf.Abs(_rActivePoint.position.x - _lActivePoint.position.x),
+                Mathf.Abs(_rActivePoint.position.x - _startCameraPos.x))
+            * _plusMultiplier,
+            _maxDeltaX
+            );
     }
 
     void UpdateRangeIn()
