@@ -27,8 +27,12 @@ public class ParallaxParts : MonoBehaviour
     Transform _cameraTransform;
 
     Vector3 _startCameraPos;
+    Vector3 _initStartCameraPos;
     Vector3 _startPos;
     Vector3 _plusPos = Vector3.zero;
+
+    Vector3 _rangeStartPos;
+    Vector3 _rangeEndPos;
 
     RangeTester _rangeTester;
     bool _inRangeOnce = false;
@@ -37,10 +41,12 @@ public class ParallaxParts : MonoBehaviour
     {
         _cameraTransform = Camera.main.transform;
         _startCameraPos = _cameraTransform.position;
+        _initStartCameraPos = _startCameraPos;
         _startPos = transform.localPosition;
 
         if (_hasActivePoint)
         {
+            InitRangePos();
             InitRangeTester();
         }
 
@@ -77,21 +83,51 @@ public class ParallaxParts : MonoBehaviour
         transform.localPosition = localPosition;
     }
 
+    void InitRangePos()
+    {
+        _rangeStartPos = _startPos;
+        _rangeEndPos = _startPos;
+        _rangeEndPos.x += Mathf.Min(
+            Mathf.Abs(_rActivePoint.position.x - _lActivePoint.position.x), Mathf.Abs(_rActivePoint.position.x - _startCameraPos.x))
+            * _plusMultiplier;
+    }
+
     void UpdateRangeIn()
     {
         if (!_inRangeOnce)
         {
-            _startPos = transform.localPosition;
-            _startCameraPos = _cameraTransform.position;
             _inRangeOnce = true;
+            _startCameraPos = _cameraTransform.position;
+            if (_rangeTester.CurRangeState == RangeState.LeftIn)
+            {
+                _startPos = _rangeStartPos;
+                _startCameraPos.x = _lActivePoint.position.x > _initStartCameraPos.x ? _lActivePoint.position.x : _initStartCameraPos.x;
+            }
+            else
+            {
+                _startPos = _rangeEndPos;
+                _startCameraPos.x = _rActivePoint.position.x > _initStartCameraPos.x ? _rActivePoint.position.x : _initStartCameraPos.x;
+            }
+            _startPos.y = transform.localPosition.y;
         }
+
         _curPlusMultiplier = _plusMultiplier;
     }
 
     void UpdateRangeOut()
     {
-        _startPos = transform.localPosition;
         _startCameraPos = _cameraTransform.position;
+        if (_rangeTester.CurRangeState == RangeState.LeftOut)
+        {
+            _startPos = _rangeStartPos;
+            _startCameraPos.x = _lActivePoint.position.x > _initStartCameraPos.x ? _lActivePoint.position.x : _initStartCameraPos.x;
+        }
+        else
+        {
+            _startPos = _rangeEndPos;
+            _startCameraPos.x = _rActivePoint.position.x > _initStartCameraPos.x ? _rActivePoint.position.x : _initStartCameraPos.x;
+        }
+        _startPos.y = transform.localPosition.y;
         _curPlusMultiplier = 0;
     }
 
