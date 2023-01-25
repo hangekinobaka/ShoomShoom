@@ -99,8 +99,8 @@ ScriptedImporter:
     border: {x: 5, y: 30, z: 5, w: 5}
     rect:
       serializedVersion: 2
-      x: 462
-      y: 1406
+      x: 4
+      y: 1692
       width: 450
       height: 122
     spriteID: 4138890ea0197db4e9eb248087921871
@@ -112,20 +112,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 462, y: 1406}
+    uvTransform: {x: 4, y: 1692}
     spritePosition: {x: 38, y: 1266}
   - name: ceiling_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 10, y: 20, z: 10, w: 5}
+    border: {x: 0, y: 22, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 462
-      y: 1536
+      y: 1692
       width: 450
-      height: 41
-    spriteID: a4385e8d882f768429240d1a2e197ce7
+      height: 40
+    spriteID: ca1f0cf55906a9f4e94cc43d77b17380
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,20 +134,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 462, y: 1536}
-    spritePosition: {x: 38, y: 1192}
+    uvTransform: {x: 462, y: 1692}
+    spritePosition: {x: 38, y: 1191}
   - name: ceiling_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 10, y: 20, z: 10, w: 5}
+    border: {x: 0, y: 23, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 462
-      y: 1585
+      y: 1740
       width: 450
-      height: 41
-    spriteID: 7ac869da10e0e454182dfb4b240d7033
+      height: 40
+    spriteID: 76066751e2895d34a988bb4537c1e080
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,20 +156,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 462, y: 1585}
+    uvTransform: {x: 462, y: 1740}
     spritePosition: {x: 38, y: 1147}
-  - name: roadside
+  - name: roadside_end
     originalName: 
     pivot: {x: 0, y: 0}
-    alignment: 9
-    border: {x: 20, y: 20, z: 20, w: 47}
+    alignment: 6
+    border: {x: 8, y: 12, z: 51, w: 48}
     rect:
       serializedVersion: 2
       x: 4
       y: 1406
       width: 450
-      height: 279
-    spriteID: bf4661f7360352a41b90c45495639690
+      height: 278
+    spriteID: fcd16d2e3b846ed448ebbd3129061a50
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,6 +179,72 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 1406}
+    spritePosition: {x: 2019, y: 1110}
+  - name: roadend_1
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 26, y: 0, z: 27, w: 43}
+    rect:
+      serializedVersion: 2
+      x: 732
+      y: 4
+      width: 170
+      height: 278
+    spriteID: 5a5e2c757cb3ff948946883cad2d55fb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 732, y: 4}
+    spritePosition: {x: 2019, y: 788}
+  - name: roadend_2
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 31, y: 0, z: 29, w: 42}
+    rect:
+      serializedVersion: 2
+      x: 732
+      y: 292
+      width: 170
+      height: 278
+    spriteID: e405a5e1e359ec94bb4d93381e31cb02
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 732, y: 290}
+    spritePosition: {x: 2275, y: 788}
+  - name: roadside
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 6
+    border: {x: 5, y: 5, z: 5, w: 44}
+    rect:
+      serializedVersion: 2
+      x: 462
+      y: 1406
+      width: 450
+      height: 278
+    spriteID: 21b8dca5f5cd8b24096c98300a139048
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 462, y: 1406}
     spritePosition: {x: 525, y: 1115}
   - name: road_water
     originalName: 
@@ -188,7 +254,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1693
+      y: 1822
       width: 913
       height: 56
     spriteID: 5564a61375e0d7542bc1e672e8ff8d49
@@ -200,7 +266,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1693}
+    uvTransform: {x: 4, y: 1822}
     spritePosition: {x: 1000, y: 1338}
   - name: road_2
     originalName: 
@@ -210,7 +276,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1757
+      y: 1886
       width: 900
       height: 55
     spriteID: d90686234509f9945b1e58866b471f3c
@@ -222,7 +288,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1757}
+    uvTransform: {x: 4, y: 1886}
     spritePosition: {x: 1012, y: 1278}
   - name: road1_blur
     originalName: 
@@ -272,7 +338,7 @@ ScriptedImporter:
     originalName: 
     pivot: {x: 0, y: 0}
     alignment: 6
-    border: {x: 5, y: 5, z: 5, w: 5}
+    border: {x: 5, y: 5, z: 5, w: 6}
     rect:
       serializedVersion: 2
       x: 4
@@ -392,7 +458,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 4138890ea0197db4e9eb248087921871
     layerID: 13
-    mosaicPosition: {x: 462, y: 1406}
+    mosaicPosition: {x: 4, y: 1692}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -400,9 +466,9 @@ ScriptedImporter:
     spriteName: ceiling_2
     isGroup: 0
     parentIndex: -1
-    spriteID: a4385e8d882f768429240d1a2e197ce7
-    layerID: 11
-    mosaicPosition: {x: 462, y: 1536}
+    spriteID: ca1f0cf55906a9f4e94cc43d77b17380
+    layerID: 38
+    mosaicPosition: {x: 462, y: 1692}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -410,9 +476,39 @@ ScriptedImporter:
     spriteName: ceiling_1
     isGroup: 0
     parentIndex: -1
-    spriteID: 7ac869da10e0e454182dfb4b240d7033
-    layerID: 10
-    mosaicPosition: {x: 462, y: 1585}
+    spriteID: 76066751e2895d34a988bb4537c1e080
+    layerID: 40
+    mosaicPosition: {x: 462, y: 1740}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: roadside_end
+    spriteName: roadside_end
+    isGroup: 0
+    parentIndex: -1
+    spriteID: fcd16d2e3b846ed448ebbd3129061a50
+    layerID: 43
+    mosaicPosition: {x: 4, y: 1406}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: roadend_1
+    spriteName: roadend_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5a5e2c757cb3ff948946883cad2d55fb
+    layerID: 45
+    mosaicPosition: {x: 732, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: roadend_2
+    spriteName: roadend_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e405a5e1e359ec94bb4d93381e31cb02
+    layerID: 44
+    mosaicPosition: {x: 732, y: 290}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -420,9 +516,9 @@ ScriptedImporter:
     spriteName: roadside
     isGroup: 0
     parentIndex: -1
-    spriteID: bf4661f7360352a41b90c45495639690
-    layerID: 6
-    mosaicPosition: {x: 4, y: 1406}
+    spriteID: 21b8dca5f5cd8b24096c98300a139048
+    layerID: 37
+    mosaicPosition: {x: 462, y: 1406}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -432,7 +528,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 5564a61375e0d7542bc1e672e8ff8d49
     layerID: 17
-    mosaicPosition: {x: 4, y: 1693}
+    mosaicPosition: {x: 4, y: 1822}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -442,7 +538,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: d90686234509f9945b1e58866b471f3c
     layerID: 18
-    mosaicPosition: {x: 4, y: 1757}
+    mosaicPosition: {x: 4, y: 1886}
     flatten: 0
     isImported: 1
     isVisible: 1

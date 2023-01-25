@@ -12,8 +12,9 @@ public class ParallaxLayer : MonoBehaviour
     public Vector3 StartCameraPos => _startCameraPos;
     protected Vector3 _startPos;
 
-    Vector3 _delta;
+    protected Vector3 _delta;
     public Vector3 Delta => _delta;
+
     void Start()
     {
         _cameraTransform = Camera.main.transform;
