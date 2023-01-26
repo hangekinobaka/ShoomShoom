@@ -17628,6 +17628,8 @@ MonoBehaviour:
   _jumpCount: 2
   _focalPoint: {fileID: 784076802}
   _focalMoveDuration: 4
+  _dashMultiplier: 1.5
+  _isDashing: 0
 --- !u!4 &1863435324
 Transform:
   m_ObjectHideFlags: 0
