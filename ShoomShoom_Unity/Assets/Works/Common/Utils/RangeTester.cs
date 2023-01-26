@@ -29,7 +29,11 @@ public class RangeTester : MonoBehaviour
         {
             case RangeState.LeftIn:
             case RangeState.RightIn:
-                OnInRangeHandler.Invoke(_curRangeState);
+                OnInRangeHandler?.Invoke(_prevRangeState);
+                break;
+            case RangeState.LeftOut:
+            case RangeState.RightOut:
+                OnOutRangeHandler?.Invoke(_prevRangeState);
                 break;
             default:
                 break;
@@ -42,26 +46,25 @@ public class RangeTester : MonoBehaviour
 
         _curRangeState = TestPos();
 
-        switch (_curRangeState)
+        if (_curRangeState != _prevRangeState)
         {
-            case RangeState.LeftOut:
-                if (_prevRangeState == RangeState.RightIn || _prevRangeState == RangeState.LeftIn)
+            switch (_curRangeState)
+            {
+                case RangeState.LeftOut:
                     OnOutRangeHandler?.Invoke(_curRangeState);
-                break;
-            case RangeState.LeftIn:
-                if (_prevRangeState == RangeState.LeftOut)
+                    break;
+                case RangeState.LeftIn:
                     OnInRangeHandler?.Invoke(_curRangeState);
-                break;
-            case RangeState.RightOut:
-                if (_prevRangeState == RangeState.RightIn || _prevRangeState == RangeState.LeftIn)
+                    break;
+                case RangeState.RightOut:
                     OnOutRangeHandler?.Invoke(_curRangeState);
-                break;
-            case RangeState.RightIn:
-                if (_prevRangeState == RangeState.RightOut)
+                    break;
+                case RangeState.RightIn:
                     OnInRangeHandler?.Invoke(_curRangeState);
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
 
         _prevRangeState = _curRangeState;
