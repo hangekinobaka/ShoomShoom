@@ -42,6 +42,11 @@ public class ParallaxRange : ParallaxLayer
         for (int i = 0; i < _parallaxRangeStructs.Length; i++)
         {
             var range = _parallaxRangeStructs[i];
+
+            // init cam pos
+            range.LCamStartX = range.LActivePoint.position.x > _initStartCameraPos.x ? range.LActivePoint.position.x : _initStartCameraPos.x;
+            range.RCamStartX = range.RActivePoint.position.x > _initStartCameraPos.x ? range.RActivePoint.position.x : _initStartCameraPos.x;
+
             if (i == 0)
             {
                 range.RangeStartPos = _initStartPos;
@@ -56,45 +61,46 @@ public class ParallaxRange : ParallaxLayer
             range.RangeStartPos = preRange.RangeEndPos;
             range.RangeEndPos = range.RangeStartPos;
             range.RangeEndPos.x += (range.RActivePoint.position.x - range.LActivePoint.position.x) * range.MultiplierX;
+
         }
     }
 
-    void UpdateRangeIn(int i)
+    void UpdateRangeIn(RangeState state, int i)
     {
         _curActiveRangeIndex = i;
 
         _startCameraPos = _cameraTransform.position;
         var range = _parallaxRangeStructs[i];
-        if (range.RangeTester.CurRangeState == RangeState.LeftIn)
+        if (state == RangeState.LeftIn)
         {
             _startPos = range.RangeStartPos;
-            _startCameraPos.x = range.LActivePoint.position.x > _initStartCameraPos.x ? range.LActivePoint.position.x : _initStartCameraPos.x;
+            _startCameraPos.x = range.LCamStartX;
 
         }
         else
         {
             _startPos = range.RangeEndPos;
-            _startCameraPos.x = range.RActivePoint.position.x > _initStartCameraPos.x ? range.RActivePoint.position.x : _initStartCameraPos.x;
+            _startCameraPos.x = range.RCamStartX;
         }
         _startPos.y = transform.position.y;
         _multiplierX = range.MultiplierX;
     }
 
-    void UpdateRangeOut(int i)
+    void UpdateRangeOut(RangeState state, int i)
     {
         if (_curActiveRangeIndex != i) return;
 
         _startCameraPos = _cameraTransform.position;
         var range = _parallaxRangeStructs[i];
-        if (range.RangeTester.CurRangeState == RangeState.RightOut)
+        if (state == RangeState.RightOut)
         {
             _startPos = range.RangeEndPos;
-            _startCameraPos.x = range.RActivePoint.position.x > _initStartCameraPos.x ? range.RActivePoint.position.x : _initStartCameraPos.x;
+            _startCameraPos.x = range.RCamStartX;
         }
         else
         {
             _startPos = range.RangeStartPos;
-            _startCameraPos.x = range.LActivePoint.position.x > _initStartCameraPos.x ? range.LActivePoint.position.x : _initStartCameraPos.x;
+            _startCameraPos.x = range.LCamStartX;
         }
         _startPos.y = transform.position.y;
         _multiplierX = 0;
@@ -108,8 +114,8 @@ public class ParallaxRange : ParallaxLayer
             int index = i;
             range.InitRangeTester(gameObject,
                _cameraTransform,
-               _ => UpdateRangeIn(index),
-               _ => UpdateRangeOut(index)
+               state => UpdateRangeIn(state, index),
+               state => UpdateRangeOut(state, index)
                );
         }
     }

@@ -19,6 +19,8 @@ public class ParallaxRangeStruct
 
     public RangeTester RangeTester { get; private set; }
 
+    public float LCamStartX { get; set; }
+    public float RCamStartX { get; set; }
 
     public void InitRangeTester(GameObject go, Transform camPos, Action<RangeState> callbackIn, Action<RangeState> callbackOut)
     {

@@ -30,7 +30,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -99,11 +99,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 489
-      y: 4
-      width: 89
-      height: 208
-    spriteID: 2fec94585c8635b4d92c01e8e1206ea0
+      x: 557
+      y: 189
+      width: 90
+      height: 193
+    spriteID: d2a9b7a2ddcfed74ea47ab54230ce837
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -112,8 +112,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 489, y: 4}
-    spritePosition: {x: 240, y: 42}
+    uvTransform: {x: 557, y: 189}
+    spritePosition: {x: 239, y: 42}
   - name: barrel2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -121,11 +121,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 336
-      y: 4
-      width: 145
+      x: 405
+      y: 189
+      width: 144
       height: 208
-    spriteID: 6d7ac6c482181b346ac29f361de02ec4
+    spriteID: adbc9d5e8d3cec640ab34a0df991aedd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,7 +134,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 336, y: 4}
+    uvTransform: {x: 405, y: 189}
     spritePosition: {x: 51, y: 42}
   - name: tube_rope
     originalName: 
@@ -144,10 +144,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 807
-      width: 722
-      height: 175
-    spriteID: 3d8e324f2140d554985b7de963954a56
+      y: 1282
+      width: 718
+      height: 172
+    spriteID: 16ba2935b7d0ffc4a9759cc387ac4c76
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,8 +156,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 807}
-    spritePosition: {x: 51, y: 797}
+    uvTransform: {x: 4, y: 1282}
+    spritePosition: {x: 55, y: 800}
   - name: tube_thin
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -166,10 +166,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 990
-      width: 722
+      y: 1462
+      width: 718
       height: 58
-    spriteID: 6b67a84a5d1f99b419cb710ac00e5ff2
+    spriteID: 521a946f0e7bf8e43855bd20909b40cf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,8 +178,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 990}
-    spritePosition: {x: 51, y: 717}
+    uvTransform: {x: 4, y: 1462}
+    spritePosition: {x: 55, y: 717}
   - name: tube_big
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -188,10 +188,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 610
-      width: 983
+      y: 490
+      width: 964
       height: 189
-    spriteID: 874e84a09cc0ecb4b82d100ac51cd7f5
+    spriteID: 222e2da6a696e6c468abdc1b63c4d14c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,8 +200,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 610}
-    spritePosition: {x: 51, y: 471}
+    uvTransform: {x: 4, y: 490}
+    spritePosition: {x: 70, y: 471}
   - name: tube_hole_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -210,10 +210,208 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
+      y: 687
+      width: 308
+      height: 587
+    spriteID: 28542188c99be464f8868e95973f49a4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 687}
+    spritePosition: {x: 1085, y: 385}
+  - name: tube_connetion
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 655
+      y: 189
+      width: 86
+      height: 86
+    spriteID: 019c4d3d540819d41a440d6537a4858a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 655, y: 189}
+    spritePosition: {x: 1065, y: 757}
+  - name: tube_hole_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 860
+      y: 1388
+      width: 120
+      height: 46
+    spriteID: 2b1819c4c6b2032409b20fde8320479f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 860, y: 1388}
+    spritePosition: {x: 1017, y: 773}
+  - name: tube_hole_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 829
+      y: 189
+      width: 96
+      height: 46
+    spriteID: a261a7b5211226147acc7918ddf022ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 829, y: 189}
+    spritePosition: {x: 986, y: 773}
+  - name: valve
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 860
+      y: 1282
+      width: 100
+      height: 98
+    spriteID: da0b70c551c1f8a4c925558e4fbd8d9c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 860, y: 1282}
+    spritePosition: {x: 51, y: 300}
+  - name: valve_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 730
+      y: 1282
+      width: 122
+      height: 122
+    spriteID: acfd9269a30ad874fa2b36b4fb7607f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 730, y: 1282}
+    spritePosition: {x: 240, y: 278}
+  - name: dashboard
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 749
+      y: 189
+      width: 72
+      height: 73
+    spriteID: e8ff30054eba3ce45a073806d1a93ffd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 749, y: 189}
+    spritePosition: {x: 853, y: 242}
+  - name: tube_huge_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 730
+      y: 1412
+      width: 82
+      height: 39
+    spriteID: 7b66b5f07e1992945a35c8dec306cbed
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 730, y: 1412}
+    spritePosition: {x: 848, y: 150}
+  - name: tube_huge_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 405
+      y: 405
+      width: 109
+      height: 58
+    spriteID: 20210463c675bcb4abf5558e140af6c1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 405, y: 405}
+    spritePosition: {x: 834, y: 83}
+  - name: tube_huge
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
       y: 4
-      width: 324
-      height: 598
-    spriteID: 84b83acf24c6aef4096bea71382d36a0
+      width: 393
+      height: 478
+    spriteID: d2e46322daf203a49898a962e3e66729
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -223,19 +421,19 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 1069, y: 374}
-  - name: tube_hole_2
+    spritePosition: {x: 692, y: 0}
+  - name: tube_connetion_2
     originalName: 
-    pivot: {x: 1, y: 0.5}
-    alignment: 5
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 586
+      x: 405
       y: 4
-      width: 84
-      height: 95
-    spriteID: 12efde2715e6ce04784dc01f1ab98014
+      width: 178
+      height: 177
+    spriteID: d6f84c64220761d4cb049c37307c3d7c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,20 +442,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 586, y: 4}
-    spritePosition: {x: 1428, y: 877}
-  - name: valve
+    uvTransform: {x: 405, y: 4}
+    spritePosition: {x: 451, y: 250}
+  - name: tube_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 864
-      y: 807
-      width: 100
-      height: 98
-    spriteID: 655140336064cdf468f45022f268c3b1
+      x: 0
+      y: 0
+      width: 1024
+      height: 1824
+    spriteID: 89ad06072599ddc439e6a8104ddd46fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -266,30 +464,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 864, y: 807}
-    spritePosition: {x: 51, y: 300}
-  - name: valve_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 734
-      y: 807
-      width: 122
-      height: 122
-    spriteID: c8e0504a2fda43b4fbafd5c7762689a5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 734, y: 807}
-    spritePosition: {x: 240, y: 278}
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -351,7 +527,7 @@ ScriptedImporter:
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
-  documentAlignment: 7
+  documentAlignment: 6
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
@@ -378,9 +554,9 @@ ScriptedImporter:
     spriteName: barrel1
     isGroup: 0
     parentIndex: 0
-    spriteID: 2fec94585c8635b4d92c01e8e1206ea0
-    layerID: 42
-    mosaicPosition: {x: 489, y: 4}
+    spriteID: d2a9b7a2ddcfed74ea47ab54230ce837
+    layerID: 49
+    mosaicPosition: {x: 557, y: 189}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -388,9 +564,9 @@ ScriptedImporter:
     spriteName: barrel2
     isGroup: 0
     parentIndex: 0
-    spriteID: 6d7ac6c482181b346ac29f361de02ec4
-    layerID: 41
-    mosaicPosition: {x: 336, y: 4}
+    spriteID: adbc9d5e8d3cec640ab34a0df991aedd
+    layerID: 50
+    mosaicPosition: {x: 405, y: 189}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -398,9 +574,9 @@ ScriptedImporter:
     spriteName: tube_rope
     isGroup: 0
     parentIndex: -1
-    spriteID: 3d8e324f2140d554985b7de963954a56
-    layerID: 35
-    mosaicPosition: {x: 4, y: 807}
+    spriteID: 16ba2935b7d0ffc4a9759cc387ac4c76
+    layerID: 53
+    mosaicPosition: {x: 4, y: 1282}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -408,9 +584,9 @@ ScriptedImporter:
     spriteName: tube_thin
     isGroup: 0
     parentIndex: -1
-    spriteID: 6b67a84a5d1f99b419cb710ac00e5ff2
-    layerID: 32
-    mosaicPosition: {x: 4, y: 990}
+    spriteID: 521a946f0e7bf8e43855bd20909b40cf
+    layerID: 52
+    mosaicPosition: {x: 4, y: 1462}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -418,9 +594,9 @@ ScriptedImporter:
     spriteName: tube_big
     isGroup: 0
     parentIndex: -1
-    spriteID: 874e84a09cc0ecb4b82d100ac51cd7f5
-    layerID: 29
-    mosaicPosition: {x: 4, y: 610}
+    spriteID: 222e2da6a696e6c468abdc1b63c4d14c
+    layerID: 55
+    mosaicPosition: {x: 4, y: 490}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -428,9 +604,19 @@ ScriptedImporter:
     spriteName: tube_hole_1
     isGroup: 0
     parentIndex: -1
-    spriteID: 84b83acf24c6aef4096bea71382d36a0
-    layerID: 39
-    mosaicPosition: {x: 4, y: 4}
+    spriteID: 28542188c99be464f8868e95973f49a4
+    layerID: 58
+    mosaicPosition: {x: 4, y: 687}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_connetion
+    spriteName: tube_connetion
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 019c4d3d540819d41a440d6537a4858a
+    layerID: 59
+    mosaicPosition: {x: 655, y: 189}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -438,9 +624,19 @@ ScriptedImporter:
     spriteName: tube_hole_2
     isGroup: 0
     parentIndex: -1
-    spriteID: 12efde2715e6ce04784dc01f1ab98014
-    layerID: 38
-    mosaicPosition: {x: 586, y: 4}
+    spriteID: 2b1819c4c6b2032409b20fde8320479f
+    layerID: 61
+    mosaicPosition: {x: 860, y: 1388}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_hole_3
+    spriteName: tube_hole_3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a261a7b5211226147acc7918ddf022ef
+    layerID: 60
+    mosaicPosition: {x: 829, y: 189}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -448,9 +644,9 @@ ScriptedImporter:
     spriteName: valve
     isGroup: 0
     parentIndex: -1
-    spriteID: 655140336064cdf468f45022f268c3b1
-    layerID: 30
-    mosaicPosition: {x: 864, y: 807}
+    spriteID: da0b70c551c1f8a4c925558e4fbd8d9c
+    layerID: 56
+    mosaicPosition: {x: 860, y: 1282}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -458,9 +654,59 @@ ScriptedImporter:
     spriteName: valve_2
     isGroup: 0
     parentIndex: -1
-    spriteID: c8e0504a2fda43b4fbafd5c7762689a5
-    layerID: 37
-    mosaicPosition: {x: 734, y: 807}
+    spriteID: acfd9269a30ad874fa2b36b4fb7607f3
+    layerID: 57
+    mosaicPosition: {x: 730, y: 1282}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: dashboard
+    spriteName: dashboard
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e8ff30054eba3ce45a073806d1a93ffd
+    layerID: 65
+    mosaicPosition: {x: 749, y: 189}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_huge_2
+    spriteName: tube_huge_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 7b66b5f07e1992945a35c8dec306cbed
+    layerID: 66
+    mosaicPosition: {x: 730, y: 1412}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_huge_1
+    spriteName: tube_huge_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 20210463c675bcb4abf5558e140af6c1
+    layerID: 67
+    mosaicPosition: {x: 405, y: 405}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_huge
+    spriteName: tube_huge
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d2e46322daf203a49898a962e3e66729
+    layerID: 63
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: tube_connetion_2
+    spriteName: tube_connetion_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d6f84c64220761d4cb049c37307c3d7c
+    layerID: 62
+    mosaicPosition: {x: 405, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1

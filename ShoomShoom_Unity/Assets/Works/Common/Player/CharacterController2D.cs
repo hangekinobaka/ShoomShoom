@@ -40,6 +40,12 @@ public class CharacterController2D : MonoBehaviour
     Vector3 _normalFocalPos = new Vector3(3, 0, 0);
     Vector3 _flippedFocalPos = new Vector3(-3, 0, 0);
 
+    [Header("Dash")]
+    [SerializeField] float _dashMultiplier = 1.5f;
+    [SerializeField] bool _isDashing = false;
+    float _curAcceleration;
+    float _curMaxSpeed;
+
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
     LayerMask _normalGroundMask;
@@ -135,12 +141,23 @@ public class CharacterController2D : MonoBehaviour
     {
         Vector2 velocity = _controllerRigidbody.velocity;
 
+        if (_isDashing)
+        {
+            _curAcceleration = _acceleration * _dashMultiplier;
+            _curMaxSpeed = _maxSpeed * _dashMultiplier;
+        }
+        else
+        {
+            _curAcceleration = _acceleration;
+            _curMaxSpeed = _maxSpeed;
+        }
+
         // Apply acceleration directly as we'll want to clamp
         // prior to assigning back to the body.
-        velocity += _movementInput * _acceleration * Time.fixedDeltaTime;
+        velocity += _movementInput * _curAcceleration * Time.fixedDeltaTime;
 
         // Clamp horizontal speed.
-        velocity.x = Mathf.Clamp(velocity.x, -_maxSpeed, _maxSpeed);
+        velocity.x = Mathf.Clamp(velocity.x, -_curMaxSpeed, _curMaxSpeed);
 
         // Assign back to the body.
         _controllerRigidbody.velocity = velocity;
