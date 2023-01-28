@@ -40,9 +40,9 @@ public class CharacterController2D : MonoBehaviour
     Vector3 _normalFocalPos = new Vector3(3, 0, 0);
     Vector3 _flippedFocalPos = new Vector3(-3, 0, 0);
 
-    [Header("Dash")]
-    [SerializeField] float _dashMultiplier = 1.5f;
-    [SerializeField] bool _isDashing = false;
+    [Header("Sprint")]
+    [SerializeField] float _sprintMultiplier = 1.5f;
+    [SerializeField] bool _isSprinting = false;
     float _curAcceleration;
     float _curMaxSpeed;
 
@@ -92,6 +92,8 @@ public class CharacterController2D : MonoBehaviour
         _playerInputAction.Normal.Move.performed += MoveInputHandler;
         _playerInputAction.Normal.Move.canceled += MoveInputHandler;
         _playerInputAction.Normal.Jump.performed += JumpInputHandler;
+        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
+        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
 
         CanMove = true;
     }
@@ -101,6 +103,8 @@ public class CharacterController2D : MonoBehaviour
         _playerInputAction.Normal.Move.performed -= MoveInputHandler;
         _playerInputAction.Normal.Move.canceled -= MoveInputHandler;
         _playerInputAction.Normal.Jump.performed -= JumpInputHandler;
+        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
+        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
         _playerInputAction.Normal.Disable();
     }
 
@@ -125,6 +129,15 @@ public class CharacterController2D : MonoBehaviour
         // Check if we have ran out of the jump count
         if (_localJumpCount > 0) _jumpInput = true;
     }
+    void SprintInputHandler(InputAction.CallbackContext context)
+    {
+        // If shift key is being held, enable the sprint mode
+        if (context.performed)
+            _isSprinting = true;
+        else if (context.canceled)
+            _isSprinting = false;
+
+    }
 
     private void UpdateGrounding()
     {
@@ -141,10 +154,11 @@ public class CharacterController2D : MonoBehaviour
     {
         Vector2 velocity = _controllerRigidbody.velocity;
 
-        if (_isDashing)
+        // Handle sprint 
+        if (_isSprinting)
         {
-            _curAcceleration = _acceleration * _dashMultiplier;
-            _curMaxSpeed = _maxSpeed * _dashMultiplier;
+            _curAcceleration = _acceleration * _sprintMultiplier;
+            _curMaxSpeed = _maxSpeed * _sprintMultiplier;
         }
         else
         {
