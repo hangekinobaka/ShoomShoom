@@ -3,9 +3,9 @@
 
 public class ParallaxPartsBase : MonoBehaviour
 {
-    [Header("Local")]
-    [SerializeField] protected float _plusMultiplier = 0.0f;
-    protected float _curPlusMultiplier = 0.0f;
+    [Header("Base")]
+    [SerializeField] protected float _plusMultiplierX = 0.0f;
+    [SerializeField] protected float _plusMultiplierY = 0.0f;
 
     [Header("Limits")]
     [SerializeField] bool _hasLimitY = false;
@@ -15,30 +15,24 @@ public class ParallaxPartsBase : MonoBehaviour
     protected Transform _cameraTransform;
 
     protected Vector3 _startCameraPos;
-    protected Vector3 _initStartCameraPos;
     protected Vector3 _startPos;
-    protected Vector3 _initStartPos;
     protected Vector3 _plusPos = Vector3.zero;
 
     virtual protected void Start()
     {
         _cameraTransform = Camera.main.transform;
         _startCameraPos = _cameraTransform.position;
-        _initStartCameraPos = _startCameraPos;
         _startPos = transform.localPosition;
-        _initStartPos = _startPos;
-
-        _curPlusMultiplier = _plusMultiplier;
-
     }
 
     private void LateUpdate()
     {
         // Calculate the plus pos(with the _plusMultiplier)
         Vector3 plusDelta = _cameraTransform.position - _startCameraPos;
-        _plusPos.x = plusDelta.x * _curPlusMultiplier;
-        _plusPos.y = plusDelta.y * _plusMultiplier;
+        _plusPos.x = plusDelta.x * _plusMultiplierX;
+        _plusPos.y = plusDelta.y * _plusMultiplierY;
 
+        // Limit the Y axis
         if (_hasLimitY)
         {
             if (Mathf.Abs(_plusPos.y) > _maxDeltaY)

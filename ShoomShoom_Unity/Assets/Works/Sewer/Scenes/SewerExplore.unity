@@ -252,12 +252,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.02
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.02
   _hasLimitY: 1
   _maxDeltaY: 0
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.02
 --- !u!1 &30828215
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,12 +684,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.4
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.4
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 1911669592}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.4
+  - _lActivePoint: {fileID: 1911669592}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.2
 --- !u!1 &97579375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,12 +1035,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &115609022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,7 +1137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -1738,12 +1754,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.336
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &212507212
 GameObject:
   m_ObjectHideFlags: 3
@@ -2028,12 +2043,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.37
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &253519983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
-  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &265885223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,7 +2311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.2
   _multiplierY: -0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -2412,12 +2424,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 1
   _maxDeltaY: 0
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &302833544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,6 +2552,7 @@ Transform:
   - {fileID: 410903790}
   - {fileID: 1431053167}
   - {fileID: 1946624149}
+  - {fileID: 915634300}
   m_Father: {fileID: 540510763}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2553,7 +2570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -2837,12 +2853,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.1
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &382318979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3354,12 +3369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.1
+  _plusMultiplierX: -0.1
+  _plusMultiplierY: -0.1
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &414612028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,7 +3766,6 @@ GameObject:
   m_Component:
   - component: {fileID: 461179549}
   - component: {fileID: 461179551}
-  - component: {fileID: 461179552}
   m_Layer: 0
   m_Name: m_grille
   m_TagString: Untagged
@@ -3827,24 +3840,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &461179552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461179548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _plusMultiplier: 0
-  _hasLimitY: 0
-  _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
 --- !u!43 &461258765
 Mesh:
   m_ObjectHideFlags: 0
@@ -4797,12 +4792,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.02
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.02
   _hasLimitY: 1
   _maxDeltaY: 0
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 1911669592}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.02
 --- !u!1 &596957567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4851,7 +4850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -5557,7 +5555,6 @@ GameObject:
   - component: {fileID: 715667780}
   - component: {fileID: 715667779}
   - component: {fileID: 715667778}
-  - component: {fileID: 715667782}
   m_Layer: 0
   m_Name: ceiling_shape
   m_TagString: Untagged
@@ -5870,24 +5867,6 @@ Transform:
   m_Father: {fileID: 303555139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &715667782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715667777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _plusMultiplier: 0
-  _hasLimitY: 0
-  _maxDeltaY: 1
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
 --- !u!1 &729800802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,12 +5964,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.03
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.03
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.03
 --- !u!1 &748888046
 GameObject:
   m_ObjectHideFlags: 0
@@ -10889,7 +10872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.4
   _multiplierY: -0.4
-  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &759493787
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,12 +11025,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.02
+  _plusMultiplierX: -0.01
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1163149922}
+  _rangeStructs: []
 --- !u!1 &771509254
 GameObject:
   m_ObjectHideFlags: 0
@@ -11411,12 +11392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.03
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &793118494
 GameObject:
   m_ObjectHideFlags: 0
@@ -11514,12 +11494,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 101471819}
-  _rActivePoint: {fileID: 1293640505}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &804301824
 GameObject:
   m_ObjectHideFlags: 0
@@ -11958,7 +11942,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
-  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &892041368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12056,12 +12039,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &897264855
 GameObject:
   m_ObjectHideFlags: 0
@@ -12182,6 +12169,329 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &915634299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915634300}
+  - component: {fileID: 915634302}
+  - component: {fileID: 915634301}
+  m_Layer: 0
+  m_Name: ceiling_shape (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &915634300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915634299}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.34, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 303555139}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915634301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915634299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spline:
+    m_IsOpenEnded: 0
+    m_ControlPoints:
+    - position: {x: -150, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -142.09715, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -136.01878, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -130.7832, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.3
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -121.08922, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -113.41913, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.5
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -92.3421, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -83.049286, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -67.10362, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -56.018753, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -48.068672, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -22.859543, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -8.023666, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.4
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 30.015816, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 43.26803, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.4
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 90.69879, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1.8
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 1
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 121.92029, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 1
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 150, y: 6.8, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 149.97, y: 7.2640057, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -150.04712, y: 7.3442173, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+  m_SpriteShape: {fileID: 11400000, guid: 8113fc6811f2e894aabfe325a5d97f89, type: 2}
+  m_FillPixelPerUnit: 256
+  m_StretchTiling: 1
+  m_SplineDetail: 16
+  m_AdaptiveUV: 1
+  m_StretchUV: 1
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
+  m_ColliderDetail: 16
+  m_ColliderOffset: 0
+  m_UpdateCollider: 1
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
+  m_UTess2D: 0
+--- !u!1971053207 &915634302
+SpriteShapeRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915634299}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 0
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1756590581
+  m_SortingLayer: -1
+  m_SortingOrder: -4
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_MaskInteraction: 0
+  m_ShapeTexture: {fileID: 2800000, guid: 0ea8e6935949cf44c91a0a228ace8630, type: 3}
+  m_Sprites:
+  - {fileID: -5145228102931415604, guid: e14d3c0b320e7a346a8989754f93fddd, type: 3}
+  - {fileID: -372729895930778408, guid: e14d3c0b320e7a346a8989754f93fddd, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+  m_LocalAABB:
+    m_Center: {x: -0.13441467, y: 6.900423, z: 0}
+    m_Extent: {x: 150.13443, y: 0.460423, z: 0}
 --- !u!1 &925740863
 GameObject:
   m_ObjectHideFlags: 0
@@ -12405,7 +12715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67.94666, y: 0.84000045, z: -10}
+  m_LocalPosition: {x: -100.75667, y: 0.84000045, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12529,7 +12839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.4
   _multiplierY: 0.4
-  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1018944288
 GameObject:
   m_ObjectHideFlags: 0
@@ -12984,12 +13293,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.02
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.02
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.02
 --- !u!1 &1089605710
 GameObject:
   m_ObjectHideFlags: 0
@@ -13249,12 +13562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.3
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1163149921
 GameObject:
   m_ObjectHideFlags: 0
@@ -13385,12 +13697,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.27
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1186450635
 GameObject:
   m_ObjectHideFlags: 0
@@ -13488,12 +13799,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.4
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.4
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 1911669592}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.4
+  - _lActivePoint: {fileID: 1911669592}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.2
 --- !u!1 &1239891009
 GameObject:
   m_ObjectHideFlags: 0
@@ -13688,12 +14008,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &1254877044
 GameObject:
   m_ObjectHideFlags: 0
@@ -14395,7 +14719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412327724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67.94666, y: 0.84000045, z: -10}
+  m_LocalPosition: {x: -100.75667, y: 0.84000045, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14921,12 +15245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.2
+  _plusMultiplierX: -0.2
+  _plusMultiplierY: -0.2
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1450401306
 GameObject:
   m_ObjectHideFlags: 0
@@ -15135,12 +15458,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.02
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.02
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.02
 --- !u!1 &1469470635
 GameObject:
   m_ObjectHideFlags: 0
@@ -15233,7 +15560,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0
   _multiplierY: 0
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs: []
 --- !u!1 &1484887109
 GameObject:
@@ -15380,7 +15706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -15576,7 +15901,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.2
   _multiplierY: -0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -16121,12 +16445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.137
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1602590341
 GameObject:
   m_ObjectHideFlags: 0
@@ -17218,12 +17541,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.236
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1722174618
 GameObject:
   m_ObjectHideFlags: 0
@@ -17647,12 +17969,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.067
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1815726324
 GameObject:
   m_ObjectHideFlags: 0
@@ -17698,12 +18019,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.02
+  _plusMultiplierX: -0.02
+  _plusMultiplierY: -0.02
   _hasLimitY: 1
   _maxDeltaY: 0.05
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 528639304}
-  _rActivePoint: {fileID: 2075756424}
+  _rangeStructs: []
 --- !u!212 &1815726327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17939,7 +18259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863435322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -82.88, y: 0, z: 0}
+  m_LocalPosition: {x: -115.69, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18293,12 +18613,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.03
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.03
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.03
 --- !u!1 &1895552099
 GameObject:
   m_ObjectHideFlags: 0
@@ -18452,7 +18776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -18597,12 +18920,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.02
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0.02
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 164644848}
-  _rActivePoint: {fileID: 1588420643}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 164644848}
+    _rActivePoint: {fileID: 1588420643}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: 0.02
 --- !u!1 &1940665826
 GameObject:
   m_ObjectHideFlags: 0
@@ -18702,12 +19029,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.2
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1946624148
 GameObject:
   m_ObjectHideFlags: 0
@@ -19034,12 +19360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.3
+  _plusMultiplierX: -0.3
+  _plusMultiplierY: -0.3
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1946974949
 GameObject:
   m_ObjectHideFlags: 0
@@ -19088,7 +19413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.1
   _multiplierY: -0.1
-  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -19288,12 +19612,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.17
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &1984464404
 GameObject:
   m_ObjectHideFlags: 0
@@ -19477,12 +19800,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: 0.4
+  _plusMultiplierX: 0
+  _plusMultiplierY: 0
   _hasLimitY: 0
   _maxDeltaY: 0
-  _hasActivePoint: 0
-  _lActivePoint: {fileID: 0}
-  _rActivePoint: {fileID: 0}
+  _rangeStructs: []
 --- !u!1 &2009327240
 GameObject:
   m_ObjectHideFlags: 0
@@ -20461,12 +20783,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.01
+  _plusMultiplierX: 0
+  _plusMultiplierY: -0.01
   _hasLimitY: 0
   _maxDeltaY: 1
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 1163149922}
-  _rActivePoint: {fileID: 442564431}
+  _rangeStructs:
+  - _lActivePoint: {fileID: 1163149922}
+    _rActivePoint: {fileID: 442564431}
+    RangeStartPos: {x: 0, y: 0, z: 0}
+    RangeEndPos: {x: 0, y: 0, z: 0}
+    _plusMultiplierX: -0.01
 --- !u!1 &2121499727
 GameObject:
   m_ObjectHideFlags: 0
@@ -20765,12 +21091,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplier: -0.02
+  _plusMultiplierX: -0.02
+  _plusMultiplierY: -0.02
   _hasLimitY: 1
   _maxDeltaY: 0.05
-  _hasActivePoint: 1
-  _lActivePoint: {fileID: 528639304}
-  _rActivePoint: {fileID: 2075756424}
+  _rangeStructs: []
 --- !u!212 &8038688655881918017
 SpriteRenderer:
   m_ObjectHideFlags: 0
