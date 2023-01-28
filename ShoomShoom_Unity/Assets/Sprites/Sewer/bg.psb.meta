@@ -184,14 +184,14 @@ ScriptedImporter:
     originalName: 
     pivot: {x: 0, y: 0}
     alignment: 6
-    border: {x: 26, y: 0, z: 27, w: 43}
+    border: {x: 30, y: 22, z: 32, w: 16}
     rect:
       serializedVersion: 2
       x: 732
       y: 4
       width: 170
       height: 278
-    spriteID: 5a5e2c757cb3ff948946883cad2d55fb
+    spriteID: 480ce098ec92c224d997b549bc82e5e4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,19 +201,19 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 732, y: 4}
-    spritePosition: {x: 2019, y: 788}
+    spritePosition: {x: 2021, y: 788}
   - name: roadend_2
     originalName: 
     pivot: {x: 0, y: 0}
     alignment: 6
-    border: {x: 31, y: 0, z: 29, w: 42}
+    border: {x: 32, y: 15, z: 35, w: 24}
     rect:
       serializedVersion: 2
       x: 732
-      y: 292
+      y: 290
       width: 170
       height: 278
-    spriteID: e405a5e1e359ec94bb4d93381e31cb02
+    spriteID: fad51830d5ebe61488b5f671baadfb17
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -496,8 +496,8 @@ ScriptedImporter:
     spriteName: roadend_1
     isGroup: 0
     parentIndex: -1
-    spriteID: 5a5e2c757cb3ff948946883cad2d55fb
-    layerID: 45
+    spriteID: 480ce098ec92c224d997b549bc82e5e4
+    layerID: 114
     mosaicPosition: {x: 732, y: 4}
     flatten: 0
     isImported: 1
@@ -506,8 +506,8 @@ ScriptedImporter:
     spriteName: roadend_2
     isGroup: 0
     parentIndex: -1
-    spriteID: e405a5e1e359ec94bb4d93381e31cb02
-    layerID: 44
+    spriteID: fad51830d5ebe61488b5f671baadfb17
+    layerID: 113
     mosaicPosition: {x: 732, y: 290}
     flatten: 0
     isImported: 1

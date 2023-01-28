@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class RangeTester : MonoBehaviour
 {
+    [Header("Range Name")]
+    public string RangeName;
+
     [Header("State Display:")]
-    [SerializeField] RangeState _curRangeState = RangeState.LeftOut;
+    [SerializeField] protected RangeState _curRangeState = RangeState.LeftOut;
+
     RangeState _prevRangeState = RangeState.LeftOut;
 
     public Transform LActivePoint { get; set; }
     public Transform RActivePoint { get; set; }
     public Transform Target { get; set; }
-    public RangeState CurRangeState => _curRangeState;
+    public ReactProps<RangeState> CurRangeState = new ReactProps<RangeState>();
 
     public Action<RangeState> OnInRangeHandler { get; set; }
     public Action<RangeState> OnOutRangeHandler { get; set; }
@@ -23,21 +27,11 @@ public class RangeTester : MonoBehaviour
         RActivePoint = rActivePoint;
         Target = target;
         EnableRangeTest = true;
+        RangeName = SleepyUtil.RangeUtil.GetRangeName(lActivePoint, rActivePoint);
 
         _prevRangeState = TestPosInit();
-        switch (_prevRangeState)
-        {
-            case RangeState.LeftIn:
-            case RangeState.RightIn:
-                OnInRangeHandler?.Invoke(_prevRangeState);
-                break;
-            case RangeState.LeftOut:
-            case RangeState.RightOut:
-                OnOutRangeHandler?.Invoke(_prevRangeState);
-                break;
-            default:
-                break;
-        }
+        BeforeSetState(_prevRangeState);
+        CurRangeState.SetState(_prevRangeState);
     }
 
     private void Update()
@@ -48,27 +42,14 @@ public class RangeTester : MonoBehaviour
 
         if (_curRangeState != _prevRangeState)
         {
-            switch (_curRangeState)
-            {
-                case RangeState.LeftOut:
-                    OnOutRangeHandler?.Invoke(_curRangeState);
-                    break;
-                case RangeState.LeftIn:
-                    OnInRangeHandler?.Invoke(_curRangeState);
-                    break;
-                case RangeState.RightOut:
-                    OnOutRangeHandler?.Invoke(_curRangeState);
-                    break;
-                case RangeState.RightIn:
-                    OnInRangeHandler?.Invoke(_curRangeState);
-                    break;
-                default:
-                    break;
-            }
+            BeforeSetState(_curRangeState);
+            CurRangeState.SetState(_curRangeState);
         }
 
         _prevRangeState = _curRangeState;
     }
+
+    virtual protected void BeforeSetState(RangeState state) { }
 
     RangeState TestPosInit()
     {
