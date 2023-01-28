@@ -1,16 +1,15 @@
-using System.Linq;
+﻿using System.Linq;
+using UniRx;
 using UnityEngine;
 
-/// <summary>
-/// Define Parallax range by range
-/// </summary>
-public class ParallaxRange : ParallaxLayer
+public class ParallaxRangeBase : ParallaxLayer
 {
-    [SerializeField] ParallaxRangeStruct[] _parallaxRangeStructs;
+    protected ParallaxRangeStructBase[] _structs;
 
     Vector3 _initStartPos;
 
-    int _curActiveRangeIndex = 0;
+    protected int _curActiveRangeIndex = 0;
+    public int CurActiveRangeIndex => _curActiveRangeIndex;
     Vector3 _initStartCameraPos;
 
     void Start()
@@ -36,12 +35,12 @@ public class ParallaxRange : ParallaxLayer
         // so set the scene this way!!!!!!!!
 
         // sort the ranges in case the definition is not correct
-        _parallaxRangeStructs = _parallaxRangeStructs.ToList()
+        _structs = _structs.ToList()
                 .OrderBy(range => range.LActivePoint.transform.position.x)
                 .ToArray();
-        for (int i = 0; i < _parallaxRangeStructs.Length; i++)
+        for (int i = 0; i < _structs.Length; i++)
         {
-            var range = _parallaxRangeStructs[i];
+            var range = _structs[i];
 
             // init cam pos
             range.LCamStartX = range.LActivePoint.position.x > _initStartCameraPos.x ? range.LActivePoint.position.x : _initStartCameraPos.x;
@@ -57,7 +56,7 @@ public class ParallaxRange : ParallaxLayer
                 continue;
             }
 
-            var preRange = _parallaxRangeStructs[i - 1];
+            var preRange = _structs[i - 1];
             range.RangeStartPos = preRange.RangeEndPos;
             range.RangeEndPos = range.RangeStartPos;
             range.RangeEndPos.x += (range.RActivePoint.position.x - range.LActivePoint.position.x) * range.MultiplierX;
@@ -70,7 +69,7 @@ public class ParallaxRange : ParallaxLayer
         _curActiveRangeIndex = i;
 
         _startCameraPos = _cameraTransform.position;
-        var range = _parallaxRangeStructs[i];
+        var range = _structs[i];
         if (state == RangeState.LeftIn)
         {
             _startPos = range.RangeStartPos;
@@ -91,7 +90,7 @@ public class ParallaxRange : ParallaxLayer
         if (_curActiveRangeIndex != i) return;
 
         _startCameraPos = _cameraTransform.position;
-        var range = _parallaxRangeStructs[i];
+        var range = _structs[i];
         if (state == RangeState.RightOut)
         {
             _startPos = range.RangeEndPos;
@@ -108,15 +107,30 @@ public class ParallaxRange : ParallaxLayer
 
     void InitRangeTester()
     {
-        for (int i = 0; i < _parallaxRangeStructs.Length; i++)
+        for (int i = 0; i < _structs.Length; i++)
         {
-            var range = _parallaxRangeStructs[i];
+            var range = _structs[i];
             int index = i;
-            range.InitRangeTester(gameObject,
-               _cameraTransform,
-               state => UpdateRangeIn(state, index),
-               state => UpdateRangeOut(state, index)
-               );
+            CameraRangeTester tester = range.InitRangeTester();
+
+            tester.CurRangeState.State.Subscribe(state =>
+            {
+                switch (state)
+
+                {
+                    case RangeState.LeftIn:
+                    case RangeState.RightIn:
+                        UpdateRangeIn(state, index);
+                        break;
+                    case RangeState.LeftOut:
+                    case RangeState.RightOut:
+                        UpdateRangeOut(state, index);
+                        break;
+                    default:
+                        break;
+                }
+            }).AddTo(this);
         }
     }
+
 }
