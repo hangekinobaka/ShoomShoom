@@ -1120,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -2165,6 +2166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
+  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &265885223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,6 +2298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.2
   _multiplierY: -0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -2550,6 +2553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -4847,6 +4851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -10884,6 +10889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.4
   _multiplierY: -0.4
+  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &759493787
 GameObject:
   m_ObjectHideFlags: 0
@@ -11952,6 +11958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.1
   _multiplierY: 0.1
+  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &892041368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12398,7 +12405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -96.15666, y: 0.84000045, z: -10}
+  m_LocalPosition: {x: -67.94666, y: 0.84000045, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12522,6 +12529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.4
   _multiplierY: 0.4
+  _startCameraPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1018944288
 GameObject:
   m_ObjectHideFlags: 0
@@ -14387,7 +14395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412327724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -96.15666, y: 0.84000045, z: -10}
+  m_LocalPosition: {x: -67.94666, y: 0.84000045, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15225,6 +15233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0
   _multiplierY: 0
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs: []
 --- !u!1 &1484887109
 GameObject:
@@ -15371,6 +15380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -15566,6 +15576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.2
   _multiplierY: -0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -17928,7 +17939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863435322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -111.09, y: 0, z: 0}
+  m_LocalPosition: {x: -82.88, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18441,6 +18452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: 0.2
   _multiplierY: 0.2
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}
@@ -19076,6 +19088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _multiplierX: -0.1
   _multiplierY: -0.1
+  _startCameraPos: {x: 0, y: 0, z: 0}
   _parallaxRangeStructs:
   - _lActivePoint: {fileID: 164644848}
     _rActivePoint: {fileID: 1911669592}

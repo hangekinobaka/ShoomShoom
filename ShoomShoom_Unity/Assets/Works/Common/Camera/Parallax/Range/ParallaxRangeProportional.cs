@@ -2,9 +2,9 @@
 
 public class ParallaxRangeProportional : ParallaxRangeBase
 {
-    [SerializeField] ParallaxRangeStructProportional[] _parallaxRangeStructs;
+    [SerializeField] ParallaxRangeProportionalStruct[] _parallaxRangeStructs;
 
-    public ParallaxRangeStructProportional[] ParallaxRangeStructs => _parallaxRangeStructs;
+    public ParallaxRangeProportionalStruct[] ParallaxRangeStructs => _parallaxRangeStructs;
 
     private void Awake()
     {

@@ -7,7 +7,7 @@ public class RangeTester : MonoBehaviour
     public string RangeName;
 
     [Header("State Display:")]
-    [SerializeField] RangeState _curRangeState = RangeState.LeftOut;
+    [SerializeField] protected RangeState _curRangeState = RangeState.LeftOut;
 
     RangeState _prevRangeState = RangeState.LeftOut;
 
@@ -30,6 +30,7 @@ public class RangeTester : MonoBehaviour
         RangeName = SleepyUtil.RangeUtil.GetRangeName(lActivePoint, rActivePoint);
 
         _prevRangeState = TestPosInit();
+        BeforeSetState(_prevRangeState);
         CurRangeState.SetState(_prevRangeState);
     }
 
@@ -41,11 +42,14 @@ public class RangeTester : MonoBehaviour
 
         if (_curRangeState != _prevRangeState)
         {
+            BeforeSetState(_curRangeState);
             CurRangeState.SetState(_curRangeState);
         }
 
         _prevRangeState = _curRangeState;
     }
+
+    virtual protected void BeforeSetState(RangeState state) { }
 
     RangeState TestPosInit()
     {

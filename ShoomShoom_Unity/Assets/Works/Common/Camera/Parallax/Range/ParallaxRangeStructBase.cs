@@ -19,9 +19,6 @@ public class ParallaxRangeStructBase
 
     public CameraRangeTester RangeTester { get; private set; }
 
-    public float LCamStartX { get; set; }
-    public float RCamStartX { get; set; }
-
     public CameraRangeTester InitRangeTester()
     {
         RangeTester = CameraRangeManager.Instance.AddRangeTester(_lActivePoint, _rActivePoint);

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class ParallaxRangeStructProportional : ParallaxRangeStructBase
+public class ParallaxRangeProportionalStruct : ParallaxRangeStructBase
 {
     [Header("Range proportion")]
     [SerializeField] float _rangeProportion = 0.0f;
