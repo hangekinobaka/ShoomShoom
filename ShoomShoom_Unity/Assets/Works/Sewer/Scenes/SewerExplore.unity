@@ -262,6 +262,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.02
+  _rangeProportionalStructs: []
 --- !u!1 &30828215
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,21 +685,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplierX: 0
+  _plusMultiplierX: -0.4
   _plusMultiplierY: -0.4
   _hasLimitY: 0
   _maxDeltaY: 1
-  _rangeStructs:
+  _rangeStructs: []
+  _rangeProportionalStructs:
   - _lActivePoint: {fileID: 1163149922}
     _rActivePoint: {fileID: 1911669592}
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
-    _plusMultiplierX: -0.4
+    _plusRangeProportion: 1
   - _lActivePoint: {fileID: 1911669592}
     _rActivePoint: {fileID: 442564431}
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
-    _plusMultiplierX: -0.2
+    _plusRangeProportion: 0.5
 --- !u!1 &97579375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1047,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &115609022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,6 +1762,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &212507212
 GameObject:
   m_ObjectHideFlags: 3
@@ -2048,6 +2052,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &253519983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2439,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &302833544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,6 +2864,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &382318979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,6 +3381,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 1
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &414612028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,6 +4810,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.02
+  _rangeProportionalStructs: []
 --- !u!1 &596957567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5974,6 +5983,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.03
+  _rangeProportionalStructs: []
 --- !u!1 &748888046
 GameObject:
   m_ObjectHideFlags: 0
@@ -11030,6 +11040,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 1
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &771509254
 GameObject:
   m_ObjectHideFlags: 0
@@ -11397,6 +11408,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &793118494
 GameObject:
   m_ObjectHideFlags: 0
@@ -11504,6 +11516,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &804301824
 GameObject:
   m_ObjectHideFlags: 0
@@ -12049,6 +12062,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &897264855
 GameObject:
   m_ObjectHideFlags: 0
@@ -13303,6 +13317,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.02
+  _rangeProportionalStructs: []
 --- !u!1 &1089605710
 GameObject:
   m_ObjectHideFlags: 0
@@ -13567,6 +13582,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1163149921
 GameObject:
   m_ObjectHideFlags: 0
@@ -13702,6 +13718,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1186450635
 GameObject:
   m_ObjectHideFlags: 0
@@ -13799,21 +13816,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7b34d7153176408622425d7185bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plusMultiplierX: 0
+  _plusMultiplierX: -0.4
   _plusMultiplierY: -0.4
   _hasLimitY: 0
   _maxDeltaY: 1
-  _rangeStructs:
+  _rangeStructs: []
+  _rangeProportionalStructs:
   - _lActivePoint: {fileID: 1163149922}
     _rActivePoint: {fileID: 1911669592}
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
-    _plusMultiplierX: -0.4
+    _plusRangeProportion: 1
   - _lActivePoint: {fileID: 1911669592}
     _rActivePoint: {fileID: 442564431}
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
-    _plusMultiplierX: -0.2
+    _plusRangeProportion: 0.5
 --- !u!1 &1239891009
 GameObject:
   m_ObjectHideFlags: 0
@@ -14018,6 +14036,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &1254877044
 GameObject:
   m_ObjectHideFlags: 0
@@ -15250,6 +15269,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 1
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1450401306
 GameObject:
   m_ObjectHideFlags: 0
@@ -15468,6 +15488,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.02
+  _rangeProportionalStructs: []
 --- !u!1 &1469470635
 GameObject:
   m_ObjectHideFlags: 0
@@ -16450,6 +16471,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1602590341
 GameObject:
   m_ObjectHideFlags: 0
@@ -17546,6 +17568,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1722174618
 GameObject:
   m_ObjectHideFlags: 0
@@ -17974,6 +17997,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1815726324
 GameObject:
   m_ObjectHideFlags: 0
@@ -18024,6 +18048,7 @@ MonoBehaviour:
   _hasLimitY: 1
   _maxDeltaY: 0.05
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!212 &1815726327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18623,6 +18648,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.03
+  _rangeProportionalStructs: []
 --- !u!1 &1895552099
 GameObject:
   m_ObjectHideFlags: 0
@@ -18930,6 +18956,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: 0.02
+  _rangeProportionalStructs: []
 --- !u!1 &1940665826
 GameObject:
   m_ObjectHideFlags: 0
@@ -19034,6 +19061,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1946624148
 GameObject:
   m_ObjectHideFlags: 0
@@ -19365,6 +19393,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 1
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1946974949
 GameObject:
   m_ObjectHideFlags: 0
@@ -19617,6 +19646,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &1984464404
 GameObject:
   m_ObjectHideFlags: 0
@@ -19805,6 +19835,7 @@ MonoBehaviour:
   _hasLimitY: 0
   _maxDeltaY: 0
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!1 &2009327240
 GameObject:
   m_ObjectHideFlags: 0
@@ -20793,6 +20824,7 @@ MonoBehaviour:
     RangeStartPos: {x: 0, y: 0, z: 0}
     RangeEndPos: {x: 0, y: 0, z: 0}
     _plusMultiplierX: -0.01
+  _rangeProportionalStructs: []
 --- !u!1 &2121499727
 GameObject:
   m_ObjectHideFlags: 0
@@ -21096,6 +21128,7 @@ MonoBehaviour:
   _hasLimitY: 1
   _maxDeltaY: 0.05
   _rangeStructs: []
+  _rangeProportionalStructs: []
 --- !u!212 &8038688655881918017
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParallaxPartsRangeBase : ParallaxPartsBase
 {
-    protected ParallaxPartsRangeStruct[] _structs;
+    protected ParallaxRangeStructBase[] _structs;
 
     Vector3 _initStartPos;
     Vector3 _initStartCameraPos;
@@ -21,7 +21,21 @@ public class ParallaxPartsRangeBase : ParallaxPartsBase
     }
     protected void InitRange(ParallaxPartsRangeStruct[] structs)
     {
-        _structs = structs;
+        foreach (var s in structs)
+        {
+            s.Init();
+        }
+        _structs = structs as ParallaxRangeStructBase[];
+        InitRanges();
+        InitRangeTester();
+    }
+    protected void InitRange(ParallaxPartsRangeProportionalStruct[] structs)
+    {
+        foreach (var s in structs)
+        {
+            s.Init(_plusMultiplierX);
+        }
+        _structs = structs as ParallaxRangeStructBase[];
         InitRanges();
         InitRangeTester();
     }
@@ -39,7 +53,6 @@ public class ParallaxPartsRangeBase : ParallaxPartsBase
         for (int i = 0; i < _structs.Length; i++)
         {
             var range = _structs[i];
-            range.Init();
 
             if (i == 0)
             {
