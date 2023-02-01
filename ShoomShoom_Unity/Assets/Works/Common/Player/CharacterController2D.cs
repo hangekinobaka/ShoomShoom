@@ -17,9 +17,6 @@ public enum MovingDirection
 
 public class CharacterController2D : MonoBehaviour
 {
-    readonly Vector3 normalScale = Vector3.one;
-    readonly Vector3 flippedScale = new Vector3(-1, 1, 1);
-
     [Header("Character Info")]
     [SerializeField] Transform _characterTransform;
 
@@ -33,6 +30,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float _groundedGravityScale = 1.0f;
     [SerializeField] bool _resetSpeedOnLand = false;
     [SerializeField] int _jumpCount = 2;
+    Vector3 _normalScale = Vector3.one;
+    Vector3 _flippedScale = new Vector3(-1, 1, 1);
 
     [Header("Viewport")]
     [SerializeField] Transform _focalPoint;
@@ -73,6 +72,9 @@ public class CharacterController2D : MonoBehaviour
         // Get layer masks
         _normalGroundMask = LayerMask.GetMask("Ground");
         _waterGroundMask = LayerMask.GetMask("GroundWater");
+        // Init basic vals
+        _normalScale = _characterTransform.localScale;
+        _flippedScale = -_normalScale;
     }
 
     void Start()
@@ -235,11 +237,11 @@ public class CharacterController2D : MonoBehaviour
         switch (dir)
         {
             case MovingDirection.Left:
-                _characterTransform.localScale = flippedScale;
+                _characterTransform.localScale = _flippedScale;
                 _focalPoint.DOLocalMove(_flippedFocalPos, _focalMoveDuration);
                 break;
             case MovingDirection.Right:
-                _characterTransform.localScale = normalScale;
+                _characterTransform.localScale = _normalScale;
                 _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
                 break;
             default:
