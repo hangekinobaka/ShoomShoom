@@ -74,7 +74,8 @@ public class CharacterController2D : MonoBehaviour
         _waterGroundMask = LayerMask.GetMask("GroundWater");
         // Init basic vals
         _normalScale = _characterTransform.localScale;
-        _flippedScale = -_normalScale;
+        _flippedScale = _normalScale;
+        _flippedScale.x = -_flippedScale.x;
     }
 
     void Start()
@@ -82,7 +83,8 @@ public class CharacterController2D : MonoBehaviour
         // Init vals
         _playerInputAction = new PlayerInputAction();
         _normalFocalPos = _focalPoint.localPosition;
-        _flippedFocalPos = -_normalFocalPos;
+        _flippedFocalPos = _normalFocalPos;
+        _flippedFocalPos.x = -_flippedFocalPos.x;
         _localJumpCount = _jumpCount;
 
         // Register react props
