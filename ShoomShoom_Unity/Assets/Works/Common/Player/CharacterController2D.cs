@@ -1,5 +1,4 @@
 using DG.Tweening;
-using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +12,17 @@ public enum MovingDirection
 {
     Left,
     Right
+}
+
+public enum PlayerState
+{
+    Idle,
+    TurnLeft,
+    TurnRight,
+    Run,
+    Jump,
+    Fall,
+    Land
 }
 
 public class CharacterController2D : MonoBehaviour
@@ -30,8 +40,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float _groundedGravityScale = 1.0f;
     [SerializeField] bool _resetSpeedOnLand = false;
     [SerializeField] int _jumpCount = 2;
+    Vector2 _velocity;
     Vector3 _normalScale = Vector3.one;
     Vector3 _flippedScale = new Vector3(-1, 1, 1);
+    public float CurRunSpeed => Mathf.Abs(_velocity.x);
+    public float MaxSpeed => _maxSpeed;
 
     [Header("Viewport")]
     [SerializeField] Transform _focalPoint;
@@ -58,11 +71,12 @@ public class CharacterController2D : MonoBehaviour
     Vector2 _prevVelocity;
     bool _isJumping;
     bool _isFalling;
+    bool _isGrounded;
     int _localJumpCount;
 
-    ReactProps<MovingDirection> _dir = new ReactProps<MovingDirection>(MovingDirection.Right);
+    MovingDirection _dir = MovingDirection.Right;
+    public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
 
-    public bool CanMove { get; set; } // TODO: not implemented yet!!
 
     private void Awake()
     {
@@ -76,6 +90,8 @@ public class CharacterController2D : MonoBehaviour
         _normalScale = _characterTransform.localScale;
         _flippedScale = _normalScale;
         _flippedScale.x = -_flippedScale.x;
+
+        CurPlayerState.SetState(PlayerState.Idle);
     }
 
     void Start()
@@ -87,10 +103,6 @@ public class CharacterController2D : MonoBehaviour
         _flippedFocalPos.x = -_flippedFocalPos.x;
         _localJumpCount = _jumpCount;
 
-        // Register react props
-        _dir.State.Subscribe(state => ChangeDirHandler(state))
-            .AddTo(this);
-
         // Input system
         _playerInputAction.Normal.Enable();
         _playerInputAction.Normal.Move.performed += MoveInputHandler;
@@ -98,8 +110,6 @@ public class CharacterController2D : MonoBehaviour
         _playerInputAction.Normal.Jump.performed += JumpInputHandler;
         _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
         _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
-
-        CanMove = true;
     }
 
     private void OnDisable()
@@ -145,18 +155,22 @@ public class CharacterController2D : MonoBehaviour
 
     private void UpdateGrounding()
     {
+        _isGrounded = true;
         // Use character collider to check if touching ground layers
         if (_controllerCollider.IsTouchingLayers(_normalGroundMask))
             _groundType = GroundType.Normal;
         else if (_controllerCollider.IsTouchingLayers(_waterGroundMask))
             _groundType = GroundType.Water;
         else
+        {
+            _isGrounded = false;
             _groundType = GroundType.None;
+        }
 
     }
     private void UpdateVelocity()
     {
-        Vector2 velocity = _controllerRigidbody.velocity;
+        _velocity = _controllerRigidbody.velocity;
 
         // Handle sprint 
         if (_isSprinting)
@@ -172,21 +186,42 @@ public class CharacterController2D : MonoBehaviour
 
         // Apply acceleration directly as we'll want to clamp
         // prior to assigning back to the body.
-        velocity += _movementInput * _curAcceleration * Time.fixedDeltaTime;
+        _velocity += _movementInput * _curAcceleration * Time.fixedDeltaTime;
 
         // Clamp horizontal speed.
-        velocity.x = Mathf.Clamp(velocity.x, -_curMaxSpeed, _curMaxSpeed);
+        _velocity.x = Mathf.Clamp(_velocity.x, -_curMaxSpeed, _curMaxSpeed);
 
         // Assign back to the body.
-        _controllerRigidbody.velocity = velocity;
+        _controllerRigidbody.velocity = _velocity;
+    }
 
+    private void UpdateDirection()
+    {
+        // Use scale to flip character depending on direction
+        if (_dir == MovingDirection.Left && _controllerRigidbody.velocity.x > _minFlipSpeed)
+        {
+            _dir = MovingDirection.Right;
+            _characterTransform.localScale = _normalScale;
+            _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
+            CurPlayerState.SetState(PlayerState.TurnRight);
+        }
+        else if (_dir == MovingDirection.Right && _controllerRigidbody.velocity.x < -_minFlipSpeed)
+        {
+            _dir = MovingDirection.Left;
+            _characterTransform.localScale = _flippedScale;
+            _focalPoint.DOLocalMove(_flippedFocalPos, _focalMoveDuration);
+            CurPlayerState.SetState(PlayerState.TurnLeft);
+        }
     }
 
     private void UpdateJump()
     {
         // Set falling flag
         if (_isJumping && _controllerRigidbody.velocity.y < 0)
+        {
+            CurPlayerState.SetState(PlayerState.Fall);
             _isFalling = true;
+        }
 
         // Jump
         if (_jumpInput)
@@ -200,9 +235,11 @@ public class CharacterController2D : MonoBehaviour
 
             // Set jumping flag
             _isJumping = true;
+
+            CurPlayerState.SetState(PlayerState.Jump);
         }
         // Landed
-        else if (_isJumping && _isFalling && _groundType != GroundType.None)
+        else if (_isJumping && _isFalling && _isGrounded)
         {
             // Reset the jump count
             _localJumpCount = _jumpCount;
@@ -218,36 +255,18 @@ public class CharacterController2D : MonoBehaviour
             _isJumping = false;
             _isFalling = false;
 
+            CurPlayerState.SetState(PlayerState.Land);
         }
-    }
-
-    private void UpdateDirection()
-    {
-        // Use scale to flip character depending on direction
-        if (_controllerRigidbody.velocity.x > _minFlipSpeed)
+        else
         {
-            _dir.SetState(MovingDirection.Right);
-        }
-        else if (_controllerRigidbody.velocity.x < -_minFlipSpeed)
-        {
-            _dir.SetState(MovingDirection.Left);
-        }
-    }
-
-    void ChangeDirHandler(MovingDirection dir)
-    {
-        switch (dir)
-        {
-            case MovingDirection.Left:
-                _characterTransform.localScale = _flippedScale;
-                _focalPoint.DOLocalMove(_flippedFocalPos, _focalMoveDuration);
-                break;
-            case MovingDirection.Right:
-                _characterTransform.localScale = _normalScale;
-                _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
-                break;
-            default:
-                break;
+            if (CurRunSpeed > 0)
+            {
+                CurPlayerState.SetState(PlayerState.Run);
+            }
+            else
+            {
+                CurPlayerState.SetState(PlayerState.Idle);
+            }
         }
     }
 
