@@ -11,8 +11,13 @@
   - 🎨Artist    
   - ✍️Planner
 
-## Content
+## Game Introduction
 
 A small mouse struggles to survive in the underground city.    
 The world of this story is a steampunk world.   
+
+## Proposal
+
+You can find the original proposal here 👇👇👇  
+[shoom.pdf](DesignFiles/proposals/shoom.pdf)     
 
