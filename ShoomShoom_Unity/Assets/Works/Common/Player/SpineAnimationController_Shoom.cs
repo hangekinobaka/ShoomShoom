@@ -12,14 +12,17 @@ namespace SleepySpine
 
         private void Start()
         {
-            RegisterSpineEvents();
+            _spineAnimationState.Event += AnimEventHandler;
 
             _characterController.CurPlayerState.State.Subscribe(state =>
             {
                 switch (state)
                 {
                     case PlayerState.Idle:
-                        _spineAnimationState.SetAnimation(0, "idle", true);
+                        if (_track0?.Animation.ToString() == "land")
+                            _spineAnimationState.AddAnimation(0, "idle", true, 0);
+                        else
+                            _spineAnimationState.SetAnimation(0, "idle", true);
                         break;
                     case PlayerState.TurnLeft:
                         break;
@@ -31,12 +34,15 @@ namespace SleepySpine
                     case PlayerState.Jump:
                         _spineAnimationState.SetAnimation(0, "jump", false);
                         break;
+                    case PlayerState.DoubleJump:
+                        _characterController.Jump();
+                        break;
                     case PlayerState.Fall:
                         _spineAnimationState.SetAnimation(0, "jump-fall", false);
                         _spineAnimationState.AddAnimation(0, "fall", true, 0);
                         break;
                     case PlayerState.Land:
-                        _spineAnimationState.AddAnimation(0, "idle", true, 0);
+                        _spineAnimationState.SetAnimation(0, "land", false);
                         break;
                     default:
                         break;
@@ -44,22 +50,29 @@ namespace SleepySpine
             }).AddTo(this);
         }
 
-        private void RegisterSpineEvents()
+        private void OnDisable()
         {
-            // Jump event(when shoom really prepared to jump)
-            _spineAnimationState.Event += (entry, e) =>
-            {
-                if (e.ToString() == "jump-up")
-                {
-                    _characterController.Jump();
-                }
-            };
+
+            _spineAnimationState.Event -= AnimEventHandler;
         }
 
         private void FixedUpdate()
         {
             _track0 = _skeletonAnimation.GetCurrentEntry(0);
             UpdateTimeScale();
+        }
+
+        private void AnimEventHandler(TrackEntry trackEntry, Spine.Event e)
+        {
+            string eventName = e.ToString();
+            if (eventName == "jump-up")
+            {
+                _characterController.Jump();
+            }
+            else if (eventName == "landed")
+            {
+                _characterController.Landed();
+            }
         }
 
         private void UpdateTimeScale()

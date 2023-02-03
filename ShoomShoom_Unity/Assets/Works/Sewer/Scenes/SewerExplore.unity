@@ -22162,7 +22162,7 @@ MonoBehaviour:
   _characterTransform: {fileID: 1284880907}
   _acceleration: 20
   _maxSpeed: 8
-  _jumpForce: 12
+  _jumpForce: 15
   _minFlipSpeed: 0.1
   _jumpGravityScale: 1.6
   _fallGravityScale: 2.5

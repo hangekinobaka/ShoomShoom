@@ -21,6 +21,7 @@ public enum PlayerState
     TurnRight,
     Run,
     Jump,
+    DoubleJump,
     Fall,
     Land
 }
@@ -72,6 +73,7 @@ public class CharacterController2D : MonoBehaviour
     bool _prepareJump;
     bool _isJumping;
     bool _isFalling;
+    bool _isLanding;
     bool _isGrounded;
     int _localJumpCount;
 
@@ -92,6 +94,7 @@ public class CharacterController2D : MonoBehaviour
         _flippedScale = _normalScale;
         _flippedScale.x = -_flippedScale.x;
         _prepareJump = false;
+        _isLanding = false;
 
         CurPlayerState.SetState(PlayerState.Idle);
     }
@@ -126,9 +129,12 @@ public class CharacterController2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_prepareJump || _isLanding) return;
+
         UpdateGrounding();
         UpdateVelocity();
         UpdateDirection();
+        UpdateFall();
         UpdateJump();
         UpdateGravityScale();
         UpdateState();
@@ -217,40 +223,81 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void UpdateJump()
+    private void UpdateFall()
     {
         // Set falling flag
-        if (_isJumping && _velocity.y < 0)
+        if (_isFalling != _velocity.y < 0)
         {
+            _isFalling = _velocity.y < 0;
             CurPlayerState.SetState(PlayerState.Fall);
-            _isFalling = true;
-        }
 
-        // Jump
-        if (_jumpInput && !_prepareJump)
-        {
-            CurPlayerState.SetState(PlayerState.Jump);
-            _prepareJump = true;
-        }
-        // Landed
-        else if (_isJumping && _isFalling && _isGrounded)
-        {
-            // Reset the jump count
-            _localJumpCount = _jumpCount;
-
-            // Since collision with ground stops rigidbody, reset velocity
-            if (_resetSpeedOnLand)
+            // Test Landed
+            if (!_isFalling)
             {
-                _prevVelocity.y = _velocity.y;
-                _controllerRigidbody.velocity = _prevVelocity;
-                _velocity = _prevVelocity;
+                // Reset the jump count
+                _localJumpCount = _jumpCount;
+
+                // Since collision with ground stops rigidbody, reset velocity
+                if (_resetSpeedOnLand)
+                {
+                    _prevVelocity.y = _velocity.y;
+                    _controllerRigidbody.velocity = _prevVelocity;
+                    _velocity = _prevVelocity;
+                }
+
+                // Reset jumping flags
+                _isJumping = false;
+
+                CurPlayerState.SetState(PlayerState.Land);
+                _isLanding = true;
             }
 
-            // Reset jumping flags
-            _isJumping = false;
-            _isFalling = false;
+        }
+    }
 
-            CurPlayerState.SetState(PlayerState.Land);
+    private void UpdateJump()
+    {
+        // Jump
+        if (_jumpInput)
+        {
+            _prepareJump = true;
+
+            if (_localJumpCount >= 2)
+            {
+                CurPlayerState.SetState(PlayerState.Jump);
+
+            }
+            else
+            {
+                CurPlayerState.SetState(PlayerState.DoubleJump);
+
+            }
+        }
+    }
+
+    private void UpdateGravityScale()
+    {
+        // Use grounded gravity scale by default.
+        var gravityScale = _groundedGravityScale;
+
+        // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
+        gravityScale = _velocity.y > 0.0f ? _jumpGravityScale : _fallGravityScale;
+
+        _controllerRigidbody.gravityScale = gravityScale;
+    }
+
+    private void UpdateState()
+    {
+        if (_velocity.y == 0 && !_isJumping && !_prepareJump && !_isFalling && !_isLanding)
+        {
+            if (Mathf.Abs(_velocity.x) > 0)
+            {
+                CurPlayerState.SetState(PlayerState.Run);
+            }
+            else
+            {
+                CurPlayerState.SetState(PlayerState.Idle);
+            }
         }
     }
 
@@ -268,30 +315,9 @@ public class CharacterController2D : MonoBehaviour
         _prepareJump = false;
     }
 
-    private void UpdateGravityScale()
+    public void Landed()
     {
-        // Use grounded gravity scale by default.
-        var gravityScale = _groundedGravityScale;
-
-        // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
-        gravityScale = _velocity.y > 0.0f ? _jumpGravityScale : _fallGravityScale;
-
-        _controllerRigidbody.gravityScale = gravityScale;
-    }
-
-    private void UpdateState()
-    {
-        if (_velocity.y == 0 && CurPlayerState.GetState() != PlayerState.Jump && CurPlayerState.GetState() != PlayerState.Land)
-        {
-            if (Mathf.Abs(_velocity.x) > 0)
-            {
-                CurPlayerState.SetState(PlayerState.Run);
-            }
-            else
-            {
-                CurPlayerState.SetState(PlayerState.Idle);
-            }
-        }
+        _isLanding = false;
     }
 
 }
