@@ -12,6 +12,8 @@ namespace SleepySpine
 
         private void Start()
         {
+            RegisterSpineEvents();
+
             _characterController.CurPlayerState.State.Subscribe(state =>
             {
                 switch (state)
@@ -27,15 +29,31 @@ namespace SleepySpine
                         _spineAnimationState.SetAnimation(0, "run", true);
                         break;
                     case PlayerState.Jump:
+                        _spineAnimationState.SetAnimation(0, "jump", false);
                         break;
                     case PlayerState.Fall:
+                        _spineAnimationState.SetAnimation(0, "jump-fall", false);
+                        _spineAnimationState.AddAnimation(0, "fall", true, 0);
                         break;
                     case PlayerState.Land:
+                        _spineAnimationState.AddAnimation(0, "idle", true, 0);
                         break;
                     default:
                         break;
                 }
             }).AddTo(this);
+        }
+
+        private void RegisterSpineEvents()
+        {
+            // Jump event(when shoom really prepared to jump)
+            _spineAnimationState.Event += (entry, e) =>
+            {
+                if (e.ToString() == "jump-up")
+                {
+                    _characterController.Jump();
+                }
+            };
         }
 
         private void FixedUpdate()
