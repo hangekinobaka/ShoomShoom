@@ -21,6 +21,7 @@ public enum PlayerState
     TurnRight,
     Run,
     Jump,
+    DoubleJump,
     Fall,
     Land
 }
@@ -69,8 +70,10 @@ public class CharacterController2D : MonoBehaviour
     bool _jumpInput;
 
     Vector2 _prevVelocity;
+    bool _prepareJump;
     bool _isJumping;
     bool _isFalling;
+    bool _isLanding;
     bool _isGrounded;
     int _localJumpCount;
 
@@ -90,6 +93,8 @@ public class CharacterController2D : MonoBehaviour
         _normalScale = _characterTransform.localScale;
         _flippedScale = _normalScale;
         _flippedScale.x = -_flippedScale.x;
+        _prepareJump = false;
+        _isLanding = false;
 
         CurPlayerState.SetState(PlayerState.Idle);
     }
@@ -124,11 +129,15 @@ public class CharacterController2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_prepareJump || _isLanding) return;
+
         UpdateGrounding();
         UpdateVelocity();
         UpdateDirection();
+        UpdateFall();
         UpdateJump();
         UpdateGravityScale();
+        UpdateState();
 
         _prevVelocity = _controllerRigidbody.velocity;
     }
@@ -198,14 +207,14 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateDirection()
     {
         // Use scale to flip character depending on direction
-        if (_dir == MovingDirection.Left && _controllerRigidbody.velocity.x > _minFlipSpeed)
+        if (_dir == MovingDirection.Left && _velocity.x > _minFlipSpeed)
         {
             _dir = MovingDirection.Right;
             _characterTransform.localScale = _normalScale;
             _focalPoint.DOLocalMove(_normalFocalPos, _focalMoveDuration);
             CurPlayerState.SetState(PlayerState.TurnRight);
         }
-        else if (_dir == MovingDirection.Right && _controllerRigidbody.velocity.x < -_minFlipSpeed)
+        else if (_dir == MovingDirection.Right && _velocity.x < -_minFlipSpeed)
         {
             _dir = MovingDirection.Left;
             _characterTransform.localScale = _flippedScale;
@@ -214,58 +223,54 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void UpdateJump()
+    private void UpdateFall()
     {
         // Set falling flag
-        if (_isJumping && _controllerRigidbody.velocity.y < 0)
+        if (_isFalling != _velocity.y < 0)
         {
+            _isFalling = _velocity.y < 0;
             CurPlayerState.SetState(PlayerState.Fall);
-            _isFalling = true;
-        }
 
+            // Test Landed
+            if (!_isFalling)
+            {
+                // Reset the jump count
+                _localJumpCount = _jumpCount;
+
+                // Since collision with ground stops rigidbody, reset velocity
+                if (_resetSpeedOnLand)
+                {
+                    _prevVelocity.y = _velocity.y;
+                    _controllerRigidbody.velocity = _prevVelocity;
+                    _velocity = _prevVelocity;
+                }
+
+                // Reset jumping flags
+                _isJumping = false;
+
+                CurPlayerState.SetState(PlayerState.Land);
+                _isLanding = true;
+            }
+
+        }
+    }
+
+    private void UpdateJump()
+    {
         // Jump
         if (_jumpInput)
         {
-            // Jump using impulse force
-            _controllerRigidbody.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
+            _prepareJump = true;
 
-            // We've consumed the jump, reset it.
-            _jumpInput = false;
-            _localJumpCount--;
-
-            // Set jumping flag
-            _isJumping = true;
-
-            CurPlayerState.SetState(PlayerState.Jump);
-        }
-        // Landed
-        else if (_isJumping && _isFalling && _isGrounded)
-        {
-            // Reset the jump count
-            _localJumpCount = _jumpCount;
-
-            // Since collision with ground stops rigidbody, reset velocity
-            if (_resetSpeedOnLand)
+            if (_localJumpCount >= 2)
             {
-                _prevVelocity.y = _controllerRigidbody.velocity.y;
-                _controllerRigidbody.velocity = _prevVelocity;
-            }
+                CurPlayerState.SetState(PlayerState.Jump);
 
-            // Reset jumping flags
-            _isJumping = false;
-            _isFalling = false;
-
-            CurPlayerState.SetState(PlayerState.Land);
-        }
-        else
-        {
-            if (CurRunSpeed > 0)
-            {
-                CurPlayerState.SetState(PlayerState.Run);
             }
             else
             {
-                CurPlayerState.SetState(PlayerState.Idle);
+                CurPlayerState.SetState(PlayerState.DoubleJump);
+
             }
         }
     }
@@ -276,9 +281,43 @@ public class CharacterController2D : MonoBehaviour
         var gravityScale = _groundedGravityScale;
 
         // If not grounded then set the gravity scale according to upwards (jump) or downwards (falling) motion.
-        gravityScale = _controllerRigidbody.velocity.y > 0.0f ? _jumpGravityScale : _fallGravityScale;
+        gravityScale = _velocity.y > 0.0f ? _jumpGravityScale : _fallGravityScale;
 
         _controllerRigidbody.gravityScale = gravityScale;
+    }
+
+    private void UpdateState()
+    {
+        if (_velocity.y == 0 && !_isJumping && !_prepareJump && !_isFalling && !_isLanding)
+        {
+            if (Mathf.Abs(_velocity.x) > 0)
+            {
+                CurPlayerState.SetState(PlayerState.Run);
+            }
+            else
+            {
+                CurPlayerState.SetState(PlayerState.Idle);
+            }
+        }
+    }
+
+    public void Jump()
+    {
+        // Jump using impulse force
+        _controllerRigidbody.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
+
+        // We've consumed the jump, reset it.
+        _jumpInput = false;
+        _localJumpCount--;
+
+        // Set jumping flag
+        _isJumping = true;
+        _prepareJump = false;
+    }
+
+    public void Landed()
+    {
+        _isLanding = false;
     }
 
 }
