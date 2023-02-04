@@ -8,7 +8,7 @@ namespace SleepySpine
     {
         [SerializeField] CharacterController2D _characterController;
 
-        TrackEntry _track0;
+        TrackEntry _track0 => _skeletonAnimation.GetCurrentEntry(0);
 
         private void Start()
         {
@@ -58,7 +58,6 @@ namespace SleepySpine
 
         private void FixedUpdate()
         {
-            _track0 = _skeletonAnimation.GetCurrentEntry(0);
             UpdateTimeScale();
         }
 

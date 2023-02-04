@@ -136,6 +136,7 @@ public class CharacterController2D : MonoBehaviour
         UpdateDirection();
         UpdateFall();
         UpdateJump();
+        UpdateLand();
         UpdateGravityScale();
         UpdateState();
 
@@ -226,32 +227,14 @@ public class CharacterController2D : MonoBehaviour
     private void UpdateFall()
     {
         // Set falling flag
-        if (_isFalling != _velocity.y < 0)
+        if (_isFalling != _velocity.y < 0)  // falling state changed
         {
-            _isFalling = _velocity.y < 0;
-            CurPlayerState.SetState(PlayerState.Fall);
+            _isFalling = _velocity.y < 0; // assign the current state
 
-            // Test Landed
-            if (!_isFalling)
+            if (_isFalling)
             {
-                // Reset the jump count
-                _localJumpCount = _jumpCount;
-
-                // Since collision with ground stops rigidbody, reset velocity
-                if (_resetSpeedOnLand)
-                {
-                    _prevVelocity.y = _velocity.y;
-                    _controllerRigidbody.velocity = _prevVelocity;
-                    _velocity = _prevVelocity;
-                }
-
-                // Reset jumping flags
-                _isJumping = false;
-
-                CurPlayerState.SetState(PlayerState.Land);
-                _isLanding = true;
+                CurPlayerState.SetState(PlayerState.Fall);
             }
-
         }
     }
 
@@ -265,13 +248,36 @@ public class CharacterController2D : MonoBehaviour
             if (_localJumpCount >= 2)
             {
                 CurPlayerState.SetState(PlayerState.Jump);
-
             }
             else
             {
                 CurPlayerState.SetState(PlayerState.DoubleJump);
-
             }
+        }
+    }
+
+    private void UpdateLand()
+    {
+        // Test if landed
+        if (_prevVelocity.y != _velocity.y && _velocity.y == 0)
+        {
+            // Since collision with ground stops rigidbody, reset velocity
+            // (if this function is enabled)
+            if (_resetSpeedOnLand)
+            {
+                _prevVelocity.y = _velocity.y;
+                _controllerRigidbody.velocity = _prevVelocity;
+                _velocity = _prevVelocity;
+            }
+
+            // Reset jumping flags
+            _isJumping = false;
+            // Reset the jump count
+            _localJumpCount = _jumpCount;
+
+            // Set the land state
+            CurPlayerState.SetState(PlayerState.Land);
+            _isLanding = true;
         }
     }
 
