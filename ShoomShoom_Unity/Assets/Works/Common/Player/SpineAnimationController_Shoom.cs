@@ -1,4 +1,5 @@
 using Spine;
+using System.Collections;
 using UniRx;
 using UnityEngine;
 
@@ -7,13 +8,27 @@ namespace SleepySpine
     public class SpineAnimationController_Shoom : SpineAnimationController
     {
         [SerializeField] CharacterController2D _characterController;
+        [SerializeField] SpineSkinSwitcher_Shoom _skinSwitcher;
 
         TrackEntry _track0 => _skeletonAnimation.GetCurrentEntry(0);
+        TrackEntry _track1 => _skeletonAnimation.GetCurrentEntry(1);
+
+        [Header("Blink setting")]
+        [SerializeField] bool _enableBlink = true;
+        [SerializeField] float _blinkRandomMin = 0.5f;
+        [SerializeField] float _blinkRandomMax = 3f;
+        Coroutine _blinkCoroutine;
 
         private void Start()
         {
+            // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
 
+            // Add secondary animations
+            if (_enableBlink) StartBlinkCoroutine();
+            if (_skinSwitcher.CurSkin == "normal-with-backpack") _spineAnimationState.SetAnimation(2, "gear-roll", true);
+
+            // Handle different character state
             _characterController.CurPlayerState.State.Subscribe(state =>
             {
                 switch (state)
@@ -52,8 +67,10 @@ namespace SleepySpine
 
         private void OnDisable()
         {
-
             _spineAnimationState.Event -= AnimEventHandler;
+
+            StopCoroutine(_blinkCoroutine);
+            _blinkCoroutine = null;
         }
 
         private void FixedUpdate()
@@ -86,6 +103,25 @@ namespace SleepySpine
             if (_track0.TimeScale != 1)
             {
                 _track0.TimeScale = 1;
+            }
+        }
+
+        private void StartBlinkCoroutine()
+        {
+            if (_blinkCoroutine != null) return;
+
+            _blinkCoroutine = StartCoroutine(BlinkCoroution());
+        }
+        IEnumerator BlinkCoroution()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(_blinkRandomMin, _blinkRandomMax));
+                if (_track1 == null)
+                {
+                    _spineAnimationState.SetAnimation(1, "blink", false);
+                    _spineAnimationState.AddEmptyAnimation(1, .1f, .1f);
+                }
             }
         }
     }
