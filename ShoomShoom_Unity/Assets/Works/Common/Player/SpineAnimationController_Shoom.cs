@@ -8,6 +8,7 @@ namespace SleepySpine
     public class SpineAnimationController_Shoom : SpineAnimationController
     {
         [SerializeField] CharacterController2D _characterController;
+        [SerializeField] SpineSkinSwitcher_Shoom _skinSwitcher;
 
         TrackEntry _track0 => _skeletonAnimation.GetCurrentEntry(0);
         TrackEntry _track1 => _skeletonAnimation.GetCurrentEntry(1);
@@ -25,6 +26,7 @@ namespace SleepySpine
 
             // Add secondary animations
             if (_enableBlink) StartBlinkCoroutine();
+            if (_skinSwitcher.CurSkin == "normal-with-backpack") _spineAnimationState.SetAnimation(2, "gear-roll", true);
 
             // Handle different character state
             _characterController.CurPlayerState.State.Subscribe(state =>
