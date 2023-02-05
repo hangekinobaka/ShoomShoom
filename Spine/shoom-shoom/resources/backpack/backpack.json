@@ -1,4 +1,4 @@
-{ "skeleton": { "images": "D:/下载/backpack/images/backpack/" },
+{ "skeleton": { "images": "D:/UnityGame/ShoomShoom/Spine/shoom-shoom/backpack/images/backpack/" },
 "bones": [
 	{ "name": "root" }
 ],
@@ -15,28 +15,28 @@
 "skins": {
 	"default": {
 		"backpack-back": {
-			"backpack-back": { "x": 337.33, "y": -293.17, "width": 184, "height": 120 }
+			"backpack-back": { "x": 326.51, "y": -283.49, "width": 178, "height": 117 }
 		},
 		"backpack-gas": {
-			"backpack-gas": { "x": 400.23, "y": -318.36, "width": 83, "height": 275 }
+			"backpack-gas": { "x": 387.31, "y": -308.42, "width": 80, "height": 266 }
 		},
 		"backpack-pipe": {
-			"backpack-pipe": { "x": 174.6, "y": -156.36, "width": 200, "height": 221 }
+			"backpack-pipe": { "x": 169.2, "y": -151.42, "width": 194, "height": 214 }
 		},
 		"backpack-gear": {
-			"backpack-gear": { "x": 341.75, "y": -278.17, "width": 276, "height": 276 }
+			"backpack-gear": { "x": 336.02, "y": -270.32, "width": 269, "height": 269 }
 		},
 		"backpack": {
-			"backpack": { "x": 279.25, "y": -350.15, "width": 340, "height": 253 }
+			"backpack": { "x": 270.25, "y": -339.05, "width": 329, "height": 245 }
 		},
 		"backpack-handle": {
-			"backpack-handle": { "x": 436.74, "y": -429.74, "width": 59, "height": 85 }
+			"backpack-handle": { "x": 423.28, "y": -415.78, "width": 58, "height": 83 }
 		},
 		"backpack-valve": {
-			"backpack-valve": { "x": 142.24, "y": -282.01, "width": 100, "height": 102 }
+			"backpack-valve": { "x": 137.78, "y": -272.97, "width": 97, "height": 99 }
 		},
 		"backpack-gun": {
-			"backpack-gun": { "x": 131.6, "y": -408.47, "width": 114, "height": 154 }
+			"backpack-gun": { "x": 127.2, "y": -395.59, "width": 110, "height": 149 }
 		}
 	}
 },
