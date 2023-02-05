@@ -1,0 +1,44 @@
+{ "skeleton": { "images": "D:/UnityGame/ShoomShoom/Spine/shoom-shoom/backpack/images/backpack/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "backpack-back", "bone": "root", "attachment": "backpack-back" },
+	{ "name": "backpack-gas", "bone": "root", "attachment": "backpack-gas" },
+	{ "name": "backpack-pipe", "bone": "root", "attachment": "backpack-pipe" },
+	{ "name": "backpack-gear", "bone": "root", "attachment": "backpack-gear" },
+	{ "name": "backpack", "bone": "root", "attachment": "backpack" },
+	{ "name": "backpack-handle", "bone": "root", "attachment": "backpack-handle" },
+	{ "name": "backpack-valve", "bone": "root", "attachment": "backpack-valve" },
+	{ "name": "backpack-gun", "bone": "root", "attachment": "backpack-gun" }
+],
+"skins": {
+	"default": {
+		"backpack-back": {
+			"backpack-back": { "x": 326.51, "y": -283.49, "width": 178, "height": 117 }
+		},
+		"backpack-gas": {
+			"backpack-gas": { "x": 387.31, "y": -308.42, "width": 80, "height": 266 }
+		},
+		"backpack-pipe": {
+			"backpack-pipe": { "x": 169.2, "y": -151.42, "width": 194, "height": 214 }
+		},
+		"backpack-gear": {
+			"backpack-gear": { "x": 336.02, "y": -270.32, "width": 269, "height": 269 }
+		},
+		"backpack": {
+			"backpack": { "x": 270.25, "y": -339.05, "width": 329, "height": 245 }
+		},
+		"backpack-handle": {
+			"backpack-handle": { "x": 423.28, "y": -415.78, "width": 58, "height": 83 }
+		},
+		"backpack-valve": {
+			"backpack-valve": { "x": 137.78, "y": -272.97, "width": 97, "height": 99 }
+		},
+		"backpack-gun": {
+			"backpack-gun": { "x": 127.2, "y": -395.59, "width": 110, "height": 149 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
