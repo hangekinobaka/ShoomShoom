@@ -2,12 +2,14 @@ using Spine;
 using System.Collections;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SleepySpine
 {
     public class SpineAnimationController_Shoom : SpineAnimationController
     {
         [SerializeField] CharacterController2D _characterController;
+        [SerializeField] EffectController_Shoom _effectController;
         [SerializeField] SpineSkinSwitcher_Shoom _skinSwitcher;
 
         TrackEntry _track0 => _skeletonAnimation.GetCurrentEntry(0);
@@ -19,10 +21,16 @@ namespace SleepySpine
         [SerializeField] float _blinkRandomMax = 3f;
         Coroutine _blinkCoroutine;
 
+        //events
+        public event UnityAction OnJumpTriggerPulled, OnSteamEjected;
+
         private void Start()
         {
             // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
+
+            // Register effect event handler
+            _effectController.OnSteamTankFull += SteamTankFullHandler;
 
             // Add secondary animations
             if (_enableBlink) StartBlinkCoroutine();
@@ -51,6 +59,7 @@ namespace SleepySpine
                         break;
                     case PlayerState.DoubleJump:
                         _characterController.Jump();
+                        _spineAnimationState.SetAnimation(0, "double-jump", false);
                         break;
                     case PlayerState.Fall:
                         _spineAnimationState.SetAnimation(0, "jump-fall", false);
@@ -68,6 +77,7 @@ namespace SleepySpine
         private void OnDisable()
         {
             _spineAnimationState.Event -= AnimEventHandler;
+            _effectController.OnSteamTankFull -= SteamTankFullHandler;
 
             StopCoroutine(_blinkCoroutine);
             _blinkCoroutine = null;
@@ -89,6 +99,19 @@ namespace SleepySpine
             {
                 _characterController.Landed();
             }
+            else if (eventName == "jump-trigger-pulled")
+            {
+                if (OnJumpTriggerPulled != null) OnJumpTriggerPulled.Invoke();
+            }
+            else if (eventName == "steam-ejected")
+            {
+                if (OnSteamEjected != null) OnSteamEjected.Invoke();
+            }
+        }
+
+        private void SteamTankFullHandler()
+        {
+            _spineAnimationState.SetAnimation(3, "eject-steam", false);
         }
 
         private void UpdateTimeScale()

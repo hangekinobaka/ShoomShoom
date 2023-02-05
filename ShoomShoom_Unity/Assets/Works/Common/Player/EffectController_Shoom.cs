@@ -1,4 +1,3 @@
-using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +5,7 @@ public class EffectController_Shoom : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] CharacterController2D _effectController;
+    [SerializeField] SleepySpine.SpineAnimationController_Shoom _spineAnimationController;
     [SerializeField] ParticleSystem _upSmokeEffect;
     [SerializeField] ParticleSystem _lowSmokeEffect;
 
@@ -24,11 +24,15 @@ public class EffectController_Shoom : MonoBehaviour
         GenRandomTankLimit();
         _curSteamTankVolume = 0f;
 
-        // subscribe player states change
-        _effectController.CurPlayerState.State.Subscribe(state =>
-        {
-            if (state == PlayerState.DoubleJump) PlayBlastJumpSteamEffect();
-        }).AddTo(this);
+        // subscribe animation event
+        _spineAnimationController.OnJumpTriggerPulled += PlayBlastJumpSteamEffect;
+        _spineAnimationController.OnSteamEjected += PlaySteamEjectEffect;
+    }
+
+    private void OnDisable()
+    {
+        _spineAnimationController.OnJumpTriggerPulled -= PlayBlastJumpSteamEffect;
+        _spineAnimationController.OnSteamEjected -= PlaySteamEjectEffect;
     }
 
     private void FixedUpdate()
@@ -52,14 +56,19 @@ public class EffectController_Shoom : MonoBehaviour
             if (OnSteamTankFull != null)
                 OnSteamTankFull.Invoke();
 
-            _upSmokeEffect.Play();
             // reset tank
             _curSteamTankVolume = 0f;
         }
     }
 
+    public void PlaySteamEjectEffect()
+    {
+        _upSmokeEffect.Play();
+    }
+
     public void PlayBlastJumpSteamEffect()
     {
+        _upSmokeEffect.Stop();
         // reset tank
         _curSteamTankVolume = 0f;
         _lowSmokeEffect.Play();
