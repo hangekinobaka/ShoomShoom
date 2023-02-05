@@ -28,7 +28,7 @@ public enum PlayerState
 
 public class CharacterController2D : MonoBehaviour
 {
-    [Header("Character Info")]
+    [Header("References")]
     [SerializeField] Transform _characterTransform;
 
     [Header("Movement")]
