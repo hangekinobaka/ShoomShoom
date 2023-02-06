@@ -1027,11 +1027,11 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 8
+      cycleCount: 5
       repeatInterval: 0.1
       probability: 1
     - serializedVersion: 2
-      time: 0.25
+      time: 0.45
       countCurve:
         serializedVersion: 2
         minMaxState: 0
@@ -1085,7 +1085,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 3
+      cycleCount: 2
       repeatInterval: 0.05
       probability: 1
   SizeModule:
