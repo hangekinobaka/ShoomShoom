@@ -8,12 +8,20 @@ namespace SleepySpine
 {
     public class SpineAnimationController_Shoom : SpineAnimationController
     {
+        const int MAIN_TRACK = 0;
+        const int SECONDARY_TRACK = 1;
+        const int GEAR_TRACK = 2;
+        const int EQUIP_EFFECT_TRACK = 3;
+
+
         [SerializeField] CharacterController2D _characterController;
         [SerializeField] EffectController_Shoom _effectController;
         [SerializeField] SpineSkinSwitcher_Shoom _skinSwitcher;
+        [SerializeField] AudioController_Shoom _audioController;
 
-        TrackEntry _track0 => _skeletonAnimation.GetCurrentEntry(0);
-        TrackEntry _track1 => _skeletonAnimation.GetCurrentEntry(1);
+        TrackEntry _trackMain => _skeletonAnimation.GetCurrentEntry(MAIN_TRACK);
+        TrackEntry _trackSecondary => _skeletonAnimation.GetCurrentEntry(SECONDARY_TRACK);
+        TrackEntry _trackEquip => _skeletonAnimation.GetCurrentEntry(EQUIP_EFFECT_TRACK);
 
         [Header("Blink setting")]
         [SerializeField] bool _enableBlink = true;
@@ -26,15 +34,20 @@ namespace SleepySpine
 
         private void Start()
         {
+            // Handle the backpack extras
+            if (_skinSwitcher.CurSkin == "normal-with-backpack")
+            {
+                _spineAnimationState.SetAnimation(GEAR_TRACK, "gear-roll", true);
+
+                // Register effect event handler
+                _effectController.OnSteamTankFull += SteamTankFullHandler;
+            }
+
             // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
 
-            // Register effect event handler
-            _effectController.OnSteamTankFull += SteamTankFullHandler;
-
             // Add secondary animations
             if (_enableBlink) StartBlinkCoroutine();
-            if (_skinSwitcher.CurSkin == "normal-with-backpack") _spineAnimationState.SetAnimation(2, "gear-roll", true);
 
             // Handle different character state
             _characterController.CurPlayerState.State.Subscribe(state =>
@@ -42,31 +55,31 @@ namespace SleepySpine
                 switch (state)
                 {
                     case PlayerState.Idle:
-                        if (_track0?.Animation.ToString() == "land")
-                            _spineAnimationState.AddAnimation(0, "idle", true, 0);
+                        if (_trackMain?.Animation.ToString() == "land")
+                            _spineAnimationState.AddAnimation(MAIN_TRACK, "idle", true, 0);
                         else
-                            _spineAnimationState.SetAnimation(0, "idle", true);
+                            _spineAnimationState.SetAnimation(MAIN_TRACK, "idle", true);
                         break;
                     case PlayerState.TurnLeft:
                         break;
                     case PlayerState.TurnRight:
                         break;
                     case PlayerState.Run:
-                        _spineAnimationState.SetAnimation(0, "run", true);
+                        _spineAnimationState.SetAnimation(MAIN_TRACK, "run", true);
                         break;
                     case PlayerState.Jump:
-                        _spineAnimationState.SetAnimation(0, "jump", false);
+                        _spineAnimationState.SetAnimation(MAIN_TRACK, "jump", false);
                         break;
                     case PlayerState.DoubleJump:
                         _characterController.Jump();
-                        _spineAnimationState.SetAnimation(0, "double-jump", false);
+                        _spineAnimationState.SetAnimation(MAIN_TRACK, "double-jump", false);
                         break;
                     case PlayerState.Fall:
-                        _spineAnimationState.SetAnimation(0, "jump-fall", false);
-                        _spineAnimationState.AddAnimation(0, "fall", true, 0);
+                        _spineAnimationState.SetAnimation(MAIN_TRACK, "jump-fall", false);
+                        _spineAnimationState.AddAnimation(MAIN_TRACK, "fall", true, 0);
                         break;
                     case PlayerState.Land:
-                        _spineAnimationState.SetAnimation(0, "land", false);
+                        _spineAnimationState.SetAnimation(MAIN_TRACK, "land", false);
                         break;
                     default:
                         break;
@@ -91,41 +104,50 @@ namespace SleepySpine
         private void AnimEventHandler(TrackEntry trackEntry, Spine.Event e)
         {
             string eventName = e.ToString();
-            if (eventName == "jump-up")
+
+            if (eventName == "footstep")
+            {
+                _audioController.PlayFootStep();
+            }
+            else if (eventName == "jump-up")
             {
                 _characterController.Jump();
             }
             else if (eventName == "landed")
             {
+                _audioController.PlayHeavyFootStep();
                 _characterController.Landed();
             }
             else if (eventName == "jump-trigger-pulled")
             {
                 if (OnJumpTriggerPulled != null) OnJumpTriggerPulled.Invoke();
+                _audioController.PlaySteamBlastSound();
             }
             else if (eventName == "steam-ejected")
             {
                 if (OnSteamEjected != null) OnSteamEjected.Invoke();
+                _audioController.PlaySteamReleaseSound();
             }
         }
 
         private void SteamTankFullHandler()
         {
-            _spineAnimationState.SetAnimation(3, "eject-steam", false);
+            _spineAnimationState.SetAnimation(EQUIP_EFFECT_TRACK, "eject-steam", false);
+            _spineAnimationState.AddEmptyAnimation(EQUIP_EFFECT_TRACK, .1f, 1f);
         }
 
         private void UpdateTimeScale()
         {
-            if (_track0.Animation.ToString() == "run")
+            if (_trackMain.Animation.ToString() == "run")
             {
                 float speedScale = _characterController.CurRunSpeed / _characterController.MaxSpeed;
-                _track0.TimeScale = speedScale;
+                _trackMain.TimeScale = speedScale;
                 return;
             }
 
-            if (_track0.TimeScale != 1)
+            if (_trackMain.TimeScale != 1)
             {
-                _track0.TimeScale = 1;
+                _trackMain.TimeScale = 1;
             }
         }
 
@@ -140,12 +162,17 @@ namespace SleepySpine
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(_blinkRandomMin, _blinkRandomMax));
-                if (_track1 == null)
+                if (_trackSecondary == null)
                 {
-                    _spineAnimationState.SetAnimation(1, "blink", false);
-                    _spineAnimationState.AddEmptyAnimation(1, .1f, .1f);
+                    _spineAnimationState.SetAnimation(SECONDARY_TRACK, "blink", false);
+                    _spineAnimationState.AddEmptyAnimation(SECONDARY_TRACK, .1f, .1f);
                 }
             }
+        }
+
+        public void InterruptEquipTrack()
+        {
+            _spineAnimationState.SetEmptyAnimation(EQUIP_EFFECT_TRACK, .1f);
         }
     }
 
