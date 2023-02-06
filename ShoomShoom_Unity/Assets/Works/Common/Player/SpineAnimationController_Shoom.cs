@@ -17,6 +17,7 @@ namespace SleepySpine
         [SerializeField] CharacterController2D _characterController;
         [SerializeField] EffectController_Shoom _effectController;
         [SerializeField] SpineSkinSwitcher_Shoom _skinSwitcher;
+        [SerializeField] AudioController_Shoom _audioController;
 
         TrackEntry _trackMain => _skeletonAnimation.GetCurrentEntry(MAIN_TRACK);
         TrackEntry _trackSecondary => _skeletonAnimation.GetCurrentEntry(SECONDARY_TRACK);
@@ -103,21 +104,29 @@ namespace SleepySpine
         private void AnimEventHandler(TrackEntry trackEntry, Spine.Event e)
         {
             string eventName = e.ToString();
-            if (eventName == "jump-up")
+
+            if (eventName == "footstep")
+            {
+                _audioController.PlayFootStep();
+            }
+            else if (eventName == "jump-up")
             {
                 _characterController.Jump();
             }
             else if (eventName == "landed")
             {
+                _audioController.PlayHeavyFootStep();
                 _characterController.Landed();
             }
             else if (eventName == "jump-trigger-pulled")
             {
                 if (OnJumpTriggerPulled != null) OnJumpTriggerPulled.Invoke();
+                _audioController.PlaySteamBlastSound();
             }
             else if (eventName == "steam-ejected")
             {
                 if (OnSteamEjected != null) OnSteamEjected.Invoke();
+                _audioController.PlaySteamReleaseSound();
             }
         }
 

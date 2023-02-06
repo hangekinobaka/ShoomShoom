@@ -65,6 +65,7 @@ public class CharacterController2D : MonoBehaviour
     LayerMask _waterGroundMask;
     GroundType _groundType;
     PlayerInputAction _playerInputAction;
+    public GroundType CurGroundType => _groundType;
 
     Vector2 _movementInput;
     bool _jumpInput;
