@@ -23,7 +23,8 @@ public enum PlayerState
     Jump,
     DoubleJump,
     Fall,
-    Land
+    Land,
+    Shoot
 }
 
 public class CharacterController2D : MonoBehaviour
@@ -59,12 +60,13 @@ public class CharacterController2D : MonoBehaviour
     float _curAcceleration;
     float _curMaxSpeed;
 
+    private PlayerInputAction _inputAction;
+
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
     LayerMask _normalGroundMask;
     LayerMask _waterGroundMask;
     GroundType _groundType;
-    PlayerInputAction _playerInputAction;
     public GroundType CurGroundType => _groundType;
 
     Vector2 _movementInput;
@@ -80,7 +82,7 @@ public class CharacterController2D : MonoBehaviour
 
     MovingDirection _dir = MovingDirection.Right;
     public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
-
+    public Vector3 AimPos { get; set; }
 
     private void Awake()
     {
@@ -103,29 +105,30 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         // Init vals
-        _playerInputAction = new PlayerInputAction();
         _normalFocalPos = _focalPoint.localPosition;
         _flippedFocalPos = _normalFocalPos;
         _flippedFocalPos.x = -_flippedFocalPos.x;
         _localJumpCount = _jumpCount;
 
         // Input system
-        _playerInputAction.Normal.Enable();
-        _playerInputAction.Normal.Move.performed += MoveInputHandler;
-        _playerInputAction.Normal.Move.canceled += MoveInputHandler;
-        _playerInputAction.Normal.Jump.performed += JumpInputHandler;
-        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
-        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
+        _inputAction = InputManager_Fightscene.Instance.Player;
+        _inputAction.Normal.Move.performed += MoveInputHandler;
+        _inputAction.Normal.Move.canceled += MoveInputHandler;
+        _inputAction.Normal.Jump.performed += JumpInputHandler;
+        _inputAction.Normal.Sprint.performed += SprintInputHandler;
+        _inputAction.Normal.Sprint.canceled += SprintInputHandler;
+        _inputAction.Normal.Click.performed += AimInputHandler;
     }
 
     private void OnDisable()
     {
-        _playerInputAction.Normal.Move.performed -= MoveInputHandler;
-        _playerInputAction.Normal.Move.canceled -= MoveInputHandler;
-        _playerInputAction.Normal.Jump.performed -= JumpInputHandler;
-        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
-        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
-        _playerInputAction.Normal.Disable();
+        if (!_inputAction.Normal.enabled) return;
+        _inputAction.Normal.Move.performed -= MoveInputHandler;
+        _inputAction.Normal.Move.canceled -= MoveInputHandler;
+        _inputAction.Normal.Jump.performed -= JumpInputHandler;
+        _inputAction.Normal.Sprint.performed -= SprintInputHandler;
+        _inputAction.Normal.Sprint.canceled -= SprintInputHandler;
+        _inputAction.Normal.Click.performed -= AimInputHandler;
     }
 
     void FixedUpdate()
@@ -162,6 +165,13 @@ public class CharacterController2D : MonoBehaviour
         else if (context.canceled)
             _isSprinting = false;
 
+    }
+    void AimInputHandler(InputAction.CallbackContext context)
+    {
+        Vector2 mousePosition = context.ReadValue<Vector2>();
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        AimPos = worldPosition;
+        CurPlayerState.SetState(PlayerState.Shoot);
     }
 
     private void UpdateGrounding()

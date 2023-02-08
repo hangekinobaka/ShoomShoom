@@ -53,6 +53,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Value"",
+                    ""id"": ""65d2cc01-16fc-4c40-82a5-2488015542a3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,39 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""632f5e5d-b5e2-40a0-8e8d-edb2b524454c"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""14f34994-b86f-4d61-a4c3-6e6c9b8dc8ea"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""e088070b-1ffc-47a3-aa6a-49af08dea4e4"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -198,6 +240,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Normal_Move = m_Normal.FindAction("Move", throwIfNotFound: true);
         m_Normal_Jump = m_Normal.FindAction("Jump", throwIfNotFound: true);
         m_Normal_Sprint = m_Normal.FindAction("Sprint", throwIfNotFound: true);
+        m_Normal_Click = m_Normal.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +303,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Normal_Move;
     private readonly InputAction m_Normal_Jump;
     private readonly InputAction m_Normal_Sprint;
+    private readonly InputAction m_Normal_Click;
     public struct NormalActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -267,6 +311,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Normal_Move;
         public InputAction @Jump => m_Wrapper.m_Normal_Jump;
         public InputAction @Sprint => m_Wrapper.m_Normal_Sprint;
+        public InputAction @Click => m_Wrapper.m_Normal_Click;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +330,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnSprint;
+                @Click.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -298,6 +346,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -307,5 +358,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

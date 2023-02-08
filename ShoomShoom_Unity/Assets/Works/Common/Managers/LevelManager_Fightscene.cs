@@ -1,7 +1,7 @@
 ﻿using UniRx;
 using UnityEngine;
 
-public class LevelManager_Fight : Singleton<LevelManager_Fight>
+public class LevelManager_Fightscene : Singleton<LevelManager_Fightscene>
 {
     [SerializeField] Transform _levelPlayerPos;
     [SerializeField] Transform _player;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GlobalAudioManger_Sewer : MonoBehaviour
+public class GlobalAudioManger : MonoBehaviour
 {
     [SerializeField] AudioSource _mainAudioSource;
 }

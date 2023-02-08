@@ -1,4 +1,5 @@
 using Spine;
+using Spine.Unity;
 using System.Collections;
 using UniRx;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace SleepySpine
         const int SECONDARY_TRACK = 1;
         const int GEAR_TRACK = 2;
         const int EQUIP_EFFECT_TRACK = 3;
-
+        const int WEAPON_TRACK = 4;
+        const int WEAPON_SECONDARY_TRACK = 5;
 
         [SerializeField] CharacterController2D _characterController;
         [SerializeField] EffectController_Shoom _effectController;
@@ -32,6 +34,13 @@ namespace SleepySpine
         //events
         public event UnityAction OnJumpTriggerPulled, OnSteamEjected;
 
+        #region aim and shoot
+        [Header("Aim andd shoot")]
+        [SpineBone(dataField: "_skeletonAnimation")]
+        [SerializeField] string _aimBoneName;
+        Bone _aimBone;
+        #endregion
+
         private void Start()
         {
             // Handle the backpack extras
@@ -42,6 +51,9 @@ namespace SleepySpine
                 // Register effect event handler
                 _effectController.OnSteamTankFull += SteamTankFullHandler;
             }
+
+            // Get necessary bones
+            _aimBone = _skeletonAnimation.Skeleton.FindBone(_aimBoneName);
 
             // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
@@ -80,6 +92,9 @@ namespace SleepySpine
                         break;
                     case PlayerState.Land:
                         _spineAnimationState.SetAnimation(MAIN_TRACK, "land", false);
+                        break;
+                    case PlayerState.Shoot:
+                        PlayAimAndShoot();
                         break;
                     default:
                         break;
@@ -173,6 +188,16 @@ namespace SleepySpine
         public void InterruptEquipTrack()
         {
             _spineAnimationState.SetEmptyAnimation(EQUIP_EFFECT_TRACK, .1f);
+        }
+
+        // Handle the aim action
+        void PlayAimAndShoot()
+        {
+            _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim", false);
+            Vector3 skeletonSpacePoint = transform.InverseTransformPoint(_characterController.AimPos);
+            skeletonSpacePoint.x *= _skeletonAnimation.Skeleton.ScaleX;
+            skeletonSpacePoint.y *= _skeletonAnimation.Skeleton.ScaleY;
+            _aimBone.SetLocalPosition(skeletonSpacePoint);
         }
     }
 

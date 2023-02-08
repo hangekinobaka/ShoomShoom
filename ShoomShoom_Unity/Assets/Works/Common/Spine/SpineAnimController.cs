@@ -8,9 +8,13 @@ namespace SleepySpine
         protected SkeletonAnimation _skeletonAnimation;
         protected Spine.AnimationState _spineAnimationState;
 
+        void OnValidate()
+        {
+            if (_skeletonAnimation == null) _skeletonAnimation = GetComponent<SkeletonAnimation>();
+        }
         private void Awake()
         {
-            _skeletonAnimation = GetComponent<SkeletonAnimation>();
+            if (_skeletonAnimation == null) _skeletonAnimation = GetComponent<SkeletonAnimation>();
             _spineAnimationState = _skeletonAnimation.AnimationState;
         }
 
