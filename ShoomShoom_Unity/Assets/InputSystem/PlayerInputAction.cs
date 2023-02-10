@@ -199,7 +199,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""One Modifier"",
-                    ""id"": ""014dcac3-2567-4f03-9d5d-b98730fc0665"",
+                    ""id"": ""6ccaf1a2-e046-4678-8eb8-be70d6f52a72"",
                     ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -210,8 +210,8 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""modifier"",
-                    ""id"": ""a996ebf8-b48f-414e-a8c3-e22655b75bde"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""3f5b9211-49a9-4d38-9194-f5e06d015924"",
+                    ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -221,7 +221,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""binding"",
-                    ""id"": ""eeb7475f-df9e-44bd-8299-ff26b251131e"",
+                    ""id"": ""2a0d1c10-fd6c-44cd-919c-a92ba68e03b5"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",

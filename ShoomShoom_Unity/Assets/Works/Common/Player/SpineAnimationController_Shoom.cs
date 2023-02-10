@@ -58,6 +58,7 @@ namespace SleepySpine
             _characterController.OnAimStart += PlayAimAnim;
             _characterController.OnAimMoved += UpdateAimAnim;
             _characterController.OnAimEnd += StopAimAnim;
+            _characterController.OnShoot += PlayShoot;
 
             // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
@@ -112,6 +113,7 @@ namespace SleepySpine
             _characterController.OnAimStart -= PlayAimAnim;
             _characterController.OnAimMoved -= UpdateAimAnim;
             _characterController.OnAimEnd -= StopAimAnim;
+            _characterController.OnShoot -= PlayShoot;
 
             StopCoroutine(_blinkCoroutine);
             _blinkCoroutine = null;
@@ -209,9 +211,6 @@ namespace SleepySpine
             _gunBehind = false;
 
             UpdateAimAnim();
-
-            // shoot action
-            PlayShoot();
         }
         void UpdateAimAnim()
         {

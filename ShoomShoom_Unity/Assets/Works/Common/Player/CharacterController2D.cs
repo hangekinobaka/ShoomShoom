@@ -1,8 +1,8 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-
 public enum GroundType
 {
     None, // When the ground type is none, there is no ground under the Player's feet.
@@ -62,6 +62,8 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Aim & Shoot")]
     [SerializeField] float _minShootInterval = 0.3f;
+    float _shootTimer;
+    Coroutine _shootCoroutine;
 
     private PlayerInputAction _inputAction;
 
@@ -88,7 +90,7 @@ public class CharacterController2D : MonoBehaviour
     public Vector3 AimPos { get; set; }
 
     //events
-    public event UnityAction OnAimStart, OnAimMoved, OnAimEnd;
+    public event UnityAction OnAimStart, OnAimMoved, OnAimEnd, OnShoot;
 
     private void Awake()
     {
@@ -130,6 +132,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnDisable()
     {
+        StopAllCoroutines();
+
         if (!_inputAction.Normal.enabled) return;
         _inputAction.Normal.Move.performed -= MoveInputHandler;
         _inputAction.Normal.Move.canceled -= MoveInputHandler;
@@ -184,6 +188,11 @@ public class CharacterController2D : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             AimPos = worldPosition;
             if (OnAimStart != null) OnAimStart.Invoke();
+
+            // Start to shoot 
+            if (OnShoot != null) OnShoot.Invoke();
+            _shootTimer = Time.time;
+            _shootCoroutine = StartCoroutine(TestAndShoot());
         }
         else if (context.performed)
         {
@@ -195,6 +204,7 @@ public class CharacterController2D : MonoBehaviour
         else if (context.canceled)
         {
             if (OnAimEnd != null) OnAimEnd.Invoke();
+            StopCoroutine(_shootCoroutine);
         }
     }
     public bool IsTargetOpposite()
@@ -208,6 +218,20 @@ public class CharacterController2D : MonoBehaviour
             return true;
         }
         return false;
+    }
+    IEnumerator TestAndShoot()
+    {
+        while (true)
+        {
+            // Test if the this shoot is too close to the last one
+            float time = Time.time;
+            if (time - _shootTimer >= _minShootInterval)
+            {
+                if (OnShoot != null) OnShoot.Invoke();
+                _shootTimer = Time.time;
+            }
+            yield return null;
+        }
     }
 
     private void UpdateGrounding()
