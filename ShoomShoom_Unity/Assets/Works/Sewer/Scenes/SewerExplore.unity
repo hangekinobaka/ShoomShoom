@@ -30571,7 +30571,6 @@ MonoBehaviour:
   _upSmokeEffect: {fileID: 1187432974947846494}
   _lowSmokeEffect: {fileID: 2050440150}
   _gunTopFollower: {fileID: 1192271050}
-  _gunShootEffect: {fileID: 5558122383204632232, guid: 64a60d5df5f45cb4f86faa47d98d8ef8, type: 3}
   _steamTankVolumeLimit: 5.5
 --- !u!1 &1586346394
 GameObject:
