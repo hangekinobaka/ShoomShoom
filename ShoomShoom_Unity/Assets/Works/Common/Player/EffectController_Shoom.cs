@@ -1,17 +1,19 @@
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EffectController_Shoom : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] CharacterController2D _effectController;
+    [SerializeField] CharacterController2D _characterController;
     [SerializeField] SleepySpine.SpineAnimationController_Shoom _spineAnimationController;
     [SerializeField] ParticleSystem _upSmokeEffect;
     [SerializeField] ParticleSystem _lowSmokeEffect;
+    [SerializeField] Transform _gunTopFollower;
 
     [Header("Parameters")]
     [Tooltip("steam add 1f per second")]
-    [SerializeField] float _steamTankVolumeLimit = 3f;
+    [SerializeField] float _steamTankVolumeLimit = 5.5f;
 
     float _curSteamTankVolume = 0f;
     float _curSteamTankVolumeLimit; // I will make the limit random
@@ -29,12 +31,14 @@ public class EffectController_Shoom : MonoBehaviour
         // subscribe animation event
         _spineAnimationController.OnJumpTriggerPulled += PlayBlastJumpSteamEffect;
         _spineAnimationController.OnSteamEjected += PlaySteamEjectEffect;
+        _spineAnimationController.OnGunShoot += PlayShootEffect;
     }
 
     private void OnDisable()
     {
         _spineAnimationController.OnJumpTriggerPulled -= PlayBlastJumpSteamEffect;
         _spineAnimationController.OnSteamEjected -= PlaySteamEjectEffect;
+        _spineAnimationController.OnGunShoot -= PlayShootEffect;
     }
 
     private void FixedUpdate()
@@ -83,5 +87,17 @@ public class EffectController_Shoom : MonoBehaviour
         _curSteamTankVolume = 0f;
 
         _lowSmokeEffect.Play();
+    }
+
+    public void PlayShootEffect()
+    {
+        GameObject obj = PoolManager_Fightscene.Instance.GunEffectPool.Get(); ;
+        obj.transform.position = _gunTopFollower.position;
+        obj.transform.rotation = _gunTopFollower.rotation;
+
+        // Destroy the effect when it fades out
+        Observable.Timer(System.TimeSpan.FromSeconds(2))
+            .Subscribe(_ => PoolManager_Fightscene.Instance.GunEffectPool.Release(obj))
+            .AddTo(this);
     }
 }

@@ -1,7 +1,8 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-
 public enum GroundType
 {
     None, // When the ground type is none, there is no ground under the Player's feet.
@@ -59,12 +60,18 @@ public class CharacterController2D : MonoBehaviour
     float _curAcceleration;
     float _curMaxSpeed;
 
+    [Header("Aim & Shoot")]
+    [SerializeField] float _minShootInterval = 0.3f;
+    float _shootTimer;
+    Coroutine _shootCoroutine;
+
+    private PlayerInputAction _inputAction;
+
     Rigidbody2D _controllerRigidbody;
     Collider2D _controllerCollider;
     LayerMask _normalGroundMask;
     LayerMask _waterGroundMask;
     GroundType _groundType;
-    PlayerInputAction _playerInputAction;
     public GroundType CurGroundType => _groundType;
 
     Vector2 _movementInput;
@@ -80,7 +87,10 @@ public class CharacterController2D : MonoBehaviour
 
     MovingDirection _dir = MovingDirection.Right;
     public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
+    public Vector3 AimPos { get; set; }
 
+    //events
+    public event UnityAction OnAimStart, OnAimMoved, OnAimEnd, OnShoot;
 
     private void Awake()
     {
@@ -103,29 +113,36 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         // Init vals
-        _playerInputAction = new PlayerInputAction();
         _normalFocalPos = _focalPoint.localPosition;
         _flippedFocalPos = _normalFocalPos;
         _flippedFocalPos.x = -_flippedFocalPos.x;
         _localJumpCount = _jumpCount;
 
         // Input system
-        _playerInputAction.Normal.Enable();
-        _playerInputAction.Normal.Move.performed += MoveInputHandler;
-        _playerInputAction.Normal.Move.canceled += MoveInputHandler;
-        _playerInputAction.Normal.Jump.performed += JumpInputHandler;
-        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
-        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
+        _inputAction = InputManager_Fightscene.Instance.Player;
+        _inputAction.Normal.Move.performed += MoveInputHandler;
+        _inputAction.Normal.Move.canceled += MoveInputHandler;
+        _inputAction.Normal.Jump.performed += JumpInputHandler;
+        _inputAction.Normal.Sprint.performed += SprintInputHandler;
+        _inputAction.Normal.Sprint.canceled += SprintInputHandler;
+        _inputAction.Normal.AimShoot.started += AimInputHandler;
+        _inputAction.Normal.AimShoot.performed += AimInputHandler;
+        _inputAction.Normal.AimShoot.canceled += AimInputHandler;
     }
 
     private void OnDisable()
     {
-        _playerInputAction.Normal.Move.performed -= MoveInputHandler;
-        _playerInputAction.Normal.Move.canceled -= MoveInputHandler;
-        _playerInputAction.Normal.Jump.performed -= JumpInputHandler;
-        _playerInputAction.Normal.Sprint.performed += SprintInputHandler;
-        _playerInputAction.Normal.Sprint.canceled += SprintInputHandler;
-        _playerInputAction.Normal.Disable();
+        StopAllCoroutines();
+
+        if (!_inputAction.Normal.enabled) return;
+        _inputAction.Normal.Move.performed -= MoveInputHandler;
+        _inputAction.Normal.Move.canceled -= MoveInputHandler;
+        _inputAction.Normal.Jump.performed -= JumpInputHandler;
+        _inputAction.Normal.Sprint.performed -= SprintInputHandler;
+        _inputAction.Normal.Sprint.canceled -= SprintInputHandler;
+        _inputAction.Normal.AimShoot.started -= AimInputHandler;
+        _inputAction.Normal.AimShoot.performed -= AimInputHandler;
+        _inputAction.Normal.AimShoot.canceled -= AimInputHandler;
     }
 
     void FixedUpdate()
@@ -162,6 +179,59 @@ public class CharacterController2D : MonoBehaviour
         else if (context.canceled)
             _isSprinting = false;
 
+    }
+    void AimInputHandler(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            AimPos = worldPosition;
+            if (OnAimStart != null) OnAimStart.Invoke();
+
+            // Start to shoot 
+            if (OnShoot != null) OnShoot.Invoke();
+            _shootTimer = Time.time;
+            _shootCoroutine = StartCoroutine(TestAndShoot());
+        }
+        else if (context.performed)
+        {
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            AimPos = worldPosition;
+            if (OnAimMoved != null) OnAimMoved.Invoke();
+        }
+        else if (context.canceled)
+        {
+            if (OnAimEnd != null) OnAimEnd.Invoke();
+            StopCoroutine(_shootCoroutine);
+        }
+    }
+    public bool IsTargetOpposite()
+    {
+        if (_dir == MovingDirection.Left && AimPos.x > _characterTransform.position.x)
+        {
+            return true;
+        }
+        else if (_dir == MovingDirection.Right && AimPos.x < _characterTransform.position.x)
+        {
+            return true;
+        }
+        return false;
+    }
+    IEnumerator TestAndShoot()
+    {
+        while (true)
+        {
+            // Test if the this shoot is too close to the last one
+            float time = Time.time;
+            if (time - _shootTimer >= _minShootInterval)
+            {
+                if (OnShoot != null) OnShoot.Invoke();
+                _shootTimer = Time.time;
+            }
+            yield return null;
+        }
     }
 
     private void UpdateGrounding()

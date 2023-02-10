@@ -1,4 +1,5 @@
 using Spine;
+using Spine.Unity;
 using System.Collections;
 using UniRx;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace SleepySpine
         const int SECONDARY_TRACK = 1;
         const int GEAR_TRACK = 2;
         const int EQUIP_EFFECT_TRACK = 3;
-
+        const int WEAPON_TRACK = 4;
+        const int WEAPON_SECONDARY_TRACK = 5;
 
         [SerializeField] CharacterController2D _characterController;
         [SerializeField] EffectController_Shoom _effectController;
@@ -21,7 +23,6 @@ namespace SleepySpine
 
         TrackEntry _trackMain => _skeletonAnimation.GetCurrentEntry(MAIN_TRACK);
         TrackEntry _trackSecondary => _skeletonAnimation.GetCurrentEntry(SECONDARY_TRACK);
-        TrackEntry _trackEquip => _skeletonAnimation.GetCurrentEntry(EQUIP_EFFECT_TRACK);
 
         [Header("Blink setting")]
         [SerializeField] bool _enableBlink = true;
@@ -30,7 +31,15 @@ namespace SleepySpine
         Coroutine _blinkCoroutine;
 
         //events
-        public event UnityAction OnJumpTriggerPulled, OnSteamEjected;
+        public event UnityAction OnJumpTriggerPulled, OnSteamEjected, OnGunShoot;
+
+        #region aim and shoot
+        [Header("Aim andd shoot")]
+        [SpineBone(dataField: "_skeletonAnimation")]
+        [SerializeField] string _aimBoneName;
+        Bone _aimBone;
+        bool _gunBehind = false;
+        #endregion
 
         private void Start()
         {
@@ -42,6 +51,14 @@ namespace SleepySpine
                 // Register effect event handler
                 _effectController.OnSteamTankFull += SteamTankFullHandler;
             }
+
+            // Get necessary bones
+            _aimBone = _skeletonAnimation.Skeleton.FindBone(_aimBoneName);
+            // Register controller events
+            _characterController.OnAimStart += PlayAimAnim;
+            _characterController.OnAimMoved += UpdateAimAnim;
+            _characterController.OnAimEnd += StopAimAnim;
+            _characterController.OnShoot += PlayShoot;
 
             // Register spine event handler
             _spineAnimationState.Event += AnimEventHandler;
@@ -90,7 +107,13 @@ namespace SleepySpine
         private void OnDisable()
         {
             _spineAnimationState.Event -= AnimEventHandler;
+
             _effectController.OnSteamTankFull -= SteamTankFullHandler;
+
+            _characterController.OnAimStart -= PlayAimAnim;
+            _characterController.OnAimMoved -= UpdateAimAnim;
+            _characterController.OnAimEnd -= StopAimAnim;
+            _characterController.OnShoot -= PlayShoot;
 
             StopCoroutine(_blinkCoroutine);
             _blinkCoroutine = null;
@@ -127,6 +150,11 @@ namespace SleepySpine
             {
                 if (OnSteamEjected != null) OnSteamEjected.Invoke();
                 _audioController.PlaySteamReleaseSound();
+            }
+            else if (eventName == "shoot")
+            {
+                if (OnGunShoot != null) OnGunShoot.Invoke();
+
             }
         }
 
@@ -173,6 +201,45 @@ namespace SleepySpine
         public void InterruptEquipTrack()
         {
             _spineAnimationState.SetEmptyAnimation(EQUIP_EFFECT_TRACK, .1f);
+        }
+
+        // Handle the aim action
+        void PlayAimAnim()
+        {
+            // aim action
+            _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim", false);
+            _gunBehind = false;
+
+            UpdateAimAnim();
+        }
+        void UpdateAimAnim()
+        {
+            // Make the gun behind the body if the target is currently in the opposite position.
+            if (!_gunBehind && _characterController.IsTargetOpposite())
+            {
+                _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim-behind", false);
+                _gunBehind = true;
+            }
+            else if (_gunBehind && !_characterController.IsTargetOpposite())
+            {
+                _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim", false);
+                _gunBehind = false;
+            }
+
+            Vector3 skeletonSpacePoint = transform.InverseTransformPoint(_characterController.AimPos);
+            skeletonSpacePoint.x *= _skeletonAnimation.Skeleton.ScaleX;
+            skeletonSpacePoint.y *= _skeletonAnimation.Skeleton.ScaleY;
+            _aimBone.SetLocalPosition(skeletonSpacePoint);
+        }
+        void StopAimAnim()
+        {
+            _spineAnimationState.AddEmptyAnimation(WEAPON_TRACK, .1f, .1f);
+            _spineAnimationState.AddEmptyAnimation(WEAPON_SECONDARY_TRACK, .1f, .1f);
+        }
+        void PlayShoot()
+        {
+            TrackEntry entry = _spineAnimationState.SetAnimation(WEAPON_SECONDARY_TRACK, "shoot", false);
+            entry.AttachmentThreshold = 1;
         }
     }
 

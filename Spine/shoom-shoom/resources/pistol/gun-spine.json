@@ -1,0 +1,24 @@
+{ "skeleton": { "images": "D:/UnityGame/ShoomShoom/Spine/shoom-shoom/resources/pistol/images/pistol/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "gun-trigger", "bone": "root", "attachment": "gun-trigger" },
+	{ "name": "gun", "bone": "root", "attachment": "gun" },
+	{ "name": "gun-dial-pointer", "bone": "root", "attachment": "gun-dial-pointer" }
+],
+"skins": {
+	"default": {
+		"gun-trigger": {
+			"gun-trigger": { "x": 149.34, "y": -176.54, "width": 26, "height": 37 }
+		},
+		"gun": {
+			"gun": { "x": 188.88, "y": -177.28, "width": 158, "height": 96 }
+		},
+		"gun-dial-pointer": {
+			"gun-dial-pointer": { "x": 177.14, "y": -169.53, "width": 6, "height": 17 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
