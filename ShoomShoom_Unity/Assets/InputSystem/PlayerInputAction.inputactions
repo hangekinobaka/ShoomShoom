@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Click",
+                    "name": "AimShoot",
                     "type": "Value",
                     "id": "65d2cc01-16fc-4c40-82a5-2488015542a3",
                     "expectedControlType": "Vector2",
@@ -177,34 +177,34 @@
                 },
                 {
                     "name": "One Modifier",
-                    "id": "632f5e5d-b5e2-40a0-8e8d-edb2b524454c",
+                    "id": "014dcac3-2567-4f03-9d5d-b98730fc0665",
                     "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "AimShoot",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "modifier",
-                    "id": "14f34994-b86f-4d61-a4c3-6e6c9b8dc8ea",
+                    "id": "a996ebf8-b48f-414e-a8c3-e22655b75bde",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "AimShoot",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "binding",
-                    "id": "e088070b-1ffc-47a3-aa6a-49af08dea4e4",
+                    "id": "eeb7475f-df9e-44bd-8299-ff26b251131e",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "AimShoot",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

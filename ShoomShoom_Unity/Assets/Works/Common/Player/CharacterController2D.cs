@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public enum GroundType
@@ -23,8 +24,7 @@ public enum PlayerState
     Jump,
     DoubleJump,
     Fall,
-    Land,
-    Shoot
+    Land
 }
 
 public class CharacterController2D : MonoBehaviour
@@ -60,6 +60,9 @@ public class CharacterController2D : MonoBehaviour
     float _curAcceleration;
     float _curMaxSpeed;
 
+    [Header("Aim & Shoot")]
+    [SerializeField] float _minShootInterval = 0.3f;
+
     private PlayerInputAction _inputAction;
 
     Rigidbody2D _controllerRigidbody;
@@ -83,6 +86,9 @@ public class CharacterController2D : MonoBehaviour
     MovingDirection _dir = MovingDirection.Right;
     public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
     public Vector3 AimPos { get; set; }
+
+    //events
+    public event UnityAction OnAimStart, OnAimMoved, OnAimEnd;
 
     private void Awake()
     {
@@ -117,7 +123,9 @@ public class CharacterController2D : MonoBehaviour
         _inputAction.Normal.Jump.performed += JumpInputHandler;
         _inputAction.Normal.Sprint.performed += SprintInputHandler;
         _inputAction.Normal.Sprint.canceled += SprintInputHandler;
-        _inputAction.Normal.Click.performed += AimInputHandler;
+        _inputAction.Normal.AimShoot.started += AimInputHandler;
+        _inputAction.Normal.AimShoot.performed += AimInputHandler;
+        _inputAction.Normal.AimShoot.canceled += AimInputHandler;
     }
 
     private void OnDisable()
@@ -128,7 +136,9 @@ public class CharacterController2D : MonoBehaviour
         _inputAction.Normal.Jump.performed -= JumpInputHandler;
         _inputAction.Normal.Sprint.performed -= SprintInputHandler;
         _inputAction.Normal.Sprint.canceled -= SprintInputHandler;
-        _inputAction.Normal.Click.performed -= AimInputHandler;
+        _inputAction.Normal.AimShoot.started -= AimInputHandler;
+        _inputAction.Normal.AimShoot.performed -= AimInputHandler;
+        _inputAction.Normal.AimShoot.canceled -= AimInputHandler;
     }
 
     void FixedUpdate()
@@ -168,10 +178,36 @@ public class CharacterController2D : MonoBehaviour
     }
     void AimInputHandler(InputAction.CallbackContext context)
     {
-        Vector2 mousePosition = context.ReadValue<Vector2>();
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        AimPos = worldPosition;
-        CurPlayerState.SetState(PlayerState.Shoot);
+        if (context.started)
+        {
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            AimPos = worldPosition;
+            if (OnAimStart != null) OnAimStart.Invoke();
+        }
+        else if (context.performed)
+        {
+            Vector2 mousePosition = context.ReadValue<Vector2>();
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            AimPos = worldPosition;
+            if (OnAimMoved != null) OnAimMoved.Invoke();
+        }
+        else if (context.canceled)
+        {
+            if (OnAimEnd != null) OnAimEnd.Invoke();
+        }
+    }
+    public bool IsTargetOpposite()
+    {
+        if (_dir == MovingDirection.Left && AimPos.x > _characterTransform.position.x)
+        {
+            return true;
+        }
+        else if (_dir == MovingDirection.Right && AimPos.x < _characterTransform.position.x)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void UpdateGrounding()
