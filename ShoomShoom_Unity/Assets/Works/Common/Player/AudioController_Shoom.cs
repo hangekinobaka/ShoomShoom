@@ -48,7 +48,7 @@ public class AudioController_Shoom : MonoBehaviour
     }
     public void PlayPistolShot()
     {
-        _pistolAudioSource.SetRandomClip(ref _pistolShot, .1f, .01f, _commonPitchRange);
+        _pistolAudioSource.SetRandomClip(ref _pistolShot, .05f, .01f, _commonPitchRange);
         PlaySteamBlastSound();
     }
 }

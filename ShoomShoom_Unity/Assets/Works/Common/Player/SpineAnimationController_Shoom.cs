@@ -214,17 +214,19 @@ namespace SleepySpine
         }
         void UpdateAimAnim()
         {
-            // Make the gun behind the body if the target is currently in the opposite position.
-            if (!_gunBehind && _characterController.IsTargetOpposite())
-            {
-                _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim-behind", false);
-                _gunBehind = true;
-            }
-            else if (_gunBehind && !_characterController.IsTargetOpposite())
-            {
-                _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim", false);
-                _gunBehind = false;
-            }
+            // This function is currently banned -----------------------------
+            //// Make the gun behind the body if the target is currently in the opposite position.
+            //if (!_gunBehind && _characterController.IsTargetOpposite())
+            //{
+            //    _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim-behind", false);
+            //    _gunBehind = true;
+            //}
+            //else if (_gunBehind && !_characterController.IsTargetOpposite())
+            //{
+            //    _spineAnimationState.SetAnimation(WEAPON_TRACK, "aim", false);
+            //    _gunBehind = false;
+            //}
+            // end --------------------------------
 
             Vector3 skeletonSpacePoint = transform.InverseTransformPoint(_characterController.AimPos);
             skeletonSpacePoint.x *= _skeletonAnimation.Skeleton.ScaleX;
