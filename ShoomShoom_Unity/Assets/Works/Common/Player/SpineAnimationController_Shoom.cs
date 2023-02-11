@@ -240,6 +240,7 @@ namespace SleepySpine
         {
             TrackEntry entry = _spineAnimationState.SetAnimation(WEAPON_SECONDARY_TRACK, "shoot", false);
             entry.AttachmentThreshold = 1;
+            _audioController.PlayPistolShot();
         }
     }
 
