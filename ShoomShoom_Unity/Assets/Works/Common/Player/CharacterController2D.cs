@@ -64,6 +64,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float _minShootInterval = 0.3f;
     float _shootTimer;
     Coroutine _shootCoroutine;
+    Vector2 _aimInput;
+    Vector3 _aimPos;
+    public Vector3 AimPos => _aimPos;
 
     private PlayerInputAction _inputAction;
 
@@ -86,8 +89,8 @@ public class CharacterController2D : MonoBehaviour
     int _localJumpCount;
 
     MovingDirection _dir = MovingDirection.Right;
+    public MovingDirection Dir => _dir;
     public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
-    public Vector3 AimPos { get; set; }
 
     //events
     public event UnityAction OnAimStart, OnAimMoved, OnAimEnd, OnShoot;
@@ -184,10 +187,8 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
-            Vector2 mousePosition = context.ReadValue<Vector2>();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            AimPos = worldPosition;
-            if (OnAimStart != null) OnAimStart.Invoke();
+            _aimInput = context.ReadValue<Vector2>();
+            PlayAimAction();
 
             // Start to shoot 
             if (OnShoot != null) OnShoot.Invoke();
@@ -196,10 +197,7 @@ public class CharacterController2D : MonoBehaviour
         }
         else if (context.performed)
         {
-            Vector2 mousePosition = context.ReadValue<Vector2>();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            AimPos = worldPosition;
-            if (OnAimMoved != null) OnAimMoved.Invoke();
+            _aimInput = context.ReadValue<Vector2>();
         }
         else if (context.canceled)
         {
@@ -209,20 +207,29 @@ public class CharacterController2D : MonoBehaviour
     }
     public bool IsTargetOpposite()
     {
-        if (_dir == MovingDirection.Left && AimPos.x > _characterTransform.position.x)
+        if (_dir == MovingDirection.Left && _aimPos.x > _characterTransform.position.x)
         {
             return true;
         }
-        else if (_dir == MovingDirection.Right && AimPos.x < _characterTransform.position.x)
+        else if (_dir == MovingDirection.Right && _aimPos.x < _characterTransform.position.x)
         {
             return true;
         }
         return false;
     }
+    private void PlayAimAction()
+    {
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(_aimInput);
+        _aimPos = worldPosition;
+        if (IsTargetOpposite()) _aimPos.x = _characterTransform.position.x;
+        if (OnAimMoved != null) OnAimMoved.Invoke();
+    }
     IEnumerator TestAndShoot()
     {
         while (true)
         {
+            // Call the aim callback even if mouse is not moved
+            PlayAimAction();
             // Test if the this shoot is too close to the last one
             float time = Time.time;
             if (time - _shootTimer >= _minShootInterval)
