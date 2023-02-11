@@ -89,6 +89,7 @@ public class CharacterController2D : MonoBehaviour
     int _localJumpCount;
 
     MovingDirection _dir = MovingDirection.Right;
+    public MovingDirection Dir => _dir;
     public ReactProps<PlayerState> CurPlayerState = new ReactProps<PlayerState>(PlayerState.Idle);
 
     //events

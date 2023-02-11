@@ -154,7 +154,6 @@ namespace SleepySpine
             else if (eventName == "shoot")
             {
                 if (OnGunShoot != null) OnGunShoot.Invoke();
-
             }
         }
 

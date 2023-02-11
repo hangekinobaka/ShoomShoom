@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 10780577}
   m_Layer: 6
   m_Name: ground
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,9 +477,9 @@ GameObject:
   - component: {fileID: 44078980}
   - component: {fileID: 44078982}
   - component: {fileID: 44078981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1008,9 +1008,9 @@ GameObject:
   - component: {fileID: 101891761}
   - component: {fileID: 101891763}
   - component: {fileID: 101891762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3122,7 +3122,7 @@ GameObject:
   - component: {fileID: 320135067}
   m_Layer: 7
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3457,6 +3457,7 @@ Transform:
   - {fileID: 676896834}
   - {fileID: 711525961}
   - {fileID: 1971946395}
+  - {fileID: 592900393}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3990,7 +3991,7 @@ GameObject:
   - component: {fileID: 414612030}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4261,7 +4262,7 @@ GameObject:
   - component: {fileID: 443516425}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4370,7 +4371,7 @@ GameObject:
   - component: {fileID: 459733173}
   m_Layer: 6
   m_Name: ground (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4484,9 +4485,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461676537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall_right
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5948,6 +5949,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &592900392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592900393}
+  - component: {fileID: 592900394}
+  m_Layer: 0
+  m_Name: DebugManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592900393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592900392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 379682412}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592900394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592900392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584fed71183638446b0fdaba391c0e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596957567
 GameObject:
   m_ObjectHideFlags: 0
@@ -6160,9 +6205,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 624733190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ceilling
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6324,7 +6369,7 @@ GameObject:
   - component: {fileID: 639771500}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12839,7 +12884,7 @@ GameObject:
   - component: {fileID: 773138895}
   m_Layer: 6
   m_Name: ground (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12869,9 +12914,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775862125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13397,7 +13442,7 @@ GameObject:
   - component: {fileID: 823495758}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13958,9 +14003,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869154352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14968,9 +15013,9 @@ GameObject:
   - component: {fileID: 928450048}
   - component: {fileID: 928450050}
   - component: {fileID: 928450049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15527,9 +15572,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040878422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall_left
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15691,7 +15736,7 @@ GameObject:
   - component: {fileID: 1057638559}
   m_Layer: 7
   m_Name: water-ground
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17705,7 +17750,7 @@ GameObject:
   - component: {fileID: 1282087672}
   m_Layer: 6
   m_Name: ground (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28044,9 +28089,9 @@ GameObject:
   - component: {fileID: 1385046511}
   - component: {fileID: 1385046513}
   - component: {fileID: 1385046512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28893,9 +28938,9 @@ GameObject:
   - component: {fileID: 1450401307}
   - component: {fileID: 1450401309}
   - component: {fileID: 1450401308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30670,6 +30715,7 @@ MonoBehaviour:
   _upSmokeEffect: {fileID: 1187432974947846494}
   _lowSmokeEffect: {fileID: 2050440150}
   _gunTopFollower: {fileID: 1192271050}
+  _bullet: {fileID: 5387314985685979820, guid: 3dbb9c561e708134fb819d2760a7c380, type: 3}
   _steamTankVolumeLimit: 5.5
 --- !u!1 &1586346394
 GameObject:
@@ -34839,6 +34885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunEffectPrefab: {fileID: 5558122383204632232, guid: 64a60d5df5f45cb4f86faa47d98d8ef8, type: 3}
+  _pistolBulletPrefab: {fileID: 5387314985685979820, guid: 3dbb9c561e708134fb819d2760a7c380, type: 3}
 --- !u!1 &1973934061
 GameObject:
   m_ObjectHideFlags: 0

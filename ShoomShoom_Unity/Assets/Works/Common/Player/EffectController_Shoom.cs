@@ -10,6 +10,7 @@ public class EffectController_Shoom : MonoBehaviour
     [SerializeField] ParticleSystem _upSmokeEffect;
     [SerializeField] ParticleSystem _lowSmokeEffect;
     [SerializeField] Transform _gunTopFollower;
+    [SerializeField] GameObject _bullet;
 
     [Header("Parameters")]
     [Tooltip("steam add 1f per second")]
@@ -91,13 +92,21 @@ public class EffectController_Shoom : MonoBehaviour
 
     public void PlayShootEffect()
     {
-        GameObject obj = PoolManager_Fightscene.Instance.GunEffectPool.Get(); ;
-        obj.transform.position = _gunTopFollower.position;
-        obj.transform.rotation = _gunTopFollower.rotation;
-
+        // Play smoke effect
+        GameObject smoke = PoolManager_Fightscene.Instance.GunEffectPool.Get();
+        smoke.transform.position = _gunTopFollower.position;
+        smoke.transform.rotation = _gunTopFollower.rotation;
         // Destroy the effect when it fades out
         Observable.Timer(System.TimeSpan.FromSeconds(2))
-            .Subscribe(_ => PoolManager_Fightscene.Instance.GunEffectPool.Release(obj))
-            .AddTo(this);
+            .Subscribe(_ => PoolManager_Fightscene.Instance.GunEffectPool.Release(smoke))
+            .AddTo(smoke);
+
+        // Shoot the bullet
+        GameObject bullet = PoolManager_Fightscene.Instance.PistolBulletPool.Get();
+        bullet.transform.position = _gunTopFollower.position;
+        bullet.transform.rotation = _gunTopFollower.rotation;
+        bullet.GetComponent<BulletController>().Init(
+            _characterController.Dir == MovingDirection.Right ? bullet.transform.right : -bullet.transform.right
+            );
     }
 }
