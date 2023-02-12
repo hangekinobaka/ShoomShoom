@@ -77,28 +77,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""6cd61717-a4c6-448f-9405-a8c0ae5d6d75"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""3c9baefb-253f-42a0-ab99-7516fc8bb1ff"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""left"",
                     ""id"": ""ee9ca94a-d607-4dee-883b-4fe6a973f7d2"",
                     ""path"": ""<Keyboard>/leftArrow"",
@@ -130,28 +108,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4c732454-ec35-4f96-a328-a74a5a251571"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""8cb1eb4a-ce64-4632-97b2-d442aaf8a1bc"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
@@ -233,7 +189,24 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""WebGL"",
+            ""bindingGroup"": ""WebGL"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Normal
         m_Normal = asset.FindActionMap("Normal", throwIfNotFound: true);
@@ -353,6 +326,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         }
     }
     public NormalActions @Normal => new NormalActions(this);
+    private int m_WebGLSchemeIndex = -1;
+    public InputControlScheme WebGLScheme
+    {
+        get
+        {
+            if (m_WebGLSchemeIndex == -1) m_WebGLSchemeIndex = asset.FindControlSchemeIndex("WebGL");
+            return asset.controlSchemes[m_WebGLSchemeIndex];
+        }
+    }
     public interface INormalActions
     {
         void OnMove(InputAction.CallbackContext context);

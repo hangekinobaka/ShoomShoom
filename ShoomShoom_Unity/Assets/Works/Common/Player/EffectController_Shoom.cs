@@ -92,10 +92,19 @@ public class EffectController_Shoom : MonoBehaviour
 
     public void PlayShootEffect()
     {
+        Vector3 aimPos = _characterController.AimPos;
+        aimPos.z = 1;
+        Vector3 gunPos = _gunTopFollower.position;
+        gunPos.z = 1;
+        Vector3 shootDir = (aimPos - gunPos).normalized;
+
         // Play smoke effect
         GameObject smoke = PoolManager_Fightscene.Instance.GunEffectPool.Get();
-        smoke.transform.position = _gunTopFollower.position;
+        Vector3 smokePos = gunPos;
+        smokePos += shootDir * .5f; // Add some offset to it
+        smoke.transform.position = smokePos;
         smoke.transform.rotation = _gunTopFollower.rotation;
+
         // Destroy the effect when it fades out
         Observable.Timer(System.TimeSpan.FromSeconds(2))
             .Subscribe(_ => PoolManager_Fightscene.Instance.GunEffectPool.Release(smoke))
@@ -103,8 +112,13 @@ public class EffectController_Shoom : MonoBehaviour
 
         // Shoot the bullet
         GameObject bullet = PoolManager_Fightscene.Instance.PistolBulletPool.Get();
-        bullet.transform.position = _gunTopFollower.position;
+        bullet.transform.position = gunPos;
+        Vector3 bulletAngle = bullet.transform.eulerAngles;
         bullet.transform.rotation = _gunTopFollower.rotation;
+        // flip the bullet sprite if the gun is towarding left
+        SpriteRenderer bulletRenderer = bullet.GetComponent<SpriteRenderer>();
+        if (_characterController.Dir == MovingDirection.Left) bulletRenderer.flipX = true;
+        else if (bulletRenderer.flipX) bulletRenderer.flipX = false;
         bullet.GetComponent<BulletController>().Init(
             _characterController.Dir == MovingDirection.Right ? bullet.transform.right : -bullet.transform.right
             );
