@@ -38,11 +38,15 @@ public class GameManager : Singleton<GameManager>
     {
         // display the loading screen
         LoadingScreenController.Instance.Show();
+        InputManager_Fightscene.Instance.EnableInput.SetState(false);
     }
 
     void SceneReadyHandler()
     {
         LoadingScreenController.Instance.FadeOut();
+        Observable.Timer(System.TimeSpan.FromSeconds(.1f))
+            .Subscribe(_ => InputManager_Fightscene.Instance.EnableInput.SetState(true))
+            .AddTo(this);
     }
 
     public void SetGameState(GameState state)
