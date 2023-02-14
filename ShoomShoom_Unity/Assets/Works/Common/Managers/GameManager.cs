@@ -1,9 +1,18 @@
 using UniRx;
 using UnityEngine;
 
+public enum PlatformType
+{
+    PC,
+    Mobile
+}
+
 public class GameManager : Singleton<GameManager>
 {
     public ReactProps<GameState> CurGameState = new ReactProps<GameState>();
+
+    // Global vals
+    public PlatformType CurPlatformType { private set; get; }
 
     protected override void Awake()
     {
@@ -32,17 +41,25 @@ public class GameManager : Singleton<GameManager>
         }).AddTo(this);
 
         SetGameState(GameState.BeforeInit);
+
+        // Detect current platform
+        if (Application.isMobilePlatform) CurPlatformType = PlatformType.Mobile;
+        else CurPlatformType = PlatformType.PC;
     }
 
     void PrepareScene()
     {
         // display the loading screen
         LoadingScreenController.Instance.Show();
+        InputManager_Fightscene.Instance.EnableInput.SetState(false);
     }
 
     void SceneReadyHandler()
     {
         LoadingScreenController.Instance.FadeOut();
+        Observable.Timer(System.TimeSpan.FromSeconds(.1f))
+            .Subscribe(_ => InputManager_Fightscene.Instance.EnableInput.SetState(true))
+            .AddTo(this);
     }
 
     public void SetGameState(GameState state)

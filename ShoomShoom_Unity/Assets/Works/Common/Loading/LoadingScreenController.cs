@@ -6,6 +6,7 @@ public class LoadingScreenController : Singleton<LoadingScreenController>
     [SerializeField] CanvasGroup _canvasGroup;
     [SerializeField] float _defaultDuration = .3f;
 
+    public float DefaultDuration => _defaultDuration;
     void Start()
     {
         DontDestroyOnLoad(gameObject);
