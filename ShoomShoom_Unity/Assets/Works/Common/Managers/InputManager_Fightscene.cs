@@ -1,4 +1,5 @@
 using UniRx;
+using UnityEngine.InputSystem;
 
 public class InputManager_Fightscene : Singleton<InputManager_Fightscene>
 {
@@ -10,8 +11,11 @@ public class InputManager_Fightscene : Singleton<InputManager_Fightscene>
 
     private void Start()
     {
-        InputManager_Fightscene.Instance.EnableInput.SetState(false);
+        EnableInput.SetState(false);
         _playerInputAction = new PlayerInputAction();
+
+        SwitchScheme();
+
         EnableInput.State.Subscribe(enabled =>
         {
             SwitchInputState(enabled);
@@ -34,5 +38,15 @@ public class InputManager_Fightscene : Singleton<InputManager_Fightscene>
             _playerInputAction.Normal.Disable();
         }
 
+    }
+
+    void SwitchScheme()
+    {
+
+        // Switch scheme for different platform
+        if (GameManager.Instance.CurPlatformType == PlatformType.Mobile)
+            _playerInputAction.bindingMask = InputBinding.MaskByGroup(_playerInputAction.MobileScheme.bindingGroup);
+        else
+            _playerInputAction.bindingMask = InputBinding.MaskByGroup(_playerInputAction.PCScheme.bindingGroup);
     }
 }
