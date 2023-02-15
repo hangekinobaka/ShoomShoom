@@ -9,6 +9,9 @@ public enum PlatformType
 
 public class GameManager : Singleton<GameManager>
 {
+    // References
+    [SerializeField] DebugManager _debugManager;
+
     public ReactProps<GameState> CurGameState = new ReactProps<GameState>();
 
     // Global vals
@@ -43,7 +46,8 @@ public class GameManager : Singleton<GameManager>
         SetGameState(GameState.BeforeInit);
 
         // Detect current platform
-        if (Application.isMobilePlatform) CurPlatformType = PlatformType.Mobile;
+        if (_debugManager != null && _debugManager.SimulateMobile) CurPlatformType = PlatformType.Mobile;
+        else if (Application.isMobilePlatform) CurPlatformType = PlatformType.Mobile;
         else CurPlatformType = PlatformType.PC;
     }
 
