@@ -103,23 +103,11 @@ public class CharacterController2D : MonoBehaviour
         // Get layer masks
         _normalGroundMask = LayerMask.GetMask("Ground");
         _waterGroundMask = LayerMask.GetMask("GroundWater");
-        // Init basic vals
-        _normalScale = _characterTransform.localScale;
-        _flippedScale = _normalScale;
-        _flippedScale.x = -_flippedScale.x;
-        _prepareJump = false;
-        _isLanding = false;
-
-        CurPlayerState.SetState(PlayerState.Idle);
     }
 
     void Start()
     {
-        // Init vals
-        _normalFocalPos = _focalPoint.localPosition;
-        _flippedFocalPos = _normalFocalPos;
-        _flippedFocalPos.x = -_flippedFocalPos.x;
-        _localJumpCount = _jumpCount;
+        Init();
 
         // Input system
         _inputAction = InputManager_Fightscene.Instance.Player;
@@ -132,6 +120,27 @@ public class CharacterController2D : MonoBehaviour
         _inputAction.Normal.AimShoot.performed += AimInputHandler;
         _inputAction.Normal.AimShoot.canceled += AimInputHandler;
     }
+
+    private void Init()
+    {
+        // Init basic vals
+        _normalScale = _characterTransform.localScale;
+        _flippedScale = _normalScale;
+        _flippedScale.x = -_flippedScale.x;
+        _prepareJump = false;
+        _isLanding = false;
+
+        _normalFocalPos = _focalPoint.localPosition;
+        _flippedFocalPos = _normalFocalPos;
+        _flippedFocalPos.x = -_flippedFocalPos.x;
+        _localJumpCount = _jumpCount;
+
+        if (GameManager.Instance.CurPlatformType == PlatformType.Mobile)
+            _isSprinting = true;
+
+        CurPlayerState.SetState(PlayerState.Idle);
+    }
+
 
     private void OnDisable()
     {
