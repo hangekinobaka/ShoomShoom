@@ -174,6 +174,39 @@
                     "action": "AimShoot",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "9488c0f0-53f9-4e34-b73b-d4fb55068493",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimShoot",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "6d05ed0e-8900-4473-b3d6-c893e9ea1278",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "AimShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "b894dee2-0b7f-4717-ab92-d4c5bd73ba39",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "AimShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

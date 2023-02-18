@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LoadingScreenController : Singleton<LoadingScreenController>
 {
+    [SerializeField] GameObject _canvas;
     [SerializeField] CanvasGroup _canvasGroup;
     [SerializeField] float _defaultDuration = .3f;
 
@@ -14,11 +15,13 @@ public class LoadingScreenController : Singleton<LoadingScreenController>
 
     public void Show()
     {
+        _canvas.SetActive(true);
         _canvasGroup.alpha = 1;
     }
 
     public void Hide()
     {
+        _canvas.SetActive(false);
         _canvasGroup.alpha = 0;
     }
 
@@ -28,7 +31,11 @@ public class LoadingScreenController : Singleton<LoadingScreenController>
     }
     public void FadeIn(float duration)
     {
-        _canvasGroup.DOFade(1, duration);
+        _canvasGroup.DOFade(1, duration)
+            .OnComplete(() =>
+            {
+                _canvas.SetActive(true);
+            });
     }
 
     public void FadeOut()
@@ -37,6 +44,11 @@ public class LoadingScreenController : Singleton<LoadingScreenController>
     }
     public void FadeOut(float duration)
     {
-        _canvasGroup.DOFade(0, duration);
+        _canvas.SetActive(true);
+        _canvasGroup.DOFade(0, duration)
+        .OnComplete(() =>
+        {
+            _canvas.SetActive(false);
+        });
     }
 }
