@@ -196,6 +196,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
+            if (SleepyUtil.InputUtil.IsPointerOverUIObject()) return;
             _aimInput = context.ReadValue<Vector2>();
             PlayAimAction();
 
@@ -211,7 +212,7 @@ public class CharacterController2D : MonoBehaviour
         else if (context.canceled)
         {
             if (OnAimEnd != null) OnAimEnd.Invoke();
-            StopCoroutine(_shootCoroutine);
+            if (_shootCoroutine != null) StopCoroutine(_shootCoroutine);
         }
     }
     public bool IsTargetOpposite()
