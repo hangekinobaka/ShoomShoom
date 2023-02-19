@@ -31,5 +31,18 @@ namespace SleepyUtil
 
             return false;
         }
+
+        public static bool IsPointerOverUIObject(Vector2 pos)
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = new Vector2(pos.x, pos.y);
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            foreach (RaycastResult r in results)
+                if (r.gameObject.GetComponent<RectTransform>() != null)
+                    return true;
+
+            return false;
+        }
     }
 }

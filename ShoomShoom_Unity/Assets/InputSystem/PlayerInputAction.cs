@@ -148,7 +148,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""PC;Mobile"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

@@ -126,7 +126,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
+                    "groups": "PC;Mobile",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
