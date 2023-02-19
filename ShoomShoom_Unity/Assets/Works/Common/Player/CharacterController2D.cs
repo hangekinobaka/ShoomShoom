@@ -196,8 +196,8 @@ public class CharacterController2D : MonoBehaviour
     {
         if (context.started)
         {
-            if (SleepyUtil.InputUtil.IsPointerOverUIObject()) return;
             _aimInput = context.ReadValue<Vector2>();
+            if (SleepyUtil.InputUtil.IsPointerOverUIObject(_aimInput)) return;
             PlayAimAction();
 
             // Start to shoot 
