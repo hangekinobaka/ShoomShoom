@@ -7,6 +7,9 @@ public class LevelManager_Fightscene : Singleton<LevelManager_Fightscene>
     [SerializeField] Transform _player;
     Vector3 _initPlayerPos;
 
+    // public vars
+    public Transform PlayerTrans => _player;
+
     protected override void Awake()
     {
         base.Awake();

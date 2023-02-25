@@ -3,120 +3,120 @@
 	{ "name": "root" }
 ],
 "slots": [
-	{ "name": "base", "bone": "root", "attachment": "base" },
-	{ "name": "body-back", "bone": "root", "attachment": "body-back" },
-	{ "name": "neck-tube-up", "bone": "root", "attachment": "neck-tube-up" },
-	{ "name": "neck", "bone": "root", "attachment": "neck" },
-	{ "name": "neck-pole", "bone": "root", "attachment": "neck-pole" },
-	{ "name": "neck-tube-bottom", "bone": "root", "attachment": "neck-tube-bottom" },
-	{ "name": "body", "bone": "root", "attachment": "body" },
-	{ "name": "hind-legs", "bone": "root", "attachment": "hind-legs" },
-	{ "name": "stove", "bone": "root", "attachment": "stove" },
-	{ "name": "body-pipe-2", "bone": "root", "attachment": "body-pipe-2" },
-	{ "name": "body-pipe-1", "bone": "root", "attachment": "body-pipe-1" },
-	{ "name": "exhaust-pipe-1", "bone": "root", "attachment": "exhaust-pipe-1" },
-	{ "name": "exhaust-pipe-2", "bone": "root", "attachment": "exhaust-pipe-2" },
-	{ "name": "exhaust-pipe", "bone": "root", "attachment": "exhaust-pipe" },
-	{ "name": "collarc", "bone": "root", "attachment": "collarc" },
-	{ "name": "chest", "bone": "root", "attachment": "chest" },
-	{ "name": "ear-back", "bone": "root", "attachment": "ear-back" },
-	{ "name": "jaw-back", "bone": "root", "attachment": "jaw-back" },
-	{ "name": "face-back", "bone": "root", "attachment": "face-back" },
-	{ "name": "gun", "bone": "root", "attachment": "gun" },
-	{ "name": "head", "bone": "root", "attachment": "head" },
-	{ "name": "face", "bone": "root", "attachment": "face" },
-	{ "name": "eye", "bone": "root", "attachment": "eye" },
-	{ "name": "jaw-front", "bone": "root", "attachment": "jaw-front" },
-	{ "name": "jaw-screw", "bone": "root", "attachment": "jaw-screw" },
-	{ "name": "ear-front", "bone": "root", "attachment": "ear-front" },
-	{ "name": "neck-gear-s", "bone": "root", "attachment": "neck-gear-s" },
-	{ "name": "neck-gear-l", "bone": "root", "attachment": "neck-gear-l" }
+	{ "name": "base", "bone": "root", "attachment": "normal/base" },
+	{ "name": "body-back", "bone": "root", "attachment": "normal/body-back" },
+	{ "name": "neck-tube-up", "bone": "root", "attachment": "normal/neck-tube-up" },
+	{ "name": "neck", "bone": "root", "attachment": "normal/neck" },
+	{ "name": "neck-pole", "bone": "root", "attachment": "normal/neck-pole" },
+	{ "name": "neck-tube-bottom", "bone": "root", "attachment": "normal/neck-tube-bottom" },
+	{ "name": "body", "bone": "root", "attachment": "normal/body" },
+	{ "name": "hind-legs", "bone": "root", "attachment": "normal/hind-legs" },
+	{ "name": "stove", "bone": "root", "attachment": "normal/stove" },
+	{ "name": "body-pipe-2", "bone": "root", "attachment": "normal/body-pipe-2" },
+	{ "name": "body-pipe-1", "bone": "root", "attachment": "normal/body-pipe-1" },
+	{ "name": "exhaust-pipe-1", "bone": "root", "attachment": "normal/exhaust-pipe-1" },
+	{ "name": "exhaust-pipe-2", "bone": "root", "attachment": "normal/exhaust-pipe-2" },
+	{ "name": "exhaust-pipe", "bone": "root", "attachment": "normal/exhaust-pipe" },
+	{ "name": "collarc", "bone": "root", "attachment": "normal/collarc" },
+	{ "name": "chest", "bone": "root", "attachment": "normal/chest" },
+	{ "name": "ear-back", "bone": "root", "attachment": "normal/ear-back" },
+	{ "name": "jaw-back", "bone": "root", "attachment": "normal/jaw-back" },
+	{ "name": "face-back", "bone": "root", "attachment": "normal/face-back" },
+	{ "name": "gun", "bone": "root", "attachment": "normal/gun" },
+	{ "name": "head", "bone": "root", "attachment": "normal/head" },
+	{ "name": "face", "bone": "root", "attachment": "normal/face" },
+	{ "name": "eye", "bone": "root", "attachment": "normal/eye" },
+	{ "name": "jaw-front", "bone": "root", "attachment": "normal/jaw-front" },
+	{ "name": "jaw-screw", "bone": "root", "attachment": "normal/jaw-screw" },
+	{ "name": "ear-front", "bone": "root", "attachment": "normal/ear-front" },
+	{ "name": "neck-gear-s", "bone": "root", "attachment": "normal/neck-gear-s" },
+	{ "name": "neck-gear-l", "bone": "root", "attachment": "normal/neck-gear-l" }
 ],
 "skins": {
 	"default": {
 		"base": {
-			"base": { "x": 401.45, "y": -582.6, "width": 156, "height": 59 }
+			"normal/base": { "x": 401.45, "y": -582.6, "width": 156, "height": 59 }
 		},
 		"body-back": {
-			"body-back": { "x": 313.63, "y": -401.79, "width": 124, "height": 122 }
+			"normal/body-back": { "x": 313.63, "y": -401.79, "width": 124, "height": 122 }
 		},
 		"neck-tube-up": {
-			"neck-tube-up": { "x": 359.07, "y": -322.66, "width": 41, "height": 90 }
+			"normal/neck-tube-up": { "x": 359.07, "y": -322.66, "width": 41, "height": 90 }
 		},
 		"neck": {
-			"neck": { "x": 305.12, "y": -356.12, "width": 141, "height": 139 }
+			"normal/neck": { "x": 305.12, "y": -356.12, "width": 141, "height": 139 }
 		},
 		"neck-pole": {
-			"neck-pole": { "x": 317.93, "y": -370.07, "width": 57, "height": 130 }
+			"normal/neck-pole": { "x": 317.93, "y": -370.07, "width": 57, "height": 130 }
 		},
 		"neck-tube-bottom": {
-			"neck-tube-bottom": { "x": 251.69, "y": -343.74, "width": 48, "height": 68 }
+			"normal/neck-tube-bottom": { "x": 251.69, "y": -343.74, "width": 48, "height": 68 }
 		},
 		"body": {
-			"body": { "x": 420.41, "y": -455.26, "width": 204, "height": 228 }
+			"normal/body": { "x": 420.41, "y": -455.26, "width": 204, "height": 228 }
 		},
 		"hind-legs": {
-			"hind-legs": { "x": 416.28, "y": -491.06, "width": 134, "height": 169 }
+			"normal/hind-legs": { "x": 416.28, "y": -491.06, "width": 134, "height": 169 }
 		},
 		"stove": {
-			"stove": { "x": 417.16, "y": -469.83, "width": 103, "height": 59 }
+			"normal/stove": { "x": 417.16, "y": -469.83, "width": 103, "height": 59 }
 		},
 		"body-pipe-2": {
-			"body-pipe-2": { "x": 470.85, "y": -402.5, "width": 68, "height": 79 }
+			"normal/body-pipe-2": { "x": 470.85, "y": -402.5, "width": 68, "height": 79 }
 		},
 		"body-pipe-1": {
-			"body-pipe-1": { "x": 444.69, "y": -388.51, "width": 56, "height": 78 }
+			"normal/body-pipe-1": { "x": 444.69, "y": -388.51, "width": 56, "height": 78 }
 		},
 		"exhaust-pipe-1": {
-			"exhaust-pipe-1": { "x": 534.32, "y": -349.55, "width": 45, "height": 103 }
+			"normal/exhaust-pipe-1": { "x": 534.32, "y": -349.55, "width": 45, "height": 103 }
 		},
 		"exhaust-pipe-2": {
-			"exhaust-pipe-2": { "x": 551.68, "y": -361.09, "width": 52, "height": 90 }
+			"normal/exhaust-pipe-2": { "x": 551.68, "y": -361.09, "width": 52, "height": 90 }
 		},
 		"exhaust-pipe": {
-			"exhaust-pipe": { "x": 527.1, "y": -419.09, "width": 86, "height": 100 }
+			"normal/exhaust-pipe": { "x": 527.1, "y": -419.09, "width": 86, "height": 100 }
 		},
 		"collarc": {
-			"collarc": { "x": 401.86, "y": -368.93, "width": 85, "height": 97 }
+			"normal/collarc": { "x": 401.86, "y": -368.93, "width": 85, "height": 97 }
 		},
 		"chest": {
-			"chest": { "x": 305.98, "y": -473.04, "width": 178, "height": 200 }
+			"normal/chest": { "x": 305.98, "y": -473.04, "width": 178, "height": 200 }
 		},
 		"ear-back": {
-			"ear-back": { "x": 266.96, "y": -189.08, "width": 42, "height": 85 }
+			"normal/ear-back": { "x": 266.96, "y": -189.08, "width": 42, "height": 85 }
 		},
 		"jaw-back": {
-			"jaw-back": { "x": 235.42, "y": -312.61, "width": 178, "height": 129 }
+			"normal/jaw-back": { "x": 235.42, "y": -312.61, "width": 178, "height": 129 }
 		},
 		"face-back": {
-			"face-back": { "x": 227.77, "y": -249.4, "width": 232, "height": 108 }
+			"normal/face-back": { "x": 227.77, "y": -249.4, "width": 232, "height": 108 }
 		},
 		"gun": {
-			"gun": { "x": 187.62, "y": -292.25, "width": 221, "height": 79 }
+			"normal/gun": { "x": 187.62, "y": -292.25, "width": 221, "height": 79 }
 		},
 		"head": {
-			"head": { "x": 309.53, "y": -268.98, "width": 78, "height": 89 }
+			"normal/head": { "x": 309.53, "y": -268.98, "width": 78, "height": 89 }
 		},
 		"face": {
-			"face": { "x": 227.26, "y": -253.7, "width": 202, "height": 112 }
+			"normal/face": { "x": 227.26, "y": -253.7, "width": 202, "height": 112 }
 		},
 		"eye": {
-			"eye": { "x": 258.16, "y": -240.76, "width": 37, "height": 27 }
+			"normal/eye": { "x": 258.16, "y": -240.76, "width": 37, "height": 27 }
 		},
 		"jaw-front": {
-			"jaw-front": { "x": 246.11, "y": -316.15, "width": 183, "height": 132 }
+			"normal/jaw-front": { "x": 246.11, "y": -316.15, "width": 183, "height": 132 }
 		},
 		"jaw-screw": {
-			"jaw-screw": { "x": 317.4, "y": -270.91, "width": 32, "height": 36 }
+			"normal/jaw-screw": { "x": 317.4, "y": -270.91, "width": 32, "height": 36 }
 		},
 		"ear-front": {
-			"ear-front": { "x": 315.45, "y": -197.11, "width": 47, "height": 108 }
+			"normal/ear-front": { "x": 315.45, "y": -197.11, "width": 47, "height": 108 }
 		},
 		"neck-gear-s": {
-			"neck-gear-s": { "x": 347.53, "y": -340.93, "width": 28, "height": 27 }
+			"normal/neck-gear-s": { "x": 347.53, "y": -340.93, "width": 28, "height": 27 }
 		},
 		"neck-gear-l": {
-			"neck-gear-l": { "x": 336.22, "y": -310.29, "width": 52, "height": 53 }
+			"normal/neck-gear-l": { "x": 336.22, "y": -310.29, "width": 52, "height": 53 }
 		}
 	}
 },
