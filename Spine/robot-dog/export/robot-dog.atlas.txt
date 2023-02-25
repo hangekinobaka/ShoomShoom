@@ -1,0 +1,223 @@
+
+robot-dog.png
+size: 143,1027
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+normal/base
+  rotate: true
+  xy: 105, 350
+  size: 94, 35
+  orig: 94, 35
+  offset: 0, 0
+  index: -1
+normal/body
+  rotate: true
+  xy: 2, 836
+  size: 122, 137
+  orig: 122, 137
+  offset: 0, 0
+  index: -1
+normal/body-back
+  rotate: false
+  xy: 2, 171
+  size: 74, 73
+  orig: 74, 73
+  offset: 0, 0
+  index: -1
+normal/body-pipe-1
+  rotate: true
+  xy: 72, 48
+  size: 34, 47
+  orig: 34, 47
+  offset: 0, 0
+  index: -1
+normal/body-pipe-2
+  rotate: false
+  xy: 29, 6
+  size: 41, 47
+  orig: 41, 47
+  offset: 0, 0
+  index: -1
+normal/chest
+  rotate: true
+  xy: 2, 609
+  size: 107, 120
+  orig: 107, 120
+  offset: 0, 0
+  index: -1
+normal/collarc
+  rotate: false
+  xy: 89, 228
+  size: 51, 58
+  orig: 51, 58
+  offset: 0, 0
+  index: -1
+normal/ear-back
+  rotate: false
+  xy: 2, 2
+  size: 25, 51
+  orig: 25, 51
+  offset: 0, 0
+  index: -1
+normal/ear-front
+  rotate: true
+  xy: 2, 141
+  size: 28, 65
+  orig: 28, 65
+  offset: 0, 0
+  index: -1
+normal/exhaust-pipe
+  rotate: false
+  xy: 89, 288
+  size: 52, 60
+  orig: 52, 60
+  offset: 0, 0
+  index: -1
+normal/exhaust-pipe-1
+  rotate: false
+  xy: 114, 545
+  size: 27, 62
+  orig: 27, 62
+  offset: 0, 0
+  index: -1
+normal/exhaust-pipe-2
+  rotate: true
+  xy: 66, 84
+  size: 31, 54
+  orig: 31, 54
+  offset: 0, 0
+  index: -1
+normal/eye
+  rotate: true
+  xy: 125, 763
+  size: 22, 16
+  orig: 22, 16
+  offset: 0, 0
+  index: -1
+normal/face
+  rotate: false
+  xy: 2, 718
+  size: 121, 67
+  orig: 121, 67
+  offset: 0, 0
+  index: -1
+normal/face-back
+  rotate: false
+  xy: 2, 960
+  size: 139, 65
+  orig: 139, 65
+  offset: 0, 0
+  index: -1
+normal/gun
+  rotate: false
+  xy: 2, 787
+  size: 133, 47
+  orig: 133, 47
+  offset: 0, 0
+  index: -1
+normal/head
+  rotate: true
+  xy: 2, 55
+  size: 47, 53
+  orig: 47, 53
+  offset: 0, 0
+  index: -1
+normal/hind-legs
+  rotate: true
+  xy: 2, 367
+  size: 80, 101
+  orig: 80, 101
+  offset: 0, 0
+  index: -1
+normal/jaw-back
+  rotate: false
+  xy: 2, 449
+  size: 107, 77
+  orig: 107, 77
+  offset: 0, 0
+  index: -1
+normal/jaw-front
+  rotate: false
+  xy: 2, 528
+  size: 110, 79
+  orig: 110, 79
+  offset: 0, 0
+  index: -1
+normal/jaw-screw
+  rotate: false
+  xy: 122, 93
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+normal/neck
+  rotate: false
+  xy: 2, 282
+  size: 85, 83
+  orig: 85, 83
+  offset: 0, 0
+  index: -1
+normal/neck-gear-l
+  rotate: false
+  xy: 72, 14
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+normal/neck-gear-s
+  rotate: true
+  xy: 125, 744
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+normal/neck-pole
+  rotate: true
+  xy: 2, 246
+  size: 34, 78
+  orig: 34, 78
+  offset: 0, 0
+  index: -1
+normal/neck-tube-bottom
+  rotate: false
+  xy: 111, 446
+  size: 29, 41
+  orig: 29, 41
+  offset: 0, 0
+  index: -1
+normal/neck-tube-up
+  rotate: false
+  xy: 114, 489
+  size: 25, 54
+  orig: 25, 54
+  offset: 0, 0
+  index: -1
+stove/stove1
+  rotate: false
+  xy: 78, 191
+  size: 62, 35
+  orig: 62, 35
+  offset: 0, 0
+  index: -1
+stove/stove2
+  rotate: false
+  xy: 78, 154
+  size: 62, 35
+  orig: 62, 35
+  offset: 0, 0
+  index: -1
+stove/stove3
+  rotate: false
+  xy: 69, 117
+  size: 62, 35
+  orig: 62, 35
+  offset: 0, 0
+  index: -1
+stove/stove4
+  rotate: false
+  xy: 2, 104
+  size: 62, 35
+  orig: 62, 35
+  offset: 0, 0
+  index: -1
