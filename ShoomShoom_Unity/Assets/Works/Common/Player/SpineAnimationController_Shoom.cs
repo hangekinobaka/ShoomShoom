@@ -54,6 +54,7 @@ namespace SleepySpine
 
             // Get necessary bones
             _aimBone = _skeletonAnimation.Skeleton.FindBone(_aimBoneName);
+
             // Register controller events
             _characterController.OnAimStart += PlayAimAnim;
             _characterController.OnAimMoved += UpdateAimAnim;
