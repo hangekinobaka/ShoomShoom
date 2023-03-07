@@ -62,8 +62,9 @@ public class EnemyController : MonoBehaviour
     // local states
     protected bool _isChasing = false;
     protected bool _inAttackRange = false;
-    protected Vector3 _velocity;
+    protected Vector2 _velocity;
     public ReactProps<EnemyState> CurEnemyState = new ReactProps<EnemyState>(EnemyState.Idle);
+    MovingDirection _dir = MovingDirection.Right;
 
     //events
     public event UnityAction OnAttack, OnDistanceAttack;
@@ -87,6 +88,7 @@ public class EnemyController : MonoBehaviour
             _healthController = GetComponent<HealthController>();
         _healthController.Init();
         _healthController.OnDead += Die;
+        _dir = MovingDirection.Right;
     }
 
     private void OnDisable()
@@ -114,7 +116,7 @@ public class EnemyController : MonoBehaviour
         // Chase if player enter the detection range
         if (distanceToPlayer < _chaseRange && distanceToPlayer > _chaseStopRange)
         {
-            Vector3 moveDir = (_playerTrans.position - transform.position).normalized;
+            Vector2 moveDir = (_playerTrans.position - transform.position).normalized;
             moveDir.y = 0;
 
             _velocity += moveDir * _accSpeed * Time.fixedDeltaTime;
@@ -131,7 +133,7 @@ public class EnemyController : MonoBehaviour
             if (_velocity.magnitude > 0)
             {
                 // Smoothly reduce the velocity
-                Vector3.SmoothDamp(_velocity, Vector3.zero, ref _velocity, .8f);
+                Vector2.SmoothDamp(_velocity, Vector2.zero, ref _velocity, .8f);
             }
             // Player is in the attack range
             _inAttackRange = true;
@@ -165,13 +167,19 @@ public class EnemyController : MonoBehaviour
         }
 
         // Go back to the patrol range if is currently out of range
-        if (curX < leftX)
+        if (curX <= leftX)
         {
-            _velocity += Vector3.right * _accSpeed * Time.fixedDeltaTime;
+            _velocity += Vector2.right * _accSpeed * Time.fixedDeltaTime;
         }
-        else if (curX > rightX)
+        else if (curX >= rightX)
         {
-            _velocity += Vector3.left * _accSpeed * Time.fixedDeltaTime;
+            _velocity += Vector2.left * _accSpeed * Time.fixedDeltaTime;
+        }
+        // If in the range, start patrol
+        else
+        {
+            // try to keep moving toward the current direction
+            _velocity += (_dir == MovingDirection.Right ? Vector2.right : Vector2.left) * _accSpeed * Time.fixedDeltaTime;
         }
         // Clamp horizontal speed.
         _velocity.x = Mathf.Clamp(_velocity.x, -_speed, _speed);
@@ -184,14 +192,16 @@ public class EnemyController : MonoBehaviour
         if (_velocity.x > 0)
         {
             _myModelTrans.transform.localScale = RIGHT_DIR_SCALE;
+            _dir = MovingDirection.Right;
         }
         else if (_velocity.x < 0)
         {
             _myModelTrans.transform.localScale = LEFT_DIR_SCALE;
+            _dir = MovingDirection.Left;
         }
         else
         {
-            // if in sttack range, then always face the player
+            // if in attack range, then always face the player
             if (_inAttackRange)
             {
                 if (_playerTrans.position.x <= _myModelTrans.position.x)
@@ -207,7 +217,10 @@ public class EnemyController : MonoBehaviour
     }
     void UpdatePhysics()
     {
-        _rigidbody.velocity = _velocity;
+        if ((_velocity - _rigidbody.velocity).sqrMagnitude >= 0.001f)
+        {
+            _rigidbody.velocity = _velocity;
+        }
     }
     void UpdateState()
     {
@@ -240,8 +253,22 @@ public class EnemyController : MonoBehaviour
                 _startPoint = _startPointTrans.position;
             }
 
+            Vector3 centerPoint = _startPoint;
+            switch (_patrolType)
+            {
+                case PatrolType.FromCenter:
+                    break;
+                case PatrolType.LeftToRight:
+                    centerPoint.x += _patrolRange / 2;
+                    break;
+                case PatrolType.RightToLeft:
+                    centerPoint.x -= _patrolRange / 2;
+                    break;
+                default:
+                    break;
+            }
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(_startPoint, _patrolRange);
+            Gizmos.DrawWireSphere(centerPoint, _patrolRange);
         }
     }
 #endif
