@@ -11,7 +11,6 @@ namespace SleepySpine
 
         [SerializeField] protected EnemyController _enemyController;
 
-
         TrackEntry _trackMain => _skeletonAnimation.GetCurrentEntry(MAIN_TRACK);
         TrackEntry _trackSecondary => _skeletonAnimation.GetCurrentEntry(SECONDARY_TRACK);
 
