@@ -5595,7 +5595,6 @@ GameObject:
   - component: {fileID: 8914023826469171}
   - component: {fileID: 8914023826469168}
   - component: {fileID: 8914023826469167}
-  - component: {fileID: 8914023826469166}
   m_Layer: 0
   m_Name: shoom-shoom
   m_TagString: Untagged
@@ -5738,22 +5737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseSkin: normal-with-backpack
---- !u!114 &8914023826469166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8914023826469173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f726fb798ad621458c431cb9966d91d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneRoot: {fileID: 0}
-  flipBy180DegreeRotation: 0
-  skeletonRenderer: {fileID: 8914023826469171}
-  skeletonGraphic: {fileID: 0}
 --- !u!1 &8914023902287862
 GameObject:
   m_ObjectHideFlags: 0
