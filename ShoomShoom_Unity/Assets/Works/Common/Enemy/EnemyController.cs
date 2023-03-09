@@ -46,12 +46,22 @@ public class EnemyController : MonoBehaviour
     [SerializeField] bool _showChaseRange = true;
     [ConditionalDisplay("_willChase", false)]
     [SerializeField] protected float _chaseRange = 18.0f;
-    [ConditionalDisplay("_willChase", false)]
-    [SerializeField] protected float _chaseStopRange = 10.0f;
 
     [Header("Attacks")]
-    [Tooltip("Basic attack damage")]
-    [SerializeField] protected float _attackDamage = 10.0f;
+    [SerializeField] protected bool _hasCloseAttack = true;
+    [ConditionalDisplay("_hasCloseAttack", true)]
+    [SerializeField] protected float _closeAttackDamage = 10.0f;
+    [ConditionalDisplay("_hasCloseAttack", true)]
+    [SerializeField] protected float _closeAttackRange = 3.0f;
+
+    [SerializeField] protected bool _hasDistanceAttack = true;
+    [ConditionalDisplay("_hasDistanceAttack", true)]
+    [SerializeField] protected float _distanceAttackDamage = 10.0f;
+    [ConditionalDisplay("_hasDistanceAttack", true)]
+    [SerializeField] protected float _distanceAttackRange = 10.0f;
+
+    Vector3 _attackTargetPos = Vector3.zero;
+    public Vector3 AttackTargetPos => _attackTargetPos;
 
     [Header("Refs")]
     [SerializeField] protected Transform _myModelTrans;
@@ -67,7 +77,7 @@ public class EnemyController : MonoBehaviour
     MovingDirection _dir = MovingDirection.Right;
 
     //events
-    public event UnityAction OnAttack, OnDistanceAttack;
+    public event UnityAction OnAttack, OnDistanceAttackStart, OnDistanceAttackStop;
 
     void Start()
     {
@@ -111,10 +121,12 @@ public class EnemyController : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTrans.position);
 
         _isChasing = false;
-        _inAttackRange = false;
+
+        float chaseStopRange = _hasCloseAttack ? _closeAttackRange : 0;
+        chaseStopRange = _hasDistanceAttack ? _distanceAttackRange : chaseStopRange;
 
         // Chase if player enter the detection range
-        if (distanceToPlayer < _chaseRange && distanceToPlayer > _chaseStopRange)
+        if (distanceToPlayer < _chaseRange && distanceToPlayer > chaseStopRange)
         {
             Vector2 moveDir = (_playerTrans.position - transform.position).normalized;
             moveDir.y = 0;
@@ -125,9 +137,14 @@ public class EnemyController : MonoBehaviour
             _velocity.x = Mathf.Clamp(_velocity.x, -_speed, _speed);
 
             _isChasing = true;
+            if (_inAttackRange)
+            {
+                _inAttackRange = false;
+                if (_hasDistanceAttack && OnDistanceAttackStop != null) OnDistanceAttackStop();
+            }
         }
         // Stop when the player enter the attack range(and attack)
-        else if (distanceToPlayer <= _chaseStopRange)
+        else if (distanceToPlayer <= chaseStopRange)
         {
             // if it is moving then stop it first
             if (_velocity.magnitude > 0)
@@ -137,6 +154,19 @@ public class EnemyController : MonoBehaviour
             }
             // Player is in the attack range
             _inAttackRange = true;
+            _isChasing = false;
+
+            // Get target pos
+            _attackTargetPos = _playerTrans.position;
+            _attackTargetPos.y += 3f;
+            // Trigger attack actions
+            if (_hasCloseAttack && distanceToPlayer <= _closeAttackRange && OnAttack != null) OnAttack();
+            if (_hasDistanceAttack && OnDistanceAttackStart != null) OnDistanceAttackStart();
+        }
+        else
+        {
+            _inAttackRange = false;
+            _isChasing = false;
         }
     }
 
@@ -183,7 +213,6 @@ public class EnemyController : MonoBehaviour
         }
         // Clamp horizontal speed.
         _velocity.x = Mathf.Clamp(_velocity.x, -_speed, _speed);
-
     }
 
     void UpdateDirection()
@@ -241,8 +270,6 @@ public class EnemyController : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _chaseRange);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, _chaseStopRange);
         }
 
         if (!_isStationary && _showPatrolRange)

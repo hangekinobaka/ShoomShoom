@@ -36726,6 +36726,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 553533320733001946, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
+      propertyPath: _aimBoneName
+      value: target
+      objectReference: {fileID: 0}
     - target: {fileID: 553533321126742291, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
       propertyPath: m_Name
       value: RobotDog
