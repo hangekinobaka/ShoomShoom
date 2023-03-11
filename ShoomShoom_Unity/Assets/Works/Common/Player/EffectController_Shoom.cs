@@ -47,7 +47,6 @@ public class EffectController_Shoom : MonoBehaviour
         TankStateUpdate();
     }
 
-
     void GenRandomTankLimit()
     {
         _curSteamTankVolumeLimit = Random.Range(_steamTankVolumeLimit, _steamTankVolumeLimit + 2);
