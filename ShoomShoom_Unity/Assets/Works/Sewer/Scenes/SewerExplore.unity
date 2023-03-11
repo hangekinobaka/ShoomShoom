@@ -921,6 +921,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8914023020617711, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914023020617714, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8914023231147779, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -36710,25 +36718,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 69275094}
     m_Modifications:
-    - target: {fileID: 683147727, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
-      propertyPath: _patrolType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 683147727, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
-      propertyPath: _patrolRange
-      value: 12.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 683147727, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
-      propertyPath: _startPointTrans
-      value: 
-      objectReference: {fileID: 683147724}
     - target: {fileID: 553533320173514338, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 553533320733001946, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
-      propertyPath: _aimBoneName
-      value: target
       objectReference: {fileID: 0}
     - target: {fileID: 553533321126742291, guid: dc8ed27a3c9ebb9489ef480cea31cb58, type: 3}
       propertyPath: m_Name
