@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 60
-  _bulletLifeTime: 2
+  _bulletLifeTime: 500
   _bulletHitEffect_Normal: {fileID: 100002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
   _bulletHitEffect_Hard: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
   _bulletHitEffect_Water: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
