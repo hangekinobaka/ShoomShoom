@@ -10,7 +10,6 @@ public class EffectController_Shoom : MonoBehaviour
     [SerializeField] ParticleSystem _upSmokeEffect;
     [SerializeField] ParticleSystem _lowSmokeEffect;
     [SerializeField] Transform _gunTopFollower;
-    [SerializeField] GameObject _bullet;
 
     [Header("Parameters")]
     [Tooltip("steam add 1f per second")]

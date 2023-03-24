@@ -1,11 +1,20 @@
 using UniRx;
 using UnityEngine;
 
+public enum BulletHitType
+{
+    Normal,
+    Hard,
+    Water,
+    Metal
+}
+
 public class BulletController : MonoBehaviour
 {
     [Header("Basic parameter")]
     [SerializeField] float _bulletSpeed = 60f;
-    [SerializeField] float _bulletLifeTime = 2f;
+    [Tooltip("millisecond")]
+    [SerializeField] float _bulletLifeTime = 500f;
 
     // These bullet effects has its own destruction methods, 
     // not included in our effect pool system.
@@ -13,9 +22,11 @@ public class BulletController : MonoBehaviour
     [SerializeField] GameObject _bulletHitEffect_Normal;
     [SerializeField] GameObject _bulletHitEffect_Hard;
     [SerializeField] GameObject _bulletHitEffect_Water;
+    [SerializeField] GameObject _bulletHitEffect_Metal;
+    BulletHitType _bulletHitType = BulletHitType.Normal;
 
     Rigidbody2D _rigidbody;
-    CompositeDisposable _disposable = new CompositeDisposable();
+    CompositeDisposable _disposable;
 
     private void Awake()
     {
@@ -34,7 +45,8 @@ public class BulletController : MonoBehaviour
             ForceMode2D.Impulse
             );
         // Destroy the bullet when its lifetime comes to the end
-        Observable.Timer(System.TimeSpan.FromSeconds(_bulletLifeTime))
+        _disposable = new CompositeDisposable();
+        Observable.Timer(System.TimeSpan.FromMilliseconds(_bulletLifeTime))
             .Subscribe(_ => PoolManager_Fightscene.Instance.PistolBulletPool.Release(gameObject))
             .AddTo(_disposable);
     }
@@ -45,25 +57,57 @@ public class BulletController : MonoBehaviour
         {
             PoolManager_Fightscene.Instance.PistolBulletPool.Release(gameObject);
 
-            GameObject prefab = null;
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                prefab = _bulletHitEffect_Normal;
+                _bulletHitType = BulletHitType.Normal;
             }
             else if (collision.gameObject.layer == LayerMask.NameToLayer("GroundHard"))
             {
-                prefab = _bulletHitEffect_Hard;
+                _bulletHitType = BulletHitType.Hard;
             }
             else if (collision.gameObject.layer == LayerMask.NameToLayer("GroundWater"))
             {
-                prefab = _bulletHitEffect_Water;
+                _bulletHitType = BulletHitType.Water;
             }
 
-            if (prefab != null)
-            {
-                GameObject effect = Instantiate(prefab, GlobalEffectsContainer.Instance.transform);
-                effect.transform.position = transform.position;
-            }
+            PlayHitEffect(transform.position);
         }
+    }
+
+    void PlayHitEffect(Vector3 pos)
+    {
+        GameObject prefab = null;
+        switch (_bulletHitType)
+        {
+            case BulletHitType.Normal:
+                prefab = _bulletHitEffect_Normal;
+                break;
+            case BulletHitType.Hard:
+                prefab = _bulletHitEffect_Hard;
+                break;
+            case BulletHitType.Water:
+                prefab = _bulletHitEffect_Water;
+                break;
+            case BulletHitType.Metal:
+                prefab = _bulletHitEffect_Metal;
+                break;
+            default:
+                break;
+        }
+
+        if (prefab != null)
+        {
+            GameObject effect = Instantiate(prefab, GlobalEffectsContainer.Instance.transform);
+            pos.z = -1;
+            effect.transform.position = pos;
+        }
+    }
+
+    public void TriggerHitEffect(BulletHitType type, Vector3 hitPos)
+    {
+        _bulletHitType = type;
+        PlayHitEffect(hitPos);
+
+        PoolManager_Fightscene.Instance.PistolBulletPool.Release(gameObject);
     }
 }

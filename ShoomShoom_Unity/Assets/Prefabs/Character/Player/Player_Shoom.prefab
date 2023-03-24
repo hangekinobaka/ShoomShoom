@@ -5174,7 +5174,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5394,7 +5394,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 62186398503675502, guid: c795d591a0938cd4cb79e5139c95e80e, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5842,7 +5842,7 @@ MonoBehaviour:
   _upSmokeEffect: {fileID: 1181404071760593505}
   _lowSmokeEffect: {fileID: 8914023446786281}
   _gunTopFollower: {fileID: 8914023902287861}
-  _bullet: {fileID: 5387314985685979820, guid: 3dbb9c561e708134fb819d2760a7c380, type: 3}
+  _bullet: {fileID: 78587987881846733, guid: d63d73784f40c474f81341a43b7c2f4a, type: 3}
   _steamTankVolumeLimit: 6.5
 --- !u!1 &1181404071760593507
 GameObject:

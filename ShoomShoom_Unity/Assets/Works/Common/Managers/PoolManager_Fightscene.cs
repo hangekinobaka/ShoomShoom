@@ -6,7 +6,7 @@ public class PoolManager_Fightscene : Singleton<PoolManager_Fightscene>
     // Gun smoke pool
     [SerializeField] private GameObject _gunEffectPrefab;
     public ObjectPool<GameObject> GunEffectPool { get; set; }
-    // Pistol bullet pool
+    // Player Pistol bullet pool
     [SerializeField] private GameObject _pistolBulletPrefab;
     public ObjectPool<GameObject> PistolBulletPool { get; set; }
 
