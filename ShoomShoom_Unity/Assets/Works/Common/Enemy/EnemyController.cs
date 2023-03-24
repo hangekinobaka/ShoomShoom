@@ -77,7 +77,7 @@ public class EnemyController : MonoBehaviour
     MovingDirection _dir = MovingDirection.Right;
 
     //events
-    public event UnityAction OnAttack, OnDistanceAttackStart, OnDistanceAttackStop;
+    public event UnityAction OnAttack, OnDistanceAttackStart, OnDistanceAttackStop, OnHurt;
 
     void Start()
     {
@@ -97,8 +97,8 @@ public class EnemyController : MonoBehaviour
         if (_healthController == null)
             _healthController = GetComponent<HealthController>();
         _healthController.Init();
-        _healthController.OnDead += Die;
         _dir = MovingDirection.Right;
+        _healthController.OnDead += Die;
     }
 
     private void OnDisable()
@@ -113,6 +113,18 @@ public class EnemyController : MonoBehaviour
         UpdateDirection();
         UpdatePhysics();
         UpdateState();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the trigger collider is a Player(layer) Weapon(tag), then get hit
+        if (collision.CompareTag("Weapon") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            BulletController bulletController = collision.GetComponent<BulletController>();
+            bulletController.TriggerHitEffect(BulletHitType.Metal, collision.transform.position);
+            // Enemy get hurt
+            if (OnHurt != null) OnHurt();
+        }
     }
 
     void DetectAndChase()

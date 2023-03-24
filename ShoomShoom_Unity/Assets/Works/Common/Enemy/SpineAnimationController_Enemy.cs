@@ -18,6 +18,7 @@ namespace SleepySpine
 
         TrackEntry _trackMain => _skeletonAnimation.GetCurrentEntry(MAIN_TRACK);
         TrackEntry _trackSecondary => _skeletonAnimation.GetCurrentEntry(SECONDARY_TRACK);
+        TrackEntry _attackSecondary => _skeletonAnimation.GetCurrentEntry(ATTACK_TRACK);
 
 
         protected virtual void Start()
@@ -30,6 +31,7 @@ namespace SleepySpine
             _enemyController.OnDistanceAttackStart += AimAndShoot;
             _enemyController.OnDistanceAttackStop += StopAimAndShoot;
             if (_steamEjector != null) _steamEjector.OnSteamEjected += EjectSteam;
+            _enemyController.OnHurt += PlayHurtAnim;
 
             // Get necessary bones
             _aimBone = _skeletonAnimation.Skeleton.FindBone(_aimBoneName);
@@ -69,6 +71,8 @@ namespace SleepySpine
             _enemyController.OnDistanceAttackStop -= StopAimAndShoot;
 
             if (_steamEjector != null) _steamEjector.OnSteamEjected -= EjectSteam;
+
+            _enemyController.OnHurt -= PlayHurtAnim;
         }
 
         private void AnimEventHandler(TrackEntry trackEntry, Spine.Event e)
@@ -87,7 +91,7 @@ namespace SleepySpine
         }
         #endregion
 
-        #region aim and shoot(Distance Attack)
+        #region Aim and shoot(Distance Attack)
         [Header("Aim andd shoot")]
         [SpineBone(dataField: "_skeletonAnimation")]
         [SerializeField] string _aimBoneName;
@@ -98,6 +102,7 @@ namespace SleepySpine
 
         public void AimAndShoot()
         {
+            if (_attackSecondary != null) return;
             // Play aim anim
             _spineAnimationState.SetAnimation(ATTACK_TRACK, "aim", false);
 
@@ -107,6 +112,7 @@ namespace SleepySpine
         }
         public void StopAimAndShoot()
         {
+            if (!_isAimingAndShooting) return;
             // Stop Play aim anim
             _spineAnimationState.AddEmptyAnimation(SECONDARY_TRACK, .1f, .1f);
 
@@ -134,6 +140,16 @@ namespace SleepySpine
         private void EjectSteam()
         {
             _spineAnimationState.SetAnimation(STEAM_TRACK, "eject-smoke", false);
+        }
+        #endregion
+
+        #region Hurt and die
+        private void PlayHurtAnim()
+        {
+            // Play hurt anim
+            TrackEntry entry = _spineAnimationState.SetAnimation(ATTACK_TRACK, "hurt", false);
+            entry.AttachmentThreshold = 1;
+            _spineAnimationState.AddEmptyAnimation(ATTACK_TRACK, .1f, .2f);
         }
         #endregion
     }

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1856051735}
   - component: {fileID: 2463375318911287882}
   - component: {fileID: 1391530788}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,9 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpeed: 60
   _bulletLifeTime: 500
-  _bulletHitEffect_Normal: {fileID: 100002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
-  _bulletHitEffect_Hard: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
-  _bulletHitEffect_Water: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
+  _bulletHitEffect_Normal: {fileID: 100002, guid: 19d1c46b33527ca41b80fd8c516cfeb7, type: 3}
+  _bulletHitEffect_Hard: {fileID: 100002, guid: 9ca992265f97ea1429c082d7f3cf8158, type: 3}
+  _bulletHitEffect_Water: {fileID: 100002, guid: a0d64f50a73084a42ad729ef2ff78d13, type: 3}
+  _bulletHitEffect_Metal: {fileID: 100002, guid: e9016cb54b3f6b74ba50d612c013bd79, type: 3}
 --- !u!70 &1391530788
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

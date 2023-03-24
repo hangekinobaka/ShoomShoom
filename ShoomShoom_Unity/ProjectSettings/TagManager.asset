@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - Weapon
   layers:
   - Default
   - TransparentFX

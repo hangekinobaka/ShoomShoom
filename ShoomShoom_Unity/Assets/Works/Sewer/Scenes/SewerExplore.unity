@@ -921,14 +921,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8914023020617711, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914023020617714, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8914023231147779, guid: f9465716e29ae6e4380538228055c7c6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -34741,7 +34733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunEffectPrefab: {fileID: 2879871456910191946, guid: 64a60d5df5f45cb4f86faa47d98d8ef8, type: 3}
-  _pistolBulletPrefab: {fileID: 5387314985685979820, guid: 3dbb9c561e708134fb819d2760a7c380, type: 3}
+  _pistolBulletPrefab: {fileID: 78587987881846733, guid: d63d73784f40c474f81341a43b7c2f4a, type: 3}
 --- !u!1 &1973934061
 GameObject:
   m_ObjectHideFlags: 0
