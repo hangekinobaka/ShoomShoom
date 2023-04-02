@@ -13,6 +13,9 @@ public class BulletController : MonoBehaviour
 {
     [Header("Basic parameter")]
     [SerializeField] float _bulletSpeed = 60f;
+    [Tooltip("This damage will be added to the damagable's base damage value")]
+    [SerializeField] float _plusDamage = 5f;
+    public float PlusDamage => _plusDamage;
     [Tooltip("millisecond")]
     [SerializeField] float _bulletLifeTime = 500f;
 

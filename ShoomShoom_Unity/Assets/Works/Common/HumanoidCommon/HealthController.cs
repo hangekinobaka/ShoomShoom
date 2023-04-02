@@ -8,14 +8,18 @@ public class HealthController : MonoBehaviour
 
     public event UnityAction OnDead;
 
+    public HealthBar _healthBar;
+
     public void Init()
     {
         _health = _maxHealth;
+        _healthBar.Init();
+        _healthBar.SetMaxHealth(_health);
     }
     public void Init(float maxHealth)
     {
         _maxHealth = maxHealth;
-        _health = maxHealth;
+        Init();
     }
 
     public void Heal(float dose = 1f)
@@ -34,6 +38,9 @@ public class HealthController : MonoBehaviour
         {
             Die();
         }
+
+        _healthBar.DisplayHealthBar();
+        _healthBar.SetHealth(_health);
     }
 
     public void Die()
