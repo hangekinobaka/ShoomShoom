@@ -31,7 +31,10 @@ namespace SleepySpine
             _enemyController.OnDistanceAttackStart += AimAndShoot;
             _enemyController.OnDistanceAttackStop += StopAimAndShoot;
             if (_steamEjector != null) _steamEjector.OnSteamEjected += EjectSteam;
+            // TODO: add critical attack
+            _enemyController.OnCriticalHurt += PlayHurtAnim;
             _enemyController.OnHurt += PlayHurtAnim;
+            _enemyController.OnDead += PlayDieAnim;
 
             // Get necessary bones
             _aimBone = _skeletonAnimation.Skeleton.FindBone(_aimBoneName);
@@ -59,7 +62,9 @@ namespace SleepySpine
                     default:
                         break;
                 }
-            });
+            }).AddTo(this);
+
+            _steamEjector.enabled = true;
         }
 
         private void OnDisable()
@@ -72,7 +77,9 @@ namespace SleepySpine
 
             if (_steamEjector != null) _steamEjector.OnSteamEjected -= EjectSteam;
 
+            _enemyController.OnCriticalHurt -= PlayHurtAnim;
             _enemyController.OnHurt -= PlayHurtAnim;
+            _enemyController.OnDead -= PlayDieAnim;
         }
 
         private void AnimEventHandler(TrackEntry trackEntry, Spine.Event e)
@@ -150,6 +157,14 @@ namespace SleepySpine
             TrackEntry entry = _spineAnimationState.SetAnimation(ATTACK_TRACK, "hurt", false);
             entry.AttachmentThreshold = 1;
             _spineAnimationState.AddEmptyAnimation(ATTACK_TRACK, .1f, .2f);
+        }
+        private void PlayDieAnim()
+        {
+            // Play hurt anim
+            TrackEntry entry = _spineAnimationState.SetAnimation(MAIN_TRACK, "die", false);
+
+            // Stop steam ejecting
+            _steamEjector.enabled = false;
         }
         #endregion
     }

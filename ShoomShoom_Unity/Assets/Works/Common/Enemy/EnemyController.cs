@@ -19,7 +19,7 @@ public enum PatrolType
     RightToLeft
 }
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamagable
 {
     readonly Vector3 RIGHT_DIR_SCALE = new Vector3(-1, 1, 1);
     readonly Vector3 LEFT_DIR_SCALE = Vector3.one;
@@ -70,6 +70,7 @@ public class EnemyController : MonoBehaviour
     protected HealthController _healthController;
 
     // local states
+    protected bool _isDead = false;
     protected bool _isChasing = false;
     protected bool _inAttackRange = false;
     protected Vector2 _velocity;
@@ -77,12 +78,13 @@ public class EnemyController : MonoBehaviour
     MovingDirection _dir = MovingDirection.Right;
 
     //events
-    public event UnityAction OnAttack, OnDistanceAttackStart, OnDistanceAttackStop, OnHurt;
+    public event UnityAction OnAttack, OnDistanceAttackStart, OnDistanceAttackStop, OnHurt, OnDead, OnCriticalHurt;
 
     void Start()
     {
         _playerTrans = LevelManager_Fightscene.Instance.PlayerTrans;
-        _rigidbody = GetComponent<Rigidbody2D>();
+        if (_rigidbody == null)
+            _rigidbody = GetComponent<Rigidbody2D>();
 
         if (_healthController == null)
             _healthController = GetComponent<HealthController>();
@@ -96,9 +98,9 @@ public class EnemyController : MonoBehaviour
     {
         if (_healthController == null)
             _healthController = GetComponent<HealthController>();
-        _healthController.Init();
-        _dir = MovingDirection.Right;
-        _healthController.OnDead += Die;
+        if (_rigidbody == null)
+            _rigidbody = GetComponent<Rigidbody2D>();
+        Init();
     }
 
     private void OnDisable()
@@ -108,6 +110,8 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_isDead) return;
+
         if (!_willChase) DetectAndChase();
         if (!_isStationary && !_isChasing && !_inAttackRange) UpdatePatrol();
         UpdateDirection();
@@ -115,16 +119,17 @@ public class EnemyController : MonoBehaviour
         UpdateState();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Init()
     {
-        // If the trigger collider is a Player(layer) Weapon(tag), then get hit
-        if (collision.CompareTag("Weapon") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            BulletController bulletController = collision.GetComponent<BulletController>();
-            bulletController.TriggerHitEffect(BulletHitType.Metal, collision.transform.position);
-            // Enemy get hurt
-            if (OnHurt != null) OnHurt();
-        }
+        _healthController.Init();
+        _healthController.OnDead += Die;
+
+        _dir = MovingDirection.Right;
+
+        _isDead = false;
+
+        // Collider and physics
+        _rigidbody.bodyType = RigidbodyType2D.Dynamic;
     }
 
     void DetectAndChase()
@@ -314,9 +319,24 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Attack() { }
     public virtual void DistanceAttack() { }
-    public virtual void Die() { }
-    public virtual void TakeDamage(float damage)
+    public virtual void Die()
     {
+        if (OnDead != null) OnDead();
+        _isDead = true;
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+    }
+    public virtual void TakeDamage(float damage, bool isCritical = false)
+    {
+        // Enemy get hurt
+        if (isCritical)
+        {
+            if (OnCriticalHurt != null) OnCriticalHurt();
+        }
+        else
+        {
+            if (OnHurt != null) OnHurt();
+        }
         _healthController.TakeDamage(damage);
     }
 }
